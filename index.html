@@ -27,21 +27,22 @@
   header {
     background: linear-gradient(135deg, #1a1a22 0%, #12121a 100%);
     border-bottom: 1px solid var(--border);
-    padding: 18px 24px;
+    padding: 14px 24px;
     display: flex; align-items: center; justify-content: space-between;
     position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
   }
-  .brand { display: flex; align-items: center; gap: 10px; }
-  .brand-icon {
-    width: 38px; height: 38px;
-    background: linear-gradient(135deg, var(--gold), var(--gold2));
-    border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 700; color: #1a0a00;
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo {
+    width: 42px; height: 42px; border-radius: 12px;
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    background: #000; border: 1px solid rgba(245,166,35,0.3);
+    flex-shrink: 0;
   }
+  .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
   .brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 3px; color: var(--gold); }
   .brand-sub { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
   .header-actions { display: flex; gap: 10px; align-items: center; }
-  .btn { padding: 9px 18px; border-radius: 10px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+  .btn { padding: 9px 18px; border-radius: 10px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
   .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -53,7 +54,7 @@
   }
   .divider-v { background: var(--border); width: 1px; margin: 0 20px; }
   .stat-block { text-align: center; }
-  .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 6px; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 5px; }
   .stat-value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; }
   .stat-value.expense { color: var(--red); }
   .stat-value.income  { color: var(--green); }
@@ -76,28 +77,32 @@
     margin-bottom: 8px; transition: transform 0.15s; cursor: pointer;
   }
   .tx-item:hover { transform: translateX(2px); }
-  .tx-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .tx-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .tx-icon.expense-icon { background: rgba(224,85,85,0.12); }
   .tx-icon.income-icon  { background: rgba(76,175,125,0.12); }
+  .tx-icon svg { width: 20px; height: 20px; }
   .tx-info { flex: 1; }
   .tx-desc { font-weight: 600; font-size: 14px; color: var(--text); }
   .tx-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
   .tx-amount { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
   .tx-amount.neg { color: var(--red); }
   .tx-amount.pos { color: var(--green); }
-  .tx-delete { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; padding: 4px; border-radius: 6px; transition: color 0.2s, background 0.2s; }
+  .tx-delete { background: none; border: none; color: var(--muted); cursor: pointer; padding: 6px; border-radius: 6px; transition: color 0.2s, background 0.2s; display: flex; align-items: center; }
   .tx-delete:hover { color: var(--red); background: rgba(224,85,85,0.1); }
+  .tx-delete svg { width: 16px; height: 16px; }
   .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 15px; }
-  .empty-state .big-icon { font-size: 48px; margin-bottom: 12px; }
+  .empty-state .big-icon { margin-bottom: 12px; display: flex; justify-content: center; }
+  .empty-state svg { width: 52px; height: 52px; opacity: 0.4; }
   .category-badge { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font-size: 11px; color: var(--muted); font-weight: 600; }
 
   .fab {
     position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px; border-radius: 18px;
     background: linear-gradient(135deg, var(--gold), var(--gold2)); border: none; cursor: pointer;
-    font-size: 28px; color: #1a0a00; font-weight: 700; box-shadow: 0 8px 24px rgba(245,166,35,0.35);
+    color: #1a0a00; font-weight: 700; box-shadow: 0 8px 24px rgba(245,166,35,0.35);
     transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; z-index: 200;
   }
   .fab:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 12px 32px rgba(245,166,35,0.45); }
+  .fab svg { width: 28px; height: 28px; }
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 300; display: none; align-items: flex-end; justify-content: center; }
   .modal-overlay.active { display: flex; }
@@ -106,7 +111,8 @@
   .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
   .modal-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(--gold); }
   .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-  .type-btn { padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+  .type-btn { padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .type-btn svg { width: 16px; height: 16px; }
   .type-btn.active-expense { background: rgba(224,85,85,0.15); border-color: var(--red); color: var(--red); }
   .type-btn.active-income  { background: rgba(76,175,125,0.15); border-color: var(--green); color: var(--green); }
   .form-group { margin-bottom: 14px; }
@@ -115,15 +121,19 @@
   .form-input:focus, .form-select:focus { border-color: var(--gold); }
   .form-input[type="date"] { color-scheme: dark; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .submit-btn { width: 100%; padding: 14px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #1a0a00; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 8px; transition: opacity 0.2s, transform 0.2s; }
+  .submit-btn { width: 100%; padding: 14px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #1a0a00; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 8px; transition: opacity 0.2s, transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .submit-btn svg { width: 18px; height: 18px; }
   .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
   .pdf-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 400; display: none; align-items: center; justify-content: center; }
   .pdf-modal-overlay.active { display: flex; }
   .pdf-modal { background: var(--surface); border-radius: 20px; padding: 28px 28px 32px; width: 90%; max-width: 440px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; }
   @keyframes fadeScaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-  .pdf-modal-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); margin-bottom: 18px; font-weight: 700; }
-  .pdf-modal-close { float: right; background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; margin-top: -4px; }
+  .pdf-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .pdf-modal-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-weight: 700; }
+  .pdf-modal-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; align-items: center; }
+  .pdf-modal-close:hover { color: var(--text); }
+  .pdf-modal-close svg { width: 20px; height: 20px; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -142,31 +152,45 @@
 
 <header>
   <div class="brand">
-    <div class="brand-icon">M</div>
+    <div class="brand-logo" id="headerLogoWrap">
+      <!-- Logo loaded dynamically -->
+    </div>
     <div>
       <div class="brand-name">MOVA</div>
       <div class="brand-sub">Income &amp; Expense</div>
     </div>
   </div>
   <div class="header-actions">
-    <button class="btn btn-outline" onclick="openPdfModal()">&#8659; Export PDF</button>
+    <button class="btn btn-outline" onclick="openPdfModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export PDF
+    </button>
   </div>
 </header>
 
 <div class="summary-section">
   <div class="summary-card">
     <div class="stat-block">
-      <div class="stat-label">Expense</div>
+      <div class="stat-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        Expense
+      </div>
       <div class="stat-value expense" id="totalExpense">&#8377;0.00</div>
     </div>
     <div class="divider-v"></div>
     <div class="stat-block">
-      <div class="stat-label">Income</div>
+      <div class="stat-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        Income
+      </div>
       <div class="stat-value income" id="totalIncome">&#8377;0.00</div>
     </div>
     <div class="divider-v"></div>
     <div class="stat-block">
-      <div class="stat-label">Balance</div>
+      <div class="stat-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Balance
+      </div>
       <div class="stat-value balance" id="totalBalance">&#8377;0.00</div>
     </div>
   </div>
@@ -189,7 +213,9 @@
   <div id="txList"></div>
 </div>
 
-<button class="fab" onclick="openModal()">+</button>
+<button class="fab" onclick="openModal()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+</button>
 
 <!-- ADD MODAL -->
 <div class="modal-overlay" id="addModal">
@@ -197,8 +223,14 @@
     <div class="modal-handle"></div>
     <div class="modal-title">Add Entry</div>
     <div class="type-toggle">
-      <button class="type-btn active-expense" id="typeExpense" onclick="setType('expense')">&#128280; Expense</button>
-      <button class="type-btn" id="typeIncome" onclick="setType('income')">&#128176; Income</button>
+      <button class="type-btn active-expense" id="typeExpense" onclick="setType('expense')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        Expense
+      </button>
+      <button class="type-btn" id="typeIncome" onclick="setType('income')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        Income
+      </button>
     </div>
     <div class="form-row">
       <div class="form-group">
@@ -235,16 +267,26 @@
       <label class="form-label">DESCRIPTION</label>
       <input class="form-input" type="text" id="txDesc" placeholder="What was this for?">
     </div>
-    <button class="submit-btn" onclick="addTransaction()">Add Entry</button>
-    <button class="btn btn-outline" style="width:100%;margin-top:10px;" onclick="closeModal()">Cancel</button>
+    <button class="submit-btn" onclick="addTransaction()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Entry
+    </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Cancel
+    </button>
   </div>
 </div>
 
 <!-- PDF MODAL -->
 <div class="pdf-modal-overlay" id="pdfModal">
   <div class="pdf-modal">
-    <button class="pdf-modal-close" onclick="closePdfModal()">&#10005;</button>
-    <div class="pdf-modal-title">Export Statement</div>
+    <div class="pdf-modal-header">
+      <div class="pdf-modal-title">Export Statement</div>
+      <button class="pdf-modal-close" onclick="closePdfModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
     <div class="form-group">
       <label class="form-label">COMPANY / APP NAME</label>
       <input class="form-input" id="pdfCompany" value="MOVA">
@@ -271,43 +313,101 @@
         <option value="income">Income Only</option>
       </select>
     </div>
-    <button class="submit-btn" onclick="generatePDF()">Download PDF</button>
-    <button class="btn btn-outline" style="width:100%;margin-top:10px;" onclick="closePdfModal()">Cancel</button>
+    <button class="submit-btn" onclick="generatePDF()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closePdfModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Cancel
+    </button>
   </div>
 </div>
 
 <script>
+// ── SVG ICONS MAP (category → SVG path data) ──
+const CATEGORY_ICONS = {
+  // Expense
+  'Food & Drink': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+  'Travel':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  'Groceries':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  'Education':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+  'Shopping':     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+  'Health':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+  'Entertainment':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+  'Utilities':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  'Rent':         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  // Income
+  'Salary':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+  'Business':     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  'Freelance':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>`,
+  'Gift':         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
+  'Investment':   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+  'Other':        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+};
+
+const INCOME_DEFAULT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`;
+const EXPENSE_DEFAULT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`;
+
+function getCategoryIcon(type, cat) {
+  return CATEGORY_ICONS[cat] || (type === 'income' ? INCOME_DEFAULT : EXPENSE_DEFAULT);
+}
+
+// ── Logo handling ──
+// We store logo as base64 in localStorage for PDF use
+let LOGO_BASE64 = localStorage.getItem('mova_logo_b64') || null;
+
+function loadLogoFromFile(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.readAsDataURL(file);
+  });
+}
+
+function setHeaderLogo(dataUrl) {
+  const wrap = document.getElementById('headerLogoWrap');
+  if (dataUrl) {
+    wrap.innerHTML = `<img src="${dataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`;
+  } else {
+    // Fallback: gold M icon
+    wrap.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(135deg,#f5a623,#e8922a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;font-weight:700;color:#1a0a00;border-radius:10px;">M</div>`;
+  }
+}
+
+// On load, render header logo
+setHeaderLogo(LOGO_BASE64);
+
+// Allow user to click logo to change it
+document.getElementById('headerLogoWrap').style.cursor = 'pointer';
+document.getElementById('headerLogoWrap').title = 'Click to change logo';
+document.getElementById('headerLogoWrap').addEventListener('click', () => {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*';
+  inp.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const dataUrl = await loadLogoFromFile(file);
+    LOGO_BASE64 = dataUrl;
+    localStorage.setItem('mova_logo_b64', dataUrl);
+    setHeaderLogo(dataUrl);
+  };
+  inp.click();
+});
+
 const CATEGORIES = {
   expense: ['Food & Drink','Travel','Groceries','Education','Shopping','Health','Entertainment','Utilities','Rent','Other'],
-  income:  ['Salary','Business','Freelance','Gift','Investment','Appa','Other']
+  income:  ['Salary','Business','Freelance','Gift','Investment','Other']
 };
 
 let transactions = JSON.parse(localStorage.getItem('mova_tx') || '[]');
-// Remove any legacy tax entries
 transactions = transactions.filter(t => t.type !== 'tax');
 let currentType = 'expense';
 
 function save() { localStorage.setItem('mova_tx', JSON.stringify(transactions)); }
 
-// UI: browser renders rupee symbol fine
 const fmt = n => '\u20B9' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-
-// PDF: jsPDF helvetica cannot encode \u20B9, so use "Rs." prefix instead
 const pdfMoney = n => 'Rs.' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-
-const emojiMap = {
-  'Food & Drink':'F','Travel':'T','Groceries':'G','Education':'E','Shopping':'S',
-  'Health':'H','Entertainment':'M','Utilities':'U','Rent':'R',
-  'Salary':'$','Business':'B','Freelance':'L','Gift':'X','Investment':'I','Appa':'A'
-};
-const emojiUni = {
-  'Food & Drink':'\uD83C\uDF54','Travel':'\uD83D\uDEF5','Groceries':'\uD83D\uDED2',
-  'Education':'\uD83D\uDCDA','Shopping':'\uD83D\uDED2','Health':'\uD83D\uDC8A',
-  'Entertainment':'\uD83C\uDFAC','Utilities':'\uD83D\uDCA1','Rent':'\uD83C\uDFE0',
-  'Salary':'\uD83D\uDCBC','Business':'\uD83D\uDCC9','Freelance':'\uD83D\uDDA5',
-  'Gift':'\uD83C\uDF81','Investment':'\uD83D\uDCC8','Appa':'\uD83D\uDC68\u200D\uD83D\uDC66'
-};
-const getEmoji = (type, cat) => emojiUni[cat] || (type==='income' ? '\uD83D\uDCB0' : '\uD83D\uDCB8');
 
 function todayStr() { return new Date().toISOString().slice(0,10); }
 function nowTime()  { return new Date().toTimeString().slice(0,5); }
@@ -391,7 +491,14 @@ function renderList() {
   });
   const container = document.getElementById('txList');
   if (!filtered.length) {
-    container.innerHTML = `<div class="empty-state"><div class="big-icon">&#128202;</div><div>No transactions yet.<br>Tap <strong>+</strong> to add your first entry.</div></div>`;
+    container.innerHTML = `<div class="empty-state">
+      <div class="big-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div>No transactions yet.<br>Tap <strong>+</strong> to add your first entry.</div>
+    </div>`;
     return;
   }
   const groups = {};
@@ -402,14 +509,17 @@ function renderList() {
     html += `<div class="tx-group-date">${d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'long',year:'numeric'})}</div>`;
     txs.forEach(t => {
       const isInc = t.type==='income';
+      const iconSvg = getCategoryIcon(t.type, t.cat);
       html += `<div class="tx-item">
-        <div class="tx-icon ${isInc?'income-icon':'expense-icon'}">${getEmoji(t.type,t.cat)}</div>
+        <div class="tx-icon ${isInc?'income-icon':'expense-icon'}" style="color:${isInc?'#4caf7d':'#e05555'}">${iconSvg}</div>
         <div class="tx-info">
           <div class="tx-desc">${t.desc}</div>
           <div class="tx-meta">${t.cat} &bull; ${t.time} &bull; ${t.mode} <span class="category-badge">${t.type.toUpperCase()}</span></div>
         </div>
         <div class="tx-amount ${isInc?'pos':'neg'}">${isInc?'+':'-'}${fmt(t.amount)}</div>
-        <button class="tx-delete" onclick="deleteTransaction(${t.id})">&#128465;</button>
+        <button class="tx-delete" onclick="deleteTransaction(${t.id})" title="Delete">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
       </div>`;
     });
   }
@@ -436,7 +546,6 @@ function generatePDF() {
   const PAGE_H = 297;
   let y        = 0;
 
-  // All colors as RGB arrays — jsPDF uses spread
   const C = {
     dark:   [22, 22, 30],
     gold:   [200,130, 30],
@@ -455,22 +564,36 @@ function generatePDF() {
   doc.setFillColor(...C.dark);
   doc.rect(0,0,W,38,'F');
 
-  // Logo box
-  doc.setFillColor(...C.gold);
-  doc.roundedRect(14,8,22,22,4,4,'F');
-  doc.setTextColor(...C.dark);
-  doc.setFontSize(14); doc.setFont('helvetica','bold');
-  doc.text('M', 25, 22, {align:'center'});
+  // Logo in PDF header
+  const logoX = 14, logoY = 7, logoW = 24, logoH = 24;
+  if (LOGO_BASE64) {
+    try {
+      const ext = LOGO_BASE64.startsWith('data:image/png') ? 'PNG' : 'JPEG';
+      doc.addImage(LOGO_BASE64, ext, logoX, logoY, logoW, logoH, undefined, 'FAST');
+    } catch(e) {
+      // fallback gold box
+      doc.setFillColor(...C.gold);
+      doc.roundedRect(logoX, logoY, logoW, logoH, 4, 4, 'F');
+      doc.setTextColor(...C.dark);
+      doc.setFontSize(14); doc.setFont('helvetica','bold');
+      doc.text('M', logoX + logoW/2, logoY + logoH/2 + 1, {align:'center'});
+    }
+  } else {
+    doc.setFillColor(...C.gold);
+    doc.roundedRect(logoX, logoY, logoW, logoH, 4, 4, 'F');
+    doc.setTextColor(...C.dark);
+    doc.setFontSize(14); doc.setFont('helvetica','bold');
+    doc.text('M', logoX + logoW/2, logoY + logoH/2 + 1, {align:'center'});
+  }
 
   // Company name
   doc.setTextColor(...C.gold);
   doc.setFontSize(18); doc.setFont('helvetica','bold');
-  doc.text(company, 40, 18);
+  doc.text(company, 42, 18);
   doc.setTextColor(180,180,200);
   doc.setFontSize(8.5); doc.setFont('helvetica','normal');
-  doc.text('Income & Expense Manager', 40, 26);
+  doc.text('Income & Expense Manager', 42, 26);
 
-  // Generated timestamp (ASCII-safe)
   const now    = new Date();
   const genStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})
                + ', ' + now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase();
@@ -480,7 +603,6 @@ function generatePDF() {
 
   y = 48;
 
-  // ── STATEMENT heading ──
   doc.setTextColor(...C.dark);
   doc.setFontSize(26); doc.setFont('helvetica','bold');
   doc.text('STATEMENT', 14, y);
@@ -492,7 +614,6 @@ function generatePDF() {
   doc.text((fromDate?fmtMY(fromDate):'Start') + ' - ' + (toDate?fmtMY(toDate):'Now'), 14, y);
   y += 12;
 
-  // ── Summary stats box ──
   const totalExp   = filtered.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
   const totalInc   = filtered.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
   const netBal     = totalInc - totalExp;
@@ -530,7 +651,6 @@ function generatePDF() {
   doc.text('Daily Avg:  Expense ' + pdfMoney(totalExp/days) + '   |   Income ' + pdfMoney(totalInc/days), W/2, y, {align:'center'});
   y += 12;
 
-  // ── Category sections ──
   const renderCatSection = (heading, list, color) => {
     if (!list.length) return;
     checkPage(28);
@@ -573,7 +693,6 @@ function generatePDF() {
   renderCatSection('Income Categories',  filtered.filter(t=>t.type==='income'),  C.green);
   y += 4;
 
-  // ── Transaction table heading ──
   checkPage(30);
   doc.setFontSize(11); doc.setFont('helvetica','bold');
   doc.setTextColor(...C.dark);
@@ -607,7 +726,23 @@ function generatePDF() {
     ];
   });
 
+  // Watermark logo on each page
+  const drawWatermark = () => {
+    if (!LOGO_BASE64) return;
+    try {
+      const ext = LOGO_BASE64.startsWith('data:image/png') ? 'PNG' : 'JPEG';
+      const wSize = 40;
+      const wx = (W - wSize) / 2;
+      const wy = (PAGE_H - wSize) / 2 - 10;
+      doc.saveGraphicsState();
+      doc.setGState(new doc.GState({opacity: 0.06}));
+      doc.addImage(LOGO_BASE64, ext, wx, wy, wSize, wSize, undefined, 'FAST');
+      doc.restoreGraphicsState();
+    } catch(e) {}
+  };
+
   const footerFn = data => {
+    drawWatermark();
     doc.setFillColor(...C.dark);
     doc.rect(0, PAGE_H-14, W, 14, 'F');
     doc.setFontSize(7); doc.setFont('helvetica','bold');
@@ -646,7 +781,6 @@ function generatePDF() {
   y = doc.lastAutoTable.finalY + 10;
   checkPage(44);
 
-  // ── Totals box ──
   doc.setFillColor(...C.light);
   doc.setDrawColor(...C.border);
   doc.roundedRect(14, y, W-28, 34, 4, 4, 'FD');
@@ -675,12 +809,10 @@ function generatePDF() {
 
   y += 42;
 
-  // ── Disclaimer ──
   doc.setFontSize(7.5); doc.setFont('helvetica','italic');
   doc.setTextColor(...C.mid);
   doc.text('* This is an auto-generated statement based on your recorded transactions.', 14, y);
 
-  // Final footer (last page)
   doc.setFillColor(...C.dark);
   doc.rect(0, PAGE_H-14, W, 14, 'F');
   doc.setFontSize(7); doc.setFont('helvetica','bold');
