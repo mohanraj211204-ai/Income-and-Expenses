@@ -45,7 +45,248 @@
   .btn { padding: 9px 18px; border-radius: 10px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
   .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .icon-btn {
+    width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); cursor: pointer; display: flex;
+    align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0;
+  }
+  .icon-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(245,166,35,0.07); }
+  .icon-btn svg { width: 18px; height: 18px; }
 
+  /* ── SETTINGS PANEL ── */
+  .settings-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px); z-index: 500; display: none;
+    align-items: flex-start; justify-content: flex-end;
+  }
+  .settings-overlay.active { display: flex; }
+  .settings-panel {
+    width: 320px; background: var(--surface);
+    border-left: 1px solid var(--border);
+    min-height: 100vh; padding: 0;
+    animation: slideInRight 0.3s cubic-bezier(.16,1,.3,1);
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+  .settings-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; background: var(--surface); z-index: 1;
+  }
+  .settings-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--gold); font-weight: 700; }
+  .settings-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 6px; border-radius: 8px; display: flex; align-items: center; transition: color 0.2s, background 0.2s; }
+  .settings-close:hover { color: var(--text); background: var(--surface2); }
+  .settings-close svg { width: 20px; height: 20px; }
+
+  /* Profile section inside settings */
+  .settings-profile {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .profile-avatar-wrap { position: relative; width: 80px; height: 80px; }
+  .profile-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 2px solid rgba(245,166,35,0.4);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f5a623, #e8922a);
+    font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: #1a0a00;
+  }
+  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .profile-edit-badge {
+    position: absolute; bottom: 0; right: 0; width: 24px; height: 24px;
+    background: var(--gold); border-radius: 50%; border: 2px solid var(--surface);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    color: #1a0a00; transition: transform 0.2s;
+  }
+  .profile-edit-badge:hover { transform: scale(1.1); }
+  .profile-edit-badge svg { width: 12px; height: 12px; }
+  .profile-name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .profile-pic-actions { display: flex; gap: 8px; }
+  .profile-pic-btn {
+    padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+  }
+  .profile-pic-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .profile-pic-btn.danger:hover { border-color: var(--red); color: var(--red); }
+  .profile-pic-btn svg { width: 13px; height: 13px; }
+
+  /* Settings sections */
+  .settings-section { padding: 16px 20px 0; }
+  .settings-section-title {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); font-weight: 700; margin-bottom: 10px;
+  }
+  .settings-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; border-radius: 12px; margin-bottom: 6px;
+    background: var(--surface2); border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .settings-item:hover { border-color: rgba(245,166,35,0.25); }
+  .settings-item-left { display: flex; align-items: center; gap: 12px; }
+  .settings-item-icon {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .settings-item-icon svg { width: 17px; height: 17px; }
+  .settings-item-label { font-size: 14px; font-weight: 600; color: var(--text); }
+  .settings-item-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .settings-item-action { display: flex; align-items: center; }
+  .settings-item-btn {
+    padding: 6px 13px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .settings-item-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .settings-item-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+  /* Toggle switch */
+  .toggle-wrap { display: flex; align-items: center; gap: 8px; }
+  .toggle {
+    position: relative; width: 42px; height: 24px; cursor: pointer;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; inset: 0; background: var(--border);
+    border-radius: 12px; transition: 0.25s;
+  }
+  .toggle-slider::before {
+    content: ''; position: absolute; width: 18px; height: 18px;
+    left: 3px; top: 3px; background: var(--muted);
+    border-radius: 50%; transition: 0.25s;
+  }
+  .toggle input:checked + .toggle-slider { background: rgba(245,166,35,0.25); }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--gold); }
+  .toggle-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+  .settings-footer { padding: 20px; margin-top: auto; }
+  .clear-data-btn {
+    width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(224,85,85,0.35);
+    background: rgba(224,85,85,0.08); color: var(--red); font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .clear-data-btn:hover { background: rgba(224,85,85,0.18); border-color: var(--red); }
+  .clear-data-btn svg { width: 16px; height: 16px; }
+
+  /* ── LOCK SCREEN ── */
+  .lock-screen {
+    position: fixed; inset: 0; background: var(--bg); z-index: 9999;
+    display: none; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+  }
+  .lock-screen.active { display: flex; }
+  .lock-logo-wrap {
+    width: 72px; height: 72px; border-radius: 20px;
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f5a623, #e8922a);
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #1a0a00;
+    border: 1px solid rgba(245,166,35,0.3);
+  }
+  .lock-logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .lock-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-weight: 700; }
+  .lock-sub { font-size: 13px; color: var(--muted); }
+  .lock-icon-wrap {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; margin-bottom: -8px;
+  }
+  .lock-icon-wrap svg { width: 30px; height: 30px; color: var(--gold); }
+  .pin-dots { display: flex; gap: 14px; margin: 4px 0; }
+  .pin-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--border); border: 2px solid var(--muted);
+    transition: all 0.15s;
+  }
+  .pin-dot.filled { background: var(--gold); border-color: var(--gold); transform: scale(1.1); }
+  .pin-dot.error { background: var(--red); border-color: var(--red); }
+  .pin-keypad { display: grid; grid-template-columns: repeat(3, 64px); gap: 12px; }
+  .pin-key {
+    width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 20px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pin-key:hover { background: var(--surface2); border-color: var(--gold); color: var(--gold); }
+  .pin-key:active { transform: scale(0.92); }
+  .pin-key.del { font-size: 14px; color: var(--muted); }
+  .pin-error-msg { font-size: 12px; color: var(--red); font-weight: 600; min-height: 18px; }
+
+  /* ── PASSWORD MODAL ── */
+  .pw-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px); z-index: 600; display: none;
+    align-items: center; justify-content: center;
+  }
+  .pw-modal-overlay.active { display: flex; }
+  .pw-modal {
+    background: var(--surface); border-radius: 20px; padding: 28px 28px 32px;
+    width: 90%; max-width: 400px; border: 1px solid var(--border);
+    animation: fadeScaleIn 0.25s ease;
+  }
+  @keyframes fadeScaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  .pw-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .pw-modal-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--gold); font-weight: 700; }
+  .pw-modal-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; align-items: center; }
+  .pw-modal-close:hover { color: var(--text); }
+  .pw-modal-close svg { width: 20px; height: 20px; }
+  .pw-pin-row { display: flex; gap: 10px; margin-bottom: 14px; justify-content: center; }
+  .pw-pin-input {
+    width: 52px; height: 56px; text-align: center; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--surface2);
+    color: var(--text); font-size: 22px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s; letter-spacing: 2px;
+  }
+  .pw-pin-input:focus { border-color: var(--gold); }
+  .pw-hint { font-size: 12px; color: var(--muted); margin-bottom: 18px; text-align: center; }
+  .pw-error { font-size: 12px; color: var(--red); font-weight: 600; text-align: center; margin-bottom: 10px; min-height: 18px; }
+
+  /* ── CROP MODAL ── */
+  .crop-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px); z-index: 700; display: none;
+    align-items: center; justify-content: center;
+  }
+  .crop-modal-overlay.active { display: flex; }
+  .crop-modal {
+    background: var(--surface); border-radius: 20px; padding: 24px;
+    width: 94%; max-width: 380px; border: 1px solid var(--border);
+    animation: fadeScaleIn 0.25s ease; display: flex; flex-direction: column; gap: 16px;
+  }
+  .crop-modal-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-weight: 700; }
+  .crop-canvas-wrap {
+    width: 100%; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden;
+    position: relative; background: #111; border: 1px solid var(--border); cursor: crosshair;
+  }
+  #cropCanvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  .crop-controls { display: flex; flex-direction: column; gap: 10px; }
+  .crop-slider-row { display: flex; align-items: center; gap: 10px; }
+  .crop-slider-label { font-size: 12px; color: var(--muted); font-weight: 600; width: 38px; }
+  .crop-slider { flex: 1; accent-color: var(--gold); cursor: pointer; }
+  .crop-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* ── CONFIRM MODAL ── */
+  .confirm-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px); z-index: 800; display: none;
+    align-items: center; justify-content: center;
+  }
+  .confirm-overlay.active { display: flex; }
+  .confirm-modal {
+    background: var(--surface); border-radius: 20px; padding: 28px 28px 28px;
+    width: 90%; max-width: 360px; border: 1px solid var(--border);
+    animation: fadeScaleIn 0.25s ease; text-align: center;
+  }
+  .confirm-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(224,85,85,0.12); border: 1px solid rgba(224,85,85,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .confirm-icon svg { width: 26px; height: 26px; color: var(--red); }
+  .confirm-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text); font-weight: 700; margin-bottom: 8px; }
+  .confirm-body { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* ── MAIN APP ── */
   .summary-section { padding: 24px 24px 0; }
   .summary-card {
     background: var(--surface); border-radius: var(--card-radius);
@@ -128,7 +369,6 @@
   .pdf-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 400; display: none; align-items: center; justify-content: center; }
   .pdf-modal-overlay.active { display: flex; }
   .pdf-modal { background: var(--surface); border-radius: 20px; padding: 28px 28px 32px; width: 90%; max-width: 440px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; }
-  @keyframes fadeScaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   .pdf-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
   .pdf-modal-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-weight: 700; }
   .pdf-modal-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; align-items: center; }
@@ -145,16 +385,50 @@
     .stat-value { font-size: 20px; }
     .summary-section, .transactions-section, .filter-bar { padding-left: 16px; padding-right: 16px; }
     .form-row { grid-template-columns: 1fr; }
+    .settings-panel { width: 100%; }
   }
 </style>
 </head>
 <body>
 
+<!-- ── LOCK SCREEN ── -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-logo-wrap" id="lockLogo">M</div>
+  <div>
+    <div class="lock-title" style="text-align:center">MOVA</div>
+    <div class="lock-sub" style="text-align:center;margin-top:4px">Enter your PIN to unlock</div>
+  </div>
+  <div class="lock-icon-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  </div>
+  <div class="pin-dots" id="lockDots">
+    <div class="pin-dot" id="ld0"></div>
+    <div class="pin-dot" id="ld1"></div>
+    <div class="pin-dot" id="ld2"></div>
+    <div class="pin-dot" id="ld3"></div>
+  </div>
+  <div class="pin-error-msg" id="lockError"></div>
+  <div class="pin-keypad">
+    <button class="pin-key" onclick="lockKey('1')">1</button>
+    <button class="pin-key" onclick="lockKey('2')">2</button>
+    <button class="pin-key" onclick="lockKey('3')">3</button>
+    <button class="pin-key" onclick="lockKey('4')">4</button>
+    <button class="pin-key" onclick="lockKey('5')">5</button>
+    <button class="pin-key" onclick="lockKey('6')">6</button>
+    <button class="pin-key" onclick="lockKey('7')">7</button>
+    <button class="pin-key" onclick="lockKey('8')">8</button>
+    <button class="pin-key" onclick="lockKey('9')">9</button>
+    <button class="pin-key" style="visibility:hidden">0</button>
+    <button class="pin-key" onclick="lockKey('0')">0</button>
+    <button class="pin-key del" onclick="lockDel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>
+    </button>
+  </div>
+</div>
+
 <header>
   <div class="brand">
-    <div class="brand-logo" id="headerLogoWrap">
-      <!-- Logo loaded dynamically -->
-    </div>
+    <div class="brand-logo" id="headerLogoWrap"></div>
     <div>
       <div class="brand-name">MOVA</div>
       <div class="brand-sub">Income &amp; Expense</div>
@@ -164,6 +438,9 @@
     <button class="btn btn-outline" onclick="openPdfModal()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Export PDF
+    </button>
+    <button class="icon-btn" onclick="openSettings()" title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
   </div>
 </header>
@@ -250,12 +527,8 @@
       <div class="form-group">
         <label class="form-label">MODE</label>
         <select class="form-select" id="txMode">
-          <option>Cash</option>
-          <option>UPI</option>
-          <option>Card</option>
-          <option>Bank Transfer</option>
-          <option>Cheque</option>
-          <option>Other</option>
+          <option>Cash</option><option>UPI</option><option>Card</option>
+          <option>Bank Transfer</option><option>Cheque</option><option>Other</option>
         </select>
       </div>
     </div>
@@ -324,10 +597,190 @@
   </div>
 </div>
 
+<!-- SETTINGS PANEL -->
+<div class="settings-overlay" id="settingsOverlay" onclick="handleSettingsOverlayClick(event)">
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-header">
+      <div class="settings-title">Settings</div>
+      <button class="settings-close" onclick="closeSettings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Profile Picture -->
+    <div class="settings-profile">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar" id="settingsAvatar">M</div>
+        <div class="profile-edit-badge" onclick="triggerPhotoPick()" title="Change photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+      </div>
+      <div class="profile-name">MOVA User</div>
+      <div class="profile-pic-actions">
+        <button class="profile-pic-btn" onclick="openCropModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 15 3 21 9 21"/><polyline points="21 9 21 3 15 3"/><path d="M21 15l-9-9"/><path d="M3 9l9 9"/></svg>
+          Crop Photo
+        </button>
+        <button class="profile-pic-btn danger" onclick="removePhoto()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <!-- Security Section -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">Security</div>
+
+      <!-- Lock Toggle -->
+      <div class="settings-item">
+        <div class="settings-item-left">
+          <div class="settings-item-icon" style="background:rgba(245,166,35,0.1);color:var(--gold);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">App Lock</div>
+            <div class="settings-item-sub" id="lockStatusText">Disabled</div>
+          </div>
+        </div>
+        <div class="settings-item-action">
+          <label class="toggle">
+            <input type="checkbox" id="lockToggle" onchange="toggleLock()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Set / Change Password -->
+      <div class="settings-item" id="setPwItem" style="display:none;">
+        <div class="settings-item-left">
+          <div class="settings-item-icon" style="background:rgba(120,170,255,0.1);color:#78aaff;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label" id="pwBtnLabel">Set PIN</div>
+            <div class="settings-item-sub">4-digit unlock PIN</div>
+          </div>
+        </div>
+        <div class="settings-item-action">
+          <button class="settings-item-btn" onclick="openSetPin('set')">Configure</button>
+        </div>
+      </div>
+
+      <!-- Change Password (only when pin exists) -->
+      <div class="settings-item" id="changePwItem" style="display:none;">
+        <div class="settings-item-left">
+          <div class="settings-item-icon" style="background:rgba(76,175,125,0.1);color:var(--green);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">Change PIN</div>
+            <div class="settings-item-sub">Update your unlock PIN</div>
+          </div>
+        </div>
+        <div class="settings-item-action">
+          <button class="settings-item-btn" onclick="openSetPin('change')">Change</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Section -->
+    <div class="settings-section" style="margin-top:16px;">
+      <div class="settings-section-title">Data</div>
+      <div class="settings-item">
+        <div class="settings-item-left">
+          <div class="settings-item-icon" style="background:rgba(224,85,85,0.1);color:var(--red);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">Clear All Data</div>
+            <div class="settings-item-sub">Remove all transactions</div>
+          </div>
+        </div>
+        <div class="settings-item-action">
+          <button class="settings-item-btn danger" onclick="openClearConfirm()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-footer"></div>
+  </div>
+</div>
+
+<!-- PASSWORD / PIN MODAL -->
+<div class="pw-modal-overlay" id="pwModal">
+  <div class="pw-modal">
+    <div class="pw-modal-header">
+      <div class="pw-modal-title" id="pwModalTitle">Set PIN</div>
+      <button class="pw-modal-close" onclick="closePwModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="pwStep1">
+      <div class="form-group">
+        <label class="form-label" id="pw1Label">NEW PIN (4 digits)</label>
+        <input class="form-input" type="password" id="pin1" maxlength="4" inputmode="numeric" pattern="[0-9]*" placeholder="••••" style="letter-spacing:8px;font-size:22px;text-align:center;">
+      </div>
+      <div class="form-group">
+        <label class="form-label">CONFIRM PIN</label>
+        <input class="form-input" type="password" id="pin2" maxlength="4" inputmode="numeric" pattern="[0-9]*" placeholder="••••" style="letter-spacing:8px;font-size:22px;text-align:center;">
+      </div>
+    </div>
+    <div id="pwStep0" style="display:none;">
+      <div class="form-group">
+        <label class="form-label">CURRENT PIN</label>
+        <input class="form-input" type="password" id="pinOld" maxlength="4" inputmode="numeric" pattern="[0-9]*" placeholder="••••" style="letter-spacing:8px;font-size:22px;text-align:center;">
+      </div>
+    </div>
+    <div class="pw-error" id="pwError"></div>
+    <button class="submit-btn" onclick="savePinAction()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="pwSaveLabel">Save PIN</span>
+    </button>
+  </div>
+</div>
+
+<!-- CROP MODAL -->
+<div class="crop-modal-overlay" id="cropModalOverlay">
+  <div class="crop-modal">
+    <div class="crop-modal-title">Crop Profile Photo</div>
+    <div class="crop-canvas-wrap">
+      <canvas id="cropCanvas"></canvas>
+    </div>
+    <div class="crop-controls">
+      <div class="crop-slider-row">
+        <span class="crop-slider-label">Zoom</span>
+        <input type="range" class="crop-slider" id="cropZoom" min="0.5" max="3" step="0.01" value="1" oninput="drawCrop()">
+      </div>
+    </div>
+    <div class="crop-actions">
+      <button class="profile-pic-btn" onclick="closeCropModal()">Cancel</button>
+      <button class="submit-btn" style="margin-top:0;" onclick="applyCrop()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Apply Crop
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CLEAR DATA CONFIRM -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-modal">
+    <div class="confirm-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+    </div>
+    <div class="confirm-title">Clear All Data?</div>
+    <div class="confirm-body">This will permanently delete all your transactions. This action cannot be undone.</div>
+    <div class="confirm-actions">
+      <button class="btn btn-outline" style="justify-content:center;padding:12px;" onclick="closeConfirm()">Cancel</button>
+      <button class="btn" style="background:var(--red);color:#fff;justify-content:center;padding:12px;font-weight:700;border-radius:10px;" onclick="clearAllData()">Yes, Clear</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ── SVG ICONS MAP (category → SVG path data) ──
+// ── CATEGORY ICONS ──
 const CATEGORY_ICONS = {
-  // Expense
   'Food & Drink': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
   'Travel':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
   'Groceries':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
@@ -337,7 +790,6 @@ const CATEGORY_ICONS = {
   'Entertainment':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
   'Utilities':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
   'Rent':         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-  // Income
   'Salary':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
   'Business':     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
   'Freelance':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>`,
@@ -345,73 +797,284 @@ const CATEGORY_ICONS = {
   'Investment':   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
   'Other':        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
 };
-
 const INCOME_DEFAULT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`;
 const EXPENSE_DEFAULT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`;
+function getCategoryIcon(type, cat) { return CATEGORY_ICONS[cat] || (type === 'income' ? INCOME_DEFAULT : EXPENSE_DEFAULT); }
 
-function getCategoryIcon(type, cat) {
-  return CATEGORY_ICONS[cat] || (type === 'income' ? INCOME_DEFAULT : EXPENSE_DEFAULT);
-}
-
-// ── Logo handling ──
-// We store logo as base64 in localStorage for PDF use
+// ── STATE ──
 let LOGO_BASE64 = localStorage.getItem('mova_logo_b64') || null;
+let transactions = JSON.parse(localStorage.getItem('mova_tx') || '[]');
+transactions = transactions.filter(t => t.type !== 'tax');
+let currentType = 'expense';
+let appSettings = JSON.parse(localStorage.getItem('mova_settings') || '{"lockEnabled":false,"pin":""}');
+let pinMode = 'set'; // 'set' | 'change'
 
-function loadLogoFromFile(file) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = e => resolve(e.target.result);
-    reader.readAsDataURL(file);
-  });
-}
+function save() { localStorage.setItem('mova_tx', JSON.stringify(transactions)); }
+function saveSettings() { localStorage.setItem('mova_settings', JSON.stringify(appSettings)); }
 
+const fmt = n => '\u20B9' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const pdfMoney = n => 'Rs.' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+function todayStr() { return new Date().toISOString().slice(0,10); }
+function nowTime()  { return new Date().toTimeString().slice(0,5); }
+
+// ── LOGO / AVATAR ──
 function setHeaderLogo(dataUrl) {
   const wrap = document.getElementById('headerLogoWrap');
-  if (dataUrl) {
-    wrap.innerHTML = `<img src="${dataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`;
-  } else {
-    // Fallback: gold M icon
-    wrap.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(135deg,#f5a623,#e8922a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;font-weight:700;color:#1a0a00;border-radius:10px;">M</div>`;
-  }
+  wrap.innerHTML = dataUrl
+    ? `<img src="${dataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`
+    : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#f5a623,#e8922a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;font-weight:700;color:#1a0a00;border-radius:10px;">M</div>`;
 }
+function setSettingsAvatar(dataUrl) {
+  const el = document.getElementById('settingsAvatar');
+  el.innerHTML = dataUrl ? `<img src="${dataUrl}" alt="Profile" style="width:100%;height:100%;object-fit:cover;">` : 'M';
+}
+function setLockLogo(dataUrl) {
+  const el = document.getElementById('lockLogo');
+  el.innerHTML = dataUrl ? `<img src="${dataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;">` : 'M';
+}
+function updateAllAvatars() {
+  setHeaderLogo(LOGO_BASE64);
+  setSettingsAvatar(LOGO_BASE64);
+  setLockLogo(LOGO_BASE64);
+}
+updateAllAvatars();
 
-// On load, render header logo
-setHeaderLogo(LOGO_BASE64);
-
-// Allow user to click logo to change it
+// Click logo in header to pick image (opens crop flow)
 document.getElementById('headerLogoWrap').style.cursor = 'pointer';
-document.getElementById('headerLogoWrap').title = 'Click to change logo';
-document.getElementById('headerLogoWrap').addEventListener('click', () => {
+document.getElementById('headerLogoWrap').title = 'Click to change photo';
+document.getElementById('headerLogoWrap').addEventListener('click', triggerPhotoPick);
+
+function triggerPhotoPick() {
   const inp = document.createElement('input');
   inp.type = 'file'; inp.accept = 'image/*';
   inp.onchange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const dataUrl = await loadLogoFromFile(file);
-    LOGO_BASE64 = dataUrl;
-    localStorage.setItem('mova_logo_b64', dataUrl);
-    setHeaderLogo(dataUrl);
+    const reader = new FileReader();
+    reader.onload = ev => {
+      cropSourceDataUrl = ev.target.result;
+      openCropModal();
+    };
+    reader.readAsDataURL(file);
   };
   inp.click();
-});
+}
 
-const CATEGORIES = {
-  expense: ['Food & Drink','Travel','Groceries','Education','Shopping','Health','Entertainment','Utilities','Rent','Other'],
-  income:  ['Salary','Business','Freelance','Gift','Investment','Other']
-};
+function removePhoto() {
+  LOGO_BASE64 = null;
+  localStorage.removeItem('mova_logo_b64');
+  updateAllAvatars();
+}
 
-let transactions = JSON.parse(localStorage.getItem('mova_tx') || '[]');
-transactions = transactions.filter(t => t.type !== 'tax');
-let currentType = 'expense';
+// ── SETTINGS PANEL ──
+function openSettings() {
+  document.getElementById('settingsOverlay').classList.add('active');
+  syncSettingsUI();
+}
+function closeSettings() { document.getElementById('settingsOverlay').classList.remove('active'); }
+function handleSettingsOverlayClick(e) { if (e.target.id === 'settingsOverlay') closeSettings(); }
 
-function save() { localStorage.setItem('mova_tx', JSON.stringify(transactions)); }
+function syncSettingsUI() {
+  const tog = document.getElementById('lockToggle');
+  tog.checked = appSettings.lockEnabled;
+  document.getElementById('lockStatusText').textContent = appSettings.lockEnabled ? 'Enabled' : 'Disabled';
+  document.getElementById('setPwItem').style.display = appSettings.lockEnabled ? '' : 'none';
+  document.getElementById('changePwItem').style.display = (appSettings.lockEnabled && appSettings.pin) ? '' : 'none';
+  document.getElementById('pwBtnLabel').textContent = appSettings.pin ? 'PIN Set' : 'Set PIN';
+}
 
-const fmt = n => '\u20B9' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-const pdfMoney = n => 'Rs.' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+function toggleLock() {
+  const tog = document.getElementById('lockToggle');
+  appSettings.lockEnabled = tog.checked;
+  if (tog.checked && !appSettings.pin) {
+    // Prompt to set PIN first
+    setTimeout(() => openSetPin('set'), 100);
+  }
+  saveSettings();
+  syncSettingsUI();
+}
 
-function todayStr() { return new Date().toISOString().slice(0,10); }
-function nowTime()  { return new Date().toTimeString().slice(0,5); }
+// ── PIN SETUP MODAL ──
+function openSetPin(mode) {
+  pinMode = mode;
+  document.getElementById('pwModal').classList.add('active');
+  document.getElementById('pwModalTitle').textContent = mode === 'change' ? 'Change PIN' : 'Set PIN';
+  document.getElementById('pw1Label').textContent = mode === 'change' ? 'NEW PIN (4 digits)' : 'NEW PIN (4 digits)';
+  document.getElementById('pwStep0').style.display = mode === 'change' ? '' : 'none';
+  document.getElementById('pwStep1').style.display = '';
+  document.getElementById('pwSaveLabel').textContent = mode === 'change' ? 'Update PIN' : 'Save PIN';
+  document.getElementById('pwError').textContent = '';
+  document.getElementById('pin1').value = '';
+  document.getElementById('pin2').value = '';
+  document.getElementById('pinOld').value = '';
+  document.getElementById('pin1').focus();
+}
+function closePwModal() { document.getElementById('pwModal').classList.remove('active'); }
 
+function savePinAction() {
+  const p1 = document.getElementById('pin1').value.trim();
+  const p2 = document.getElementById('pin2').value.trim();
+  const err = document.getElementById('pwError');
+
+  if (pinMode === 'change') {
+    const pOld = document.getElementById('pinOld').value.trim();
+    if (pOld !== appSettings.pin) { err.textContent = 'Current PIN is incorrect.'; return; }
+  }
+  if (!/^\d{4}$/.test(p1)) { err.textContent = 'PIN must be exactly 4 digits.'; return; }
+  if (p1 !== p2) { err.textContent = 'PINs do not match.'; return; }
+
+  appSettings.pin = p1;
+  appSettings.lockEnabled = true;
+  saveSettings();
+  syncSettingsUI();
+  closePwModal();
+}
+
+// ── LOCK SCREEN ──
+let lockBuffer = '';
+function initLockScreen() {
+  if (appSettings.lockEnabled && appSettings.pin) {
+    document.getElementById('lockScreen').classList.add('active');
+    lockBuffer = '';
+    updateLockDots();
+    document.getElementById('lockError').textContent = '';
+  }
+}
+function lockKey(d) {
+  if (lockBuffer.length >= 4) return;
+  lockBuffer += d;
+  updateLockDots();
+  if (lockBuffer.length === 4) {
+    if (lockBuffer === appSettings.pin) {
+      document.getElementById('lockScreen').classList.remove('active');
+    } else {
+      document.querySelectorAll('.pin-dot').forEach(el => el.classList.add('error'));
+      document.getElementById('lockError').textContent = 'Incorrect PIN. Try again.';
+      setTimeout(() => {
+        lockBuffer = '';
+        updateLockDots();
+        document.querySelectorAll('.pin-dot').forEach(el => el.classList.remove('error'));
+        document.getElementById('lockError').textContent = '';
+      }, 700);
+    }
+  }
+}
+function lockDel() {
+  lockBuffer = lockBuffer.slice(0,-1);
+  updateLockDots();
+}
+function updateLockDots() {
+  for (let i=0;i<4;i++) {
+    const el = document.getElementById('ld'+i);
+    el.classList.toggle('filled', i < lockBuffer.length);
+  }
+}
+
+// ── CROP MODAL ──
+let cropSourceDataUrl = null;
+let cropOffsetX = 0, cropOffsetY = 0;
+let cropDragStart = null;
+let cropCanvas, cropCtx, cropImg;
+
+function openCropModal() {
+  if (!cropSourceDataUrl) { triggerPhotoPick(); return; }
+  document.getElementById('cropModalOverlay').classList.add('active');
+  document.getElementById('cropZoom').value = 1;
+  cropOffsetX = 0; cropOffsetY = 0;
+
+  cropCanvas = document.getElementById('cropCanvas');
+  cropCtx    = cropCanvas.getContext('2d');
+  cropImg    = new Image();
+  cropImg.onload = () => {
+    cropCanvas.width  = cropCanvas.offsetWidth  || 300;
+    cropCanvas.height = cropCanvas.offsetHeight || 300;
+    drawCrop();
+  };
+  cropImg.src = cropSourceDataUrl;
+
+  // Drag to pan
+  cropCanvas.onmousedown = e => { cropDragStart = { x:e.clientX - cropOffsetX, y:e.clientY - cropOffsetY }; };
+  cropCanvas.onmousemove = e => { if (!cropDragStart) return; cropOffsetX = e.clientX - cropDragStart.x; cropOffsetY = e.clientY - cropDragStart.y; drawCrop(); };
+  cropCanvas.onmouseup = cropCanvas.onmouseleave = () => { cropDragStart = null; };
+  cropCanvas.ontouchstart = e => { const t=e.touches[0]; cropDragStart={x:t.clientX-cropOffsetX,y:t.clientY-cropOffsetY}; };
+  cropCanvas.ontouchmove  = e => { if(!cropDragStart)return; e.preventDefault(); const t=e.touches[0]; cropOffsetX=t.clientX-cropDragStart.x; cropOffsetY=t.clientY-cropDragStart.y; drawCrop(); };
+  cropCanvas.ontouchend   = () => { cropDragStart=null; };
+}
+
+function drawCrop() {
+  if (!cropImg || !cropImg.complete) return;
+  const cw = cropCanvas.width  = cropCanvas.offsetWidth  || 300;
+  const ch = cropCanvas.height = cropCanvas.offsetHeight || 300;
+  const zoom = parseFloat(document.getElementById('cropZoom').value);
+  cropCtx.clearRect(0,0,cw,ch);
+
+  // Clip to circle
+  cropCtx.save();
+  cropCtx.beginPath();
+  cropCtx.arc(cw/2, ch/2, Math.min(cw,ch)/2, 0, Math.PI*2);
+  cropCtx.clip();
+
+  const scale = zoom * Math.min(cw/cropImg.width, ch/cropImg.height);
+  const dw = cropImg.width * scale, dh = cropImg.height * scale;
+  const dx = (cw-dw)/2 + cropOffsetX;
+  const dy = (ch-dh)/2 + cropOffsetY;
+  cropCtx.drawImage(cropImg, dx, dy, dw, dh);
+  cropCtx.restore();
+
+  // Dim outside circle
+  cropCtx.save();
+  cropCtx.fillStyle = 'rgba(15,15,19,0.6)';
+  cropCtx.beginPath();
+  cropCtx.rect(0,0,cw,ch);
+  cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2,0,Math.PI*2,true);
+  cropCtx.fill();
+  cropCtx.restore();
+
+  // Circle border
+  cropCtx.save();
+  cropCtx.strokeStyle = 'rgba(245,166,35,0.6)';
+  cropCtx.lineWidth = 2;
+  cropCtx.beginPath();
+  cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2-1,0,Math.PI*2);
+  cropCtx.stroke();
+  cropCtx.restore();
+}
+
+function applyCrop() {
+  const cw = cropCanvas.width, ch = cropCanvas.height;
+  const size = Math.min(cw,ch);
+  const out = document.createElement('canvas');
+  out.width = out.height = 200;
+  const oc = out.getContext('2d');
+  oc.save();
+  oc.beginPath();
+  oc.arc(100,100,100,0,Math.PI*2);
+  oc.clip();
+  oc.drawImage(cropCanvas, (cw-size)/2, (ch-size)/2, size, size, 0, 0, 200, 200);
+  oc.restore();
+  LOGO_BASE64 = out.toDataURL('image/png');
+  localStorage.setItem('mova_logo_b64', LOGO_BASE64);
+  updateAllAvatars();
+  closeCropModal();
+  cropSourceDataUrl = null;
+}
+function closeCropModal() {
+  document.getElementById('cropModalOverlay').classList.remove('active');
+  cropSourceDataUrl = null;
+}
+
+// ── CLEAR DATA ──
+function openClearConfirm() { document.getElementById('confirmOverlay').classList.add('active'); }
+function closeConfirm()     { document.getElementById('confirmOverlay').classList.remove('active'); }
+function clearAllData() {
+  transactions = [];
+  save();
+  renderAll();
+  closeConfirm();
+  closeSettings();
+}
+
+// ── MAIN APP ──
 function openModal() {
   document.getElementById('addModal').classList.add('active');
   document.getElementById('txDate').value = todayStr();
@@ -430,12 +1093,15 @@ function openPdfModal() {
 }
 function closePdfModal() { document.getElementById('pdfModal').classList.remove('active'); }
 
+const CATEGORIES = {
+  expense: ['Food & Drink','Travel','Groceries','Education','Shopping','Health','Entertainment','Utilities','Rent','Other'],
+  income:  ['Salary','Business','Freelance','Gift','Investment','Other']
+};
 function setType(t) {
   currentType = t;
   ['expense','income'].forEach(x => {
-    const id  = 'type' + x.charAt(0).toUpperCase() + x.slice(1);
-    const btn = document.getElementById(id);
-    btn.className = 'type-btn' + (x===t ? ' active-'+t : '');
+    const btn = document.getElementById('type'+x.charAt(0).toUpperCase()+x.slice(1));
+    btn.className = 'type-btn'+(x===t?' active-'+t:'');
   });
   document.getElementById('txCategory').innerHTML = CATEGORIES[t].map(c=>`<option>${c}</option>`).join('');
 }
@@ -449,7 +1115,7 @@ function addTransaction() {
   const time = document.getElementById('txTime').value;
   const mode = document.getElementById('txMode').value;
   transactions.push({ id:Date.now(), type:currentType, amount, desc, cat, date, time, mode });
-  transactions.sort((a,b) => (a.date+a.time) > (b.date+b.time) ? 1 : -1);
+  transactions.sort((a,b) => (a.date+a.time)>(b.date+b.time)?1:-1);
   save(); renderAll(); closeModal();
 }
 
@@ -467,15 +1133,15 @@ function renderSummary() {
   const bal = inc - exp;
   document.getElementById('totalExpense').textContent = fmt(exp);
   document.getElementById('totalIncome').textContent  = fmt(inc);
-  document.getElementById('totalBalance').textContent = (bal>=0?'+':'-') + fmt(Math.abs(bal));
-  document.getElementById('totalBalance').className   = 'stat-value ' + (bal>=0?'balance':'expense');
+  document.getElementById('totalBalance').textContent = (bal>=0?'+':'-')+fmt(Math.abs(bal));
+  document.getElementById('totalBalance').className   = 'stat-value '+(bal>=0?'balance':'expense');
 }
 
 function updateFilterCats() {
   const sel  = document.getElementById('filterCat');
   const cur  = sel.value;
   const cats = [...new Set(transactions.map(t=>t.cat))].sort();
-  sel.innerHTML = '<option value="all">All Categories</option>' + cats.map(c=>`<option>${c}</option>`).join('');
+  sel.innerHTML = '<option value="all">All Categories</option>'+cats.map(c=>`<option>${c}</option>`).join('');
   sel.value = cats.includes(cur) ? cur : 'all';
 }
 
@@ -491,18 +1157,11 @@ function renderList() {
   });
   const container = document.getElementById('txList');
   if (!filtered.length) {
-    container.innerHTML = `<div class="empty-state">
-      <div class="big-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-        </svg>
-      </div>
-      <div>No transactions yet.<br>Tap <strong>+</strong> to add your first entry.</div>
-    </div>`;
+    container.innerHTML = `<div class="empty-state"><div class="big-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div>No transactions yet.<br>Tap <strong>+</strong> to add your first entry.</div></div>`;
     return;
   }
   const groups = {};
-  [...filtered].reverse().forEach(t => { (groups[t.date] = groups[t.date]||[]).push(t); });
+  [...filtered].reverse().forEach(t => { (groups[t.date]=groups[t.date]||[]).push(t); });
   let html = '';
   for (const [date, txs] of Object.entries(groups)) {
     const d = new Date(date+'T00:00:00');
@@ -512,328 +1171,197 @@ function renderList() {
       const iconSvg = getCategoryIcon(t.type, t.cat);
       html += `<div class="tx-item">
         <div class="tx-icon ${isInc?'income-icon':'expense-icon'}" style="color:${isInc?'#4caf7d':'#e05555'}">${iconSvg}</div>
-        <div class="tx-info">
-          <div class="tx-desc">${t.desc}</div>
-          <div class="tx-meta">${t.cat} &bull; ${t.time} &bull; ${t.mode} <span class="category-badge">${t.type.toUpperCase()}</span></div>
-        </div>
+        <div class="tx-info"><div class="tx-desc">${t.desc}</div><div class="tx-meta">${t.cat} &bull; ${t.time} &bull; ${t.mode} <span class="category-badge">${t.type.toUpperCase()}</span></div></div>
         <div class="tx-amount ${isInc?'pos':'neg'}">${isInc?'+':'-'}${fmt(t.amount)}</div>
-        <button class="tx-delete" onclick="deleteTransaction(${t.id})" title="Delete">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-        </button>
+        <button class="tx-delete" onclick="deleteTransaction(${t.id})" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>
       </div>`;
     });
   }
   container.innerHTML = html;
 }
 
-// ── PDF GENERATION ──────────────────────────────────────────────────────────
-function generatePDF() {
+// ── PDF GENERATION ──
+async function generatePDF() {
   const { jsPDF } = window.jspdf;
   const company  = document.getElementById('pdfCompany').value || 'MOVA';
   const website  = document.getElementById('pdfWebsite').value || '';
   const fromDate = document.getElementById('pdfFrom').value;
   const toDate   = document.getElementById('pdfTo').value;
   const typeF    = document.getElementById('pdfTypeFilter').value;
-
-  let filtered = transactions.filter(t => {
+  let filtered   = transactions.filter(t => {
     if (t.date < fromDate || t.date > toDate) return false;
     if (typeF !== 'all' && t.type !== typeF) return false;
     return true;
   });
-
   const doc    = new jsPDF({ unit:'mm', format:'a4' });
   const W      = 210;
   const PAGE_H = 297;
   let y        = 0;
-
-  const C = {
-    dark:   [22, 22, 30],
-    gold:   [200,130, 30],
-    mid:    [90, 90,110],
-    green:  [40,160,100],
-    red:    [210, 65, 65],
-    border: [200,200,215],
-    white:  [255,255,255],
-    light:  [245,245,252],
-    blue:   [120,170,255]
-  };
-
+  const C = { dark:[22,22,30], gold:[200,130,30], mid:[90,90,110], green:[40,160,100], red:[210,65,65], border:[200,200,215], white:[255,255,255], light:[245,245,252], blue:[120,170,255] };
   const checkPage = (need=20) => { if (y+need > PAGE_H-20) { doc.addPage(); y=20; } };
 
-  // ── Dark header strip ──
   doc.setFillColor(...C.dark);
   doc.rect(0,0,W,38,'F');
 
-  // Logo in PDF header
-  const logoX = 14, logoY = 7, logoW = 24, logoH = 24;
+  const logoX=14, logoY=7, logoW=24, logoH=24;
   if (LOGO_BASE64) {
     try {
-      const ext = LOGO_BASE64.startsWith('data:image/png') ? 'PNG' : 'JPEG';
-      doc.addImage(LOGO_BASE64, ext, logoX, logoY, logoW, logoH, undefined, 'FAST');
+      const circCanvas = document.createElement('canvas');
+      circCanvas.width = circCanvas.height = 120;
+      const circCtx = circCanvas.getContext('2d');
+      circCtx.beginPath(); circCtx.arc(60,60,60,0,Math.PI*2); circCtx.closePath(); circCtx.clip();
+      const logoImg = new Image(); logoImg.src = LOGO_BASE64;
+      await new Promise(res => { logoImg.onload=res; logoImg.onerror=res; });
+      circCtx.drawImage(logoImg,0,0,120,120);
+      doc.addImage(circCanvas.toDataURL('image/png'),'PNG',logoX,logoY,logoW,logoH,undefined,'FAST');
     } catch(e) {
-      // fallback gold box
-      doc.setFillColor(...C.gold);
-      doc.roundedRect(logoX, logoY, logoW, logoH, 4, 4, 'F');
-      doc.setTextColor(...C.dark);
-      doc.setFontSize(14); doc.setFont('helvetica','bold');
-      doc.text('M', logoX + logoW/2, logoY + logoH/2 + 1, {align:'center'});
+      doc.setFillColor(...C.gold); doc.circle(logoX+logoW/2,logoY+logoH/2,logoW/2,'F');
+      doc.setTextColor(...C.dark); doc.setFontSize(14); doc.setFont('helvetica','bold');
+      doc.text('M',logoX+logoW/2,logoY+logoH/2+1,{align:'center'});
     }
   } else {
-    doc.setFillColor(...C.gold);
-    doc.roundedRect(logoX, logoY, logoW, logoH, 4, 4, 'F');
-    doc.setTextColor(...C.dark);
-    doc.setFontSize(14); doc.setFont('helvetica','bold');
-    doc.text('M', logoX + logoW/2, logoY + logoH/2 + 1, {align:'center'});
+    doc.setFillColor(...C.gold); doc.circle(logoX+logoW/2,logoY+logoH/2,logoW/2,'F');
+    doc.setTextColor(...C.dark); doc.setFontSize(14); doc.setFont('helvetica','bold');
+    doc.text('M',logoX+logoW/2,logoY+logoH/2+1,{align:'center'});
   }
 
-  // Company name
-  doc.setTextColor(...C.gold);
-  doc.setFontSize(18); doc.setFont('helvetica','bold');
-  doc.text(company, 42, 18);
-  doc.setTextColor(180,180,200);
-  doc.setFontSize(8.5); doc.setFont('helvetica','normal');
-  doc.text('Income & Expense Manager', 42, 26);
-
-  const now    = new Date();
-  const genStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})
-               + ', ' + now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase();
-  doc.setTextColor(160,160,185);
-  doc.setFontSize(8);
-  doc.text('Generated: ' + genStr, W-14, 15, {align:'right'});
-
-  y = 48;
-
-  doc.setTextColor(...C.dark);
-  doc.setFontSize(26); doc.setFont('helvetica','bold');
-  doc.text('STATEMENT', 14, y);
-  y += 8;
-
+  doc.setTextColor(...C.gold); doc.setFontSize(18); doc.setFont('helvetica','bold');
+  doc.text(company,42,18);
+  doc.setTextColor(180,180,200); doc.setFontSize(8.5); doc.setFont('helvetica','normal');
+  doc.text('Income & Expense Manager',42,26);
+  const now = new Date();
+  const genStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+', '+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase();
+  doc.setTextColor(160,160,185); doc.setFontSize(8);
+  doc.text('Generated: '+genStr,W-14,15,{align:'right'});
+  y=48;
+  doc.setTextColor(...C.dark); doc.setFontSize(26); doc.setFont('helvetica','bold'); doc.text('STATEMENT',14,y); y+=8;
   const fmtMY = d => new Date(d+'T00:00:00').toLocaleDateString('en-IN',{month:'short',year:'numeric'});
-  doc.setFontSize(10); doc.setFont('helvetica','normal');
-  doc.setTextColor(...C.mid);
-  doc.text((fromDate?fmtMY(fromDate):'Start') + ' - ' + (toDate?fmtMY(toDate):'Now'), 14, y);
-  y += 12;
+  doc.setFontSize(10); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
+  doc.text((fromDate?fmtMY(fromDate):'Start')+' - '+(toDate?fmtMY(toDate):'Now'),14,y); y+=12;
 
-  const totalExp   = filtered.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
-  const totalInc   = filtered.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
-  const netBal     = totalInc - totalExp;
-  const txCount    = filtered.length;
-  const activeDays = new Set(filtered.map(t=>t.date)).size;
+  const totalExp=filtered.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
+  const totalInc=filtered.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
+  const netBal=totalInc-totalExp;
+  const txCount=filtered.length;
+  const activeDays=new Set(filtered.map(t=>t.date)).size;
 
-  doc.setFillColor(...C.light);
-  doc.roundedRect(14,y,W-28,34,5,5,'F');
-  doc.setDrawColor(...C.border);
-  doc.roundedRect(14,y,W-28,34,5,5,'S');
-
-  const statCols = [
-    {label:'Balance',      val:(netBal>=0?'+':'-')+pdfMoney(Math.abs(netBal)), color:netBal>=0?C.green:C.red},
-    {label:'Expense',      val:pdfMoney(totalExp), color:C.red},
-    {label:'Income',       val:pdfMoney(totalInc), color:C.green},
-    {label:'Transactions', val:String(txCount),    color:C.dark},
-    {label:'Active Days',  val:String(activeDays), color:C.dark}
+  doc.setFillColor(...C.light); doc.roundedRect(14,y,W-28,34,5,5,'F');
+  doc.setDrawColor(...C.border); doc.roundedRect(14,y,W-28,34,5,5,'S');
+  const statCols=[
+    {label:'Balance',val:(netBal>=0?'+':'-')+pdfMoney(Math.abs(netBal)),color:netBal>=0?C.green:C.red},
+    {label:'Expense',val:pdfMoney(totalExp),color:C.red},
+    {label:'Income',val:pdfMoney(totalInc),color:C.green},
+    {label:'Transactions',val:String(txCount),color:C.dark},
+    {label:'Active Days',val:String(activeDays),color:C.dark}
   ];
-  const colW = (W-28)/5;
-  statCols.forEach((c,i) => {
-    const cx = 14 + colW*i + colW/2;
-    doc.setFontSize(10.5); doc.setFont('helvetica','bold');
-    doc.setTextColor(...c.color);
-    doc.text(c.val, cx, y+13, {align:'center'});
-    doc.setFontSize(7.5); doc.setFont('helvetica','normal');
-    doc.setTextColor(...C.mid);
-    doc.text(c.label, cx, y+22, {align:'center'});
-    if (i<4) { doc.setDrawColor(...C.border); doc.line(14+colW*(i+1),y+5,14+colW*(i+1),y+29); }
+  const colW=(W-28)/5;
+  statCols.forEach((c,i)=>{
+    const cx=14+colW*i+colW/2;
+    doc.setFontSize(10.5); doc.setFont('helvetica','bold'); doc.setTextColor(...c.color); doc.text(c.val,cx,y+13,{align:'center'});
+    doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid); doc.text(c.label,cx,y+22,{align:'center'});
+    if(i<4){doc.setDrawColor(...C.border);doc.line(14+colW*(i+1),y+5,14+colW*(i+1),y+29);}
   });
-  y += 38;
+  y+=38;
+  const days=activeDays||1;
+  doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
+  doc.text('Daily Avg:  Expense '+pdfMoney(totalExp/days)+'   |   Income '+pdfMoney(totalInc/days),W/2,y,{align:'center'});
+  y+=12;
 
-  const days = activeDays||1;
-  doc.setFontSize(8); doc.setFont('helvetica','normal');
-  doc.setTextColor(...C.mid);
-  doc.text('Daily Avg:  Expense ' + pdfMoney(totalExp/days) + '   |   Income ' + pdfMoney(totalInc/days), W/2, y, {align:'center'});
-  y += 12;
-
-  const renderCatSection = (heading, list, color) => {
-    if (!list.length) return;
+  const renderCatSection=(heading,list,color)=>{
+    if(!list.length)return;
     checkPage(28);
-    const total  = list.reduce((s,t)=>s+t.amount,0);
-    const catMap = {};
-    list.forEach(t => { catMap[t.cat]=(catMap[t.cat]||0)+t.amount; });
-    const sorted = Object.entries(catMap).sort((a,b)=>b[1]-a[1]);
-    const grand  = totalInc+totalExp;
-    const pct    = grand>0 ? Math.round(total/grand*100) : 0;
-
-    doc.setFontSize(10); doc.setFont('helvetica','bold');
-    doc.setTextColor(...C.dark);
-    doc.text(heading, 14, y);
-    doc.setFontSize(9); doc.setFont('helvetica','normal');
-    doc.setTextColor(...color);
-    const hw = doc.getTextWidth(heading)+3;
-    doc.text(pdfMoney(total), 14+hw, y);
-    doc.setTextColor(...C.mid);
-    doc.text(' (' + pct + '%)', 14+hw+doc.getTextWidth(pdfMoney(total)), y);
-    y += 6;
-
-    let px = 14;
-    sorted.forEach(([cat,amt]) => {
-      const p   = total>0 ? ((amt/total)*100).toFixed(1) : '0.0';
-      const txt = cat + ': ' + pdfMoney(amt) + ' (' + p + '%)';
-      const tw  = doc.getTextWidth(txt)+8;
-      if (px+tw > W-14) { px=14; y+=7; checkPage(14); }
-      doc.setFillColor(235,235,248);
-      doc.setDrawColor(...C.border);
-      doc.roundedRect(px,y-4,tw,6.5,2,2,'FD');
-      doc.setFontSize(7.5); doc.setFont('helvetica','normal');
-      doc.setTextColor(...C.dark);
-      doc.text(txt, px+4, y+0.8);
-      px += tw+4;
+    const total=list.reduce((s,t)=>s+t.amount,0);
+    const catMap={};
+    list.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amount;});
+    const sorted=Object.entries(catMap).sort((a,b)=>b[1]-a[1]);
+    const grand=totalInc+totalExp;
+    const pct=grand>0?Math.round(total/grand*100):0;
+    doc.setFontSize(10); doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text(heading,14,y);
+    doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(...color);
+    const hw=doc.getTextWidth(heading)+3; doc.text(pdfMoney(total),14+hw,y);
+    doc.setTextColor(...C.mid); doc.text(' ('+pct+'%)',14+hw+doc.getTextWidth(pdfMoney(total)),y);
+    y+=6;
+    let px=14;
+    sorted.forEach(([cat,amt])=>{
+      const p=total>0?((amt/total)*100).toFixed(1):'0.0';
+      const txt=cat+': '+pdfMoney(amt)+' ('+p+'%)';
+      const tw=doc.getTextWidth(txt)+8;
+      if(px+tw>W-14){px=14;y+=7;checkPage(14);}
+      doc.setFillColor(235,235,248); doc.setDrawColor(...C.border); doc.roundedRect(px,y-4,tw,6.5,2,2,'FD');
+      doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...C.dark); doc.text(txt,px+4,y+0.8);
+      px+=tw+4;
     });
-    y += 10;
+    y+=10;
   };
-
-  renderCatSection('Expense Categories', filtered.filter(t=>t.type==='expense'), C.red);
-  renderCatSection('Income Categories',  filtered.filter(t=>t.type==='income'),  C.green);
-  y += 4;
-
+  renderCatSection('Expense Categories',filtered.filter(t=>t.type==='expense'),C.red);
+  renderCatSection('Income Categories',filtered.filter(t=>t.type==='income'),C.green);
+  y+=4;
   checkPage(30);
-  doc.setFontSize(11); doc.setFont('helvetica','bold');
-  doc.setTextColor(...C.dark);
-  doc.text('Transaction Details', 14, y);
-  y += 5;
-
-  const fmtD = d => new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-  doc.setFontSize(7.5); doc.setFont('helvetica','normal');
-  doc.setTextColor(...C.mid);
-  doc.text('Statement from ' + fmtD(fromDate) + ' to ' + fmtD(toDate), 14, y+4);
-  doc.setTextColor(...C.red);
-  doc.text('Expense(' + pdfMoney(totalExp) + ') | Income(' + pdfMoney(totalInc) + ')', W-14, y+4, {align:'right'});
-  y += 8;
-
-  const tableRows = filtered.map(t => {
-    const dStr  = fmtD(t.date);
-    const [h,m] = t.time.split(':');
-    const hh    = parseInt(h);
-    const ampm  = hh>=12?'PM':'AM';
-    const hDisp = hh===0?12:hh>12?hh-12:hh;
-    const tStr  = hDisp + ':' + m + ' ' + ampm;
-    const isInc = t.type==='income';
-    return [
-      dStr + '\n' + tStr,
-      t.cat,
-      t.desc,
-      t.mode,
-      isInc ? '' : pdfMoney(t.amount),
-      isInc ? pdfMoney(t.amount) : '',
-      ''
-    ];
+  doc.setFontSize(11); doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Transaction Details',14,y); y+=5;
+  const fmtD=d=>new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
+  doc.text('Statement from '+fmtD(fromDate)+' to '+fmtD(toDate),14,y+4);
+  doc.setTextColor(...C.red); doc.text('Expense('+pdfMoney(totalExp)+') | Income('+pdfMoney(totalInc)+')',W-14,y+4,{align:'right'});
+  y+=8;
+  const tableRows=filtered.map(t=>{
+    const dStr=fmtD(t.date);
+    const[h,m]=t.time.split(':');const hh=parseInt(h);const ampm=hh>=12?'PM':'AM';const hDisp=hh===0?12:hh>12?hh-12:hh;
+    const tStr=hDisp+':'+m+' '+ampm;
+    const isInc=t.type==='income';
+    return[dStr+'\n'+tStr,t.cat,t.desc,t.mode,isInc?'':pdfMoney(t.amount),isInc?pdfMoney(t.amount):'',''];
   });
-
-  // Watermark logo on each page
-  const drawWatermark = () => {
-    if (!LOGO_BASE64) return;
-    try {
-      const ext = LOGO_BASE64.startsWith('data:image/png') ? 'PNG' : 'JPEG';
-      const wSize = 40;
-      const wx = (W - wSize) / 2;
-      const wy = (PAGE_H - wSize) / 2 - 10;
-      doc.saveGraphicsState();
-      doc.setGState(new doc.GState({opacity: 0.06}));
-      doc.addImage(LOGO_BASE64, ext, wx, wy, wSize, wSize, undefined, 'FAST');
-      doc.restoreGraphicsState();
-    } catch(e) {}
+  const footerFn=data=>{
+    doc.setFillColor(...C.dark); doc.rect(0,PAGE_H-14,W,14,'F');
+    doc.setFontSize(7); doc.setFont('helvetica','bold'); doc.setTextColor(...C.gold); doc.text(company,14,PAGE_H-5);
+    if(website){doc.setFont('helvetica','normal');doc.setTextColor(...C.blue);doc.text(website,14+doc.getTextWidth(company)+3,PAGE_H-5);}
+    doc.setTextColor(160,160,185); doc.text('Page '+data.pageNumber,W-14,PAGE_H-5,{align:'right'});
+    doc.text('Generated: '+genStr,W-14,PAGE_H-9,{align:'right'});
   };
-
-  const footerFn = data => {
-    drawWatermark();
-    doc.setFillColor(...C.dark);
-    doc.rect(0, PAGE_H-14, W, 14, 'F');
-    doc.setFontSize(7); doc.setFont('helvetica','bold');
-    doc.setTextColor(...C.gold);
-    doc.text(company, 14, PAGE_H-5);
-    if (website) {
-      doc.setFont('helvetica','normal');
-      doc.setTextColor(...C.blue);
-      doc.text(website, 14+doc.getTextWidth(company)+3, PAGE_H-5);
-    }
-    doc.setTextColor(160,160,185);
-    doc.text('Page '+data.pageNumber, W-14, PAGE_H-5, {align:'right'});
-    doc.text('Generated: '+genStr, W-14, PAGE_H-9, {align:'right'});
-  };
-
   doc.autoTable({
-    startY: y,
-    head: [['Date & Time','Category','Description','Mode','Expense','Income','Transfer']],
-    body: tableRows,
-    styles: { font:'helvetica', fontSize:8, cellPadding:3, textColor:C.dark, lineColor:C.border, lineWidth:0.2 },
-    headStyles: { fillColor:C.dark, textColor:C.white, fontStyle:'bold', fontSize:8 },
-    alternateRowStyles: { fillColor:[248,248,253] },
-    columnStyles: {
-      0: { cellWidth:26 },
-      1: { cellWidth:28 },
-      2: { cellWidth:46 },
-      3: { cellWidth:22 },
-      4: { cellWidth:27, halign:'right', textColor:C.red   },
-      5: { cellWidth:27, halign:'right', textColor:C.green },
-      6: { cellWidth:15, halign:'right' }
-    },
-    margin: { left:14, right:14 },
-    didDrawPage: footerFn
+    startY:y,
+    head:[['Date & Time','Category','Description','Mode','Expense','Income','Transfer']],
+    body:tableRows,
+    styles:{font:'helvetica',fontSize:8,cellPadding:3,textColor:C.dark,lineColor:C.border,lineWidth:0.2},
+    headStyles:{fillColor:C.dark,textColor:C.white,fontStyle:'bold',fontSize:8},
+    alternateRowStyles:{fillColor:[248,248,253]},
+    columnStyles:{0:{cellWidth:26},1:{cellWidth:28},2:{cellWidth:46},3:{cellWidth:22},4:{cellWidth:27,halign:'right',textColor:C.red},5:{cellWidth:27,halign:'right',textColor:C.green},6:{cellWidth:15,halign:'right'}},
+    margin:{left:14,right:14},
+    didDrawPage:footerFn
   });
-
-  y = doc.lastAutoTable.finalY + 10;
-  checkPage(44);
-
-  doc.setFillColor(...C.light);
-  doc.setDrawColor(...C.border);
-  doc.roundedRect(14, y, W-28, 34, 4, 4, 'FD');
-
-  const expCnt = filtered.filter(t=>t.type==='expense').length;
-  const incCnt = filtered.filter(t=>t.type==='income').length;
-
-  doc.setFontSize(9); doc.setFont('helvetica','bold');
-  doc.setTextColor(...C.dark); doc.text('Total Expense', 20, y+10);
-  doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
-  doc.text(expCnt + ' No. of Transactions', 72, y+10);
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.red);
-  doc.text(pdfMoney(totalExp), W-20, y+10, {align:'right'});
-
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Total Income', 20, y+20);
-  doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
-  doc.text(incCnt + ' No. of Transactions', 72, y+20);
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.green);
-  doc.text(pdfMoney(totalInc), W-20, y+20, {align:'right'});
-
+  y=doc.lastAutoTable.finalY+10; checkPage(44);
+  doc.setFillColor(...C.light); doc.setDrawColor(...C.border); doc.roundedRect(14,y,W-28,34,4,4,'FD');
+  const expCnt=filtered.filter(t=>t.type==='expense').length;
+  const incCnt=filtered.filter(t=>t.type==='income').length;
+  doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Total Expense',20,y+10);
+  doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid); doc.text(expCnt+' No. of Transactions',72,y+10);
+  doc.setFont('helvetica','bold'); doc.setTextColor(...C.red); doc.text(pdfMoney(totalExp),W-20,y+10,{align:'right'});
+  doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Total Income',20,y+20);
+  doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid); doc.text(incCnt+' No. of Transactions',72,y+20);
+  doc.setFont('helvetica','bold'); doc.setTextColor(...C.green); doc.text(pdfMoney(totalInc),W-20,y+20,{align:'right'});
   doc.setDrawColor(...C.border); doc.line(20,y+23,W-20,y+23);
-
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Net Balance', 20, y+31);
-  doc.setTextColor(...(netBal>=0 ? C.green : C.red));
-  doc.text((netBal>=0?'+ ':'-') + pdfMoney(Math.abs(netBal)), W-20, y+31, {align:'right'});
-
-  y += 42;
-
-  doc.setFontSize(7.5); doc.setFont('helvetica','italic');
-  doc.setTextColor(...C.mid);
-  doc.text('* This is an auto-generated statement based on your recorded transactions.', 14, y);
-
-  doc.setFillColor(...C.dark);
-  doc.rect(0, PAGE_H-14, W, 14, 'F');
-  doc.setFontSize(7); doc.setFont('helvetica','bold');
-  doc.setTextColor(...C.gold);
-  doc.text(company, 14, PAGE_H-5);
-  if (website) {
-    doc.setFont('helvetica','normal'); doc.setTextColor(...C.blue);
-    doc.text(website, 14+doc.getTextWidth(company)+3, PAGE_H-5);
-  }
+  doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Net Balance',20,y+31);
+  doc.setTextColor(...(netBal>=0?C.green:C.red)); doc.text((netBal>=0?'+ ':'-')+pdfMoney(Math.abs(netBal)),W-20,y+31,{align:'right'});
+  y+=42;
+  doc.setFontSize(7.5); doc.setFont('helvetica','italic'); doc.setTextColor(...C.mid);
+  doc.text('* This is an auto-generated statement based on your recorded transactions.',14,y);
+  doc.setFillColor(...C.dark); doc.rect(0,PAGE_H-14,W,14,'F');
+  doc.setFontSize(7); doc.setFont('helvetica','bold'); doc.setTextColor(...C.gold); doc.text(company,14,PAGE_H-5);
+  if(website){doc.setFont('helvetica','normal');doc.setTextColor(...C.blue);doc.text(website,14+doc.getTextWidth(company)+3,PAGE_H-5);}
   doc.setTextColor(160,160,185);
-  doc.text('Generated: '+genStr, W-14, PAGE_H-9, {align:'right'});
-  doc.text('Page '+doc.internal.getNumberOfPages(), W-14, PAGE_H-5, {align:'right'});
-
+  doc.text('Generated: '+genStr,W-14,PAGE_H-9,{align:'right'});
+  doc.text('Page '+doc.internal.getNumberOfPages(),W-14,PAGE_H-5,{align:'right'});
   doc.save(company.replace(/\s+/g,'_')+'_Statement_'+fromDate+'_to_'+toDate+'.pdf');
   closePdfModal();
 }
 
 // ── INIT ──
 renderAll();
+initLockScreen();
 document.getElementById('addModal').addEventListener('click', e => { if(e.target.id==='addModal') closeModal(); });
 document.getElementById('pdfModal').addEventListener('click', e => { if(e.target.id==='pdfModal') closePdfModal(); });
+document.getElementById('pwModal').addEventListener('click', e => { if(e.target.id==='pwModal') closePwModal(); });
+document.getElementById('cropModalOverlay').addEventListener('click', e => { if(e.target.id==='cropModalOverlay') closeCropModal(); });
+document.getElementById('confirmOverlay').addEventListener('click', e => { if(e.target.id==='confirmOverlay') closeConfirm(); });
 </script>
 </body>
 </html>
