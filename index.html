@@ -392,24 +392,122 @@ textarea.form-input{resize:vertical;min-height:72px;}
 .confirm-btn.danger{background:var(--red);color:#fff;border-color:var(--red);}
 .confirm-btn:hover:not(.danger){border-color:var(--text2);color:var(--text);}
 
-/* ── SETTINGS PANEL ── */
+/* ── SETTINGS PANEL (redesigned) ── */
 .settings-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);z-index:500;display:none;align-items:flex-start;justify-content:flex-end;}
 .settings-overlay.active{display:flex;}
-.settings-panel{width:310px;background:var(--surface);border-left:1px solid var(--border);min-height:100vh;display:flex;flex-direction:column;overflow-y:auto;animation:slideInRight .3s cubic-bezier(.16,1,.3,1);}
+.settings-panel{
+  width:320px;background:#1a1a24;border-left:1px solid var(--border);
+  min-height:100vh;display:flex;flex-direction:column;overflow-y:auto;
+  animation:slideInRight .3s cubic-bezier(.16,1,.3,1);
+}
 @keyframes slideInRight{from{transform:translateX(100%);}to{transform:translateX(0);}}
-.settings-header{padding:18px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1;}
-.settings-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);font-weight:700;}
-.settings-section{padding:16px 16px 0;}
-.settings-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px;}
-.settings-item{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;border-radius:12px;margin-bottom:6px;background:var(--surface2);border:1px solid var(--border);transition:border-color .2s;}
-.settings-item:hover{border-color:rgba(245,166,35,.25);}
-.settings-item-left{display:flex;align-items:center;gap:11px;}
-.settings-item-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* Settings Header */
+.settings-header{
+  padding:20px 20px 16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;background:#1a1a24;z-index:1;
+}
+.settings-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);font-weight:700;}
+.settings-close-btn{
+  width:32px;height:32px;border-radius:8px;border:none;
+  background:var(--surface2);color:var(--text2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.settings-close-btn:hover{background:var(--surface3);color:var(--text);}
+.settings-close-btn svg{width:16px;height:16px;}
+
+/* Profile Section */
+.settings-profile-section{
+  padding:28px 20px 24px;
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  border-bottom:1px solid var(--border);
+}
+.settings-avatar-wrap{
+  position:relative;width:80px;height:80px;margin-bottom:14px;
+}
+.settings-avatar{
+  width:80px;height:80px;border-radius:50%;overflow:hidden;
+  background:linear-gradient(135deg,#f5a623,#e8922a);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:36px;color:#1a0a00;
+  border:2px solid rgba(245,166,35,0.4);cursor:pointer;
+  transition:opacity .2s;
+}
+.settings-avatar:hover{opacity:.9;}
+.settings-avatar img{width:100%;height:100%;object-fit:cover;}
+.settings-avatar-cam{
+  position:absolute;bottom:2px;right:2px;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--surface2);border:2px solid #1a1a24;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.settings-avatar-cam svg{width:12px;height:12px;color:var(--muted);}
+.settings-username{
+  font-size:15px;font-weight:600;color:var(--text);margin-bottom:14px;
+}
+.settings-photo-actions{
+  display:flex;gap:8px;
+}
+.settings-photo-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:9px;border:1px solid var(--border2);
+  background:var(--surface2);color:var(--text2);
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;
+  cursor:pointer;transition:all .2s;
+}
+.settings-photo-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+.settings-photo-btn.danger:hover{border-color:var(--red);color:var(--red);background:var(--red-dim);}
+.settings-photo-btn svg{width:13px;height:13px;}
+
+/* Settings Section Labels */
+.settings-section-wrap{padding:20px 20px 0;}
+.settings-section-label{
+  font-size:10px;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--muted);font-weight:700;margin-bottom:10px;padding-left:2px;
+}
+
+/* Settings Items */
+.settings-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 14px;border-radius:12px;margin-bottom:8px;
+  background:var(--surface);border:1px solid var(--border);
+  transition:border-color .2s;
+}
+.settings-item:hover{border-color:rgba(245,166,35,.2);}
+.settings-item-left{display:flex;align-items:center;gap:12px;}
+.settings-item-icon{
+  width:34px;height:34px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
 .settings-item-icon svg{width:16px;height:16px;}
-.settings-item-label{font-size:13px;font-weight:600;color:var(--text);}
-.settings-item-sub{font-size:11px;color:var(--muted);}
-.settings-btn{padding:6px 12px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
-.settings-btn:hover{border-color:var(--red);color:var(--red);}
+.settings-item-label{font-size:13px;font-weight:600;color:var(--text);line-height:1.3;}
+.settings-item-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.settings-action-btn{
+  padding:6px 14px;border-radius:8px;
+  border:1px solid var(--border2);background:transparent;
+  color:var(--text2);font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.settings-action-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+.settings-action-btn.danger:hover{border-color:var(--red);color:var(--red);background:var(--red-dim);}
+
+/* Toggle Switch */
+.toggle-wrap{position:relative;width:42px;height:24px;cursor:pointer;flex-shrink:0;}
+.toggle-wrap input{opacity:0;width:0;height:0;position:absolute;}
+.toggle-track{
+  position:absolute;inset:0;border-radius:12px;
+  background:var(--border2);transition:.25s;
+}
+.toggle-track.on{background:rgba(245,166,35,0.35);}
+.toggle-knob{
+  position:absolute;width:18px;height:18px;
+  left:3px;top:3px;border-radius:50%;
+  background:var(--muted);transition:.25s;
+}
+.toggle-knob.on{transform:translateX(18px);background:var(--gold);}
 
 /* ── PDF LOADING ── */
 .pdf-loading{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
@@ -518,7 +616,7 @@ textarea.form-input{resize:vertical;min-height:72px;}
   <button class="tab-btn" id="tabLB" onclick="switchTab('lb')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     Lend &amp; Borrow
-    <span id="lbPendingBadge" style="display:none;background:var(--amber);color:#1a0a00;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;" id="lbBadge">0</span>
+    <span id="lbPendingBadge" style="display:none;background:var(--amber);color:#1a0a00;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">0</span>
   </button>
 </div>
 
@@ -554,7 +652,6 @@ textarea.form-input{resize:vertical;min-height:72px;}
 
   <!-- LEND & BORROW TAB -->
   <div id="viewLB" style="display:none;">
-    <!-- LB Summary mini-strip -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;border-left:3px solid var(--blue);">
         <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Total Lent (Pending)</div>
@@ -599,7 +696,7 @@ textarea.form-input{resize:vertical;min-height:72px;}
 </div>
 
 <!-- ADD TRANSACTION MODAL -->
-<div class="overlay bottom active" id="addTxOverlay" style="display:none;">
+<div class="overlay bottom" id="addTxOverlay" style="display:none;">
   <div class="modal bottom-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title" style="margin-bottom:20px;">Add Transaction</div>
@@ -635,7 +732,6 @@ textarea.form-input{resize:vertical;min-height:72px;}
       <div class="modal-title" id="lbModalTitle">Lend Money</div>
       <button class="modal-close" onclick="closeModal('addLBOverlay')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-    <!-- Auto-classify notice -->
     <div id="lbAutoNotice" style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;margin-bottom:16px;font-size:12px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="margin-top:1px;flex-shrink:0;color:var(--gold)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span id="lbAutoText">Lending will be <strong style="color:var(--red)">recorded as Expense</strong> (reduces your balance). Repayments will be tracked as income when received.</span>
@@ -732,61 +828,109 @@ textarea.form-input{resize:vertical;min-height:72px;}
   </div>
 </div>
 
-<!-- SETTINGS PANEL -->
+<!-- ══════════════════════════════════════════════
+     SETTINGS PANEL — redesigned to match reference
+     ══════════════════════════════════════════════ -->
 <div class="settings-overlay" id="settingsOverlay" onclick="handleSettingsClick(event)">
   <div class="settings-panel" id="settingsPanel">
+
+    <!-- Header -->
     <div class="settings-header">
       <div class="settings-title">Settings</div>
-      <button class="modal-close" onclick="closeSettings()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="settings-close-btn" onclick="closeSettings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
-    <div class="settings-section" style="margin-top:14px;">
-      <div class="settings-section-label">Profile</div>
-      <div class="settings-item">
-        <div class="settings-item-left">
-          <div class="settings-item-icon" style="background:var(--gold-dim);color:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-          <div><div class="settings-item-label">Profile Photo</div><div class="settings-item-sub">Tap to change</div></div>
+
+    <!-- Profile Section -->
+    <div class="settings-profile-section">
+      <div class="settings-avatar-wrap">
+        <div class="settings-avatar" id="settingsAvatar" onclick="triggerPhotoPick()">M</div>
+        <div class="settings-avatar-cam">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         </div>
-        <button class="settings-btn" style="border-color:var(--border2);color:var(--text2);" onclick="triggerPhotoPick()">Change</button>
       </div>
-      <div class="settings-item">
-        <div class="settings-item-left">
-          <div class="settings-item-icon" style="background:var(--red-dim);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-          <div><div class="settings-item-label">Remove Photo</div><div class="settings-item-sub">Reset to default</div></div>
-        </div>
-        <button class="settings-btn" onclick="removePhoto()">Remove</button>
+      <div class="settings-username">MOVA User</div>
+      <div class="settings-photo-actions">
+        <button class="settings-photo-btn" onclick="triggerPhotoPick()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Crop Photo
+        </button>
+        <button class="settings-photo-btn danger" onclick="removePhoto()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+          Remove
+        </button>
       </div>
     </div>
-    <div class="settings-section" style="margin-top:14px;">
+
+    <!-- Security Section -->
+    <div class="settings-section-wrap" style="margin-top:20px;">
       <div class="settings-section-label">Security</div>
+
+      <!-- App Lock -->
       <div class="settings-item">
         <div class="settings-item-left">
-          <div class="settings-item-icon" style="background:var(--gold-dim);color:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <div><div class="settings-item-label">App Lock</div><div class="settings-item-sub" id="lockStatusText">Disabled</div></div>
+          <div class="settings-item-icon" style="background:var(--gold-dim);color:var(--gold);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">App Lock</div>
+            <div class="settings-item-sub" id="lockStatusText">Disabled</div>
+          </div>
         </div>
-        <label style="position:relative;width:40px;height:22px;cursor:pointer;">
-          <input type="checkbox" id="lockToggle" onchange="toggleLock()" style="opacity:0;width:0;height:0;">
-          <span id="lockSlider" style="position:absolute;inset:0;background:var(--border2);border-radius:11px;transition:.25s;"></span>
-          <span id="lockKnob" style="position:absolute;width:16px;height:16px;left:3px;top:3px;background:var(--muted);border-radius:50%;transition:.25s;"></span>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="lockToggle" onchange="toggleLock()">
+          <div class="toggle-track" id="toggleTrack"></div>
+          <div class="toggle-knob" id="toggleKnob"></div>
         </label>
       </div>
+
+      <!-- PIN Set -->
       <div class="settings-item" id="pinItem" style="display:none;">
         <div class="settings-item-left">
-          <div class="settings-item-icon" style="background:var(--blue-dim);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg></div>
-          <div><div class="settings-item-label">Set / Change PIN</div><div class="settings-item-sub">4-digit unlock code</div></div>
+          <div class="settings-item-icon" style="background:var(--blue-dim);color:var(--blue);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">PIN Set</div>
+            <div class="settings-item-sub">4-digit unlock PIN</div>
+          </div>
         </div>
-        <button class="settings-btn" style="border-color:var(--border2);color:var(--text2);" onclick="openPinModal()">Configure</button>
+        <button class="settings-action-btn" onclick="openPinModal()">Configure</button>
+      </div>
+
+      <!-- Change PIN -->
+      <div class="settings-item" id="changePinItem" style="display:none;">
+        <div class="settings-item-left">
+          <div class="settings-item-icon" style="background:var(--green-dim);color:var(--green);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">Change PIN</div>
+            <div class="settings-item-sub">Update your unlock PIN</div>
+          </div>
+        </div>
+        <button class="settings-action-btn" onclick="openPinModal()">Change</button>
       </div>
     </div>
-    <div class="settings-section" style="margin-top:14px;">
+
+    <!-- Data Section -->
+    <div class="settings-section-wrap" style="margin-top:20px;padding-bottom:28px;">
       <div class="settings-section-label">Data</div>
       <div class="settings-item">
         <div class="settings-item-left">
-          <div class="settings-item-icon" style="background:var(--red-dim);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg></div>
-          <div><div class="settings-item-label">Clear All Data</div><div class="settings-item-sub">Remove all records</div></div>
+          <div class="settings-item-icon" style="background:var(--red-dim);color:var(--red);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+          </div>
+          <div>
+            <div class="settings-item-label">Clear All Data</div>
+            <div class="settings-item-sub">Remove all transactions</div>
+          </div>
         </div>
-        <button class="settings-btn" onclick="document.getElementById('clearOverlay').style.display='flex'">Clear</button>
+        <button class="settings-action-btn danger" onclick="document.getElementById('clearOverlay').style.display='flex'">Clear</button>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -815,38 +959,6 @@ textarea.form-input{resize:vertical;min-height:72px;}
 // ──────────────────────────────────────────────────
 // DATA STRUCTURES
 // ──────────────────────────────────────────────────
-/*
-  Transaction (unified list):
-  {
-    id: number,         // unique timestamp-based id
-    type: 'expense'|'income'|'lend'|'borrow'|'repayment-in'|'repayment-out',
-    amount: number,
-    date: 'YYYY-MM-DD',
-    time: 'HH:MM',
-    mode: string,
-    cat: string,        // category (expense/income only)
-    desc: string,       // description
-    person: string,     // for lend/borrow/repayments
-    lbId: number,       // for repayments: links to lbRecord.id
-    note: string,
-  }
-
-  LBRecord (lend/borrow master record):
-  {
-    id: number,
-    type: 'lend'|'borrow',
-    originalAmount: number,
-    person: string,
-    date: 'YYYY-MM-DD',
-    mode: string,
-    due: string,
-    note: string,
-    txId: number,       // links to the original transaction
-    repayments: [{ txId, amount, date }],  // list of repayment tx ids
-    status: 'pending'|'partial'|'settled'
-  }
-*/
-
 let transactions = JSON.parse(localStorage.getItem('mova_tx') || '[]');
 let lbRecords    = JSON.parse(localStorage.getItem('mova_lb2') || '[]');
 let settings     = JSON.parse(localStorage.getItem('mova_cfg') || '{"lockEnabled":false,"pin":""}');
@@ -865,13 +977,17 @@ function uid(){ return Date.now() + Math.floor(Math.random()*1000); }
 
 // ── LOGO ──
 function updateLogo(){
-  const el = document.getElementById('headerLogo');
-  const ll = document.getElementById('lockLogo');
+  const el   = document.getElementById('headerLogo');
+  const ll   = document.getElementById('lockLogo');
+  const av   = document.getElementById('settingsAvatar');
   if(LOGO_B64){
     el.innerHTML = `<img src="${LOGO_B64}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`;
     ll.innerHTML = `<img src="${LOGO_B64}" style="width:100%;height:100%;object-fit:cover;border-radius:18px;">`;
+    av.innerHTML = `<img src="${LOGO_B64}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
   } else {
-    el.innerHTML = 'M'; ll.innerHTML = 'M';
+    el.innerHTML = 'M';
+    ll.innerHTML = 'M';
+    av.innerHTML = 'M';
   }
 }
 function triggerPhotoPick(){
@@ -880,7 +996,6 @@ function triggerPhotoPick(){
     const file=e.target.files[0]; if(!file) return;
     const r=new FileReader();
     r.onload = ev => {
-      // Simple crop to square and compress
       const img=new Image(); img.onload=()=>{
         const c=document.createElement('canvas'); c.width=c.height=200;
         const ctx=c.getContext('2d');
@@ -959,11 +1074,6 @@ function getTagClass(type){
   return 'expense';
 }
 
-// ── BALANCE LOGIC ──
-// lend = expense (money goes out)
-// borrow = income (money comes in)
-// repayment-in = income (someone pays you back → you lent)
-// repayment-out = expense (you pay back → you borrowed)
 function signedAmount(tx){
   if(tx.type==='income'||tx.type==='borrow'||tx.type==='repayment-in') return tx.amount;
   return -tx.amount;
@@ -992,20 +1102,17 @@ function renderSummary(){
   bEl.textContent = (bal>=0?'+':'-')+fmt(Math.abs(bal));
   bEl.className = 'stat-val balance'+(bal<0?' neg':'');
 
-  // LB pending totals
   const pendingLent = lbRecords.filter(r=>r.type==='lend'&&getLBStatus(r)!=='settled').reduce((s,r)=>s+getLBRemaining(r),0);
   const pendingBorr = lbRecords.filter(r=>r.type==='borrow'&&getLBStatus(r)!=='settled').reduce((s,r)=>s+getLBRemaining(r),0);
   document.getElementById('lbLentPending').textContent     = fmt(pendingLent);
   document.getElementById('lbBorrowedPending').textContent = fmt(pendingBorr);
 
-  // LB badge
   const pending = lbRecords.filter(r=>getLBStatus(r)!=='settled').length;
   const badge = document.getElementById('lbPendingBadge');
   badge.textContent = pending;
   badge.style.display = pending>0?'':'none';
 }
 
-// ── FILTER CATS ──
 function updateFilterCats(){
   const sel = document.getElementById('filterCat');
   const cur = sel.value;
@@ -1014,8 +1121,6 @@ function updateFilterCats(){
   if(cats.includes(cur)) sel.value=cur;
 }
 
-// ── RENDER TRANSACTION LIST ──
-let currentTab = 'all';
 function renderTxList(){
   const typeF = document.getElementById('filterType').value;
   const catF  = document.getElementById('filterCat').value;
@@ -1040,7 +1145,6 @@ function renderTxList(){
     return;
   }
 
-  // Group by date
   const groups = {};
   filtered.forEach(t=>{ (groups[t.date]=groups[t.date]||[]).push(t); });
   let html='';
@@ -1081,7 +1185,6 @@ function renderTxList(){
   container.innerHTML=html;
 }
 
-// ── RENDER LB LIST ──
 function renderLBList(){
   const container = document.getElementById('lbList');
   document.getElementById('lbCount').textContent = `${lbRecords.length} record${lbRecords.length===1?'':'s'}`;
@@ -1099,7 +1202,6 @@ function renderLBList(){
     const remain = getLBRemaining(lb);
     const pct    = lb.originalAmount>0 ? Math.min(100,(repaid/lb.originalAmount)*100) : 0;
     const isLend = lb.type==='lend';
-    const color  = isLend ? 'var(--blue)' : 'var(--purple)';
 
     let statusHtml='';
     if(status==='settled') statusHtml=`<div class="lb-status settled">✓ Settled</div>`;
@@ -1108,7 +1210,6 @@ function renderLBList(){
 
     const dueStr = lb.due ? `<span class="lb-meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Due: ${lb.due}</span>` : '';
     const noteStr= lb.note ? `<span class="lb-meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>${lb.note}</span>` : '';
-
     const repayBtn = status!=='settled' ? `<button class="lb-action-btn repay" onclick="openRepayModal(${lb.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Repayment</button>` : '';
 
     html+=`<div class="lb-card ${lb.type}" id="lbCard-${lb.id}">
@@ -1159,6 +1260,7 @@ function renderAll(){
 }
 
 // ── TABS ──
+let currentTab = 'all';
 function switchTab(tab){
   currentTab=tab;
   document.getElementById('viewAll').style.display = tab==='all'?'':'none';
@@ -1241,17 +1343,14 @@ function submitLB(){
   const note=document.getElementById('lbNote').value.trim();
   const isLend=lbType==='lend';
 
-  // Create the transaction (auto-classified)
   const txType=isLend?'lend':'borrow';
   const txId=uid();
   const desc=isLend?`Lent to ${person}`:`Borrowed from ${person}`;
   transactions.push({id:txId,type:txType,amount,desc,cat:'',date,time:nowTime(),mode,person,note,lbId:null});
 
-  // Create LB master record
   const lbId=uid()+1;
   const lb={id:lbId,type:lbType,originalAmount:amount,person,date,mode,due,note,txId,repayments:[],status:'pending'};
 
-  // Link back
   const tx=transactions.find(t=>t.id===txId);
   if(tx) tx.lbId=lbId;
 
@@ -1298,13 +1397,11 @@ function submitRepayment(){
   const note=document.getElementById('repayNote').value.trim();
   const isLend=lb.type==='lend';
 
-  // Auto-classify: if lend → repayment-in (income), if borrow → repayment-out (expense)
   const txType=isLend?'repayment-in':'repayment-out';
   const desc=isLend?`Repayment from ${lb.person}`:`Repayment to ${lb.person}`;
   const txId=uid();
   transactions.push({id:txId,type:txType,amount,desc,cat:'',date,time,mode,person:lb.person,note,lbId:repayLbId});
 
-  // Update LB record
   if(!lb.repayments) lb.repayments=[];
   lb.repayments.push({txId,amount,date});
   lb.status=getLBStatus(lb);
@@ -1337,7 +1434,6 @@ function confirmDelete(){
   } else if(deleteTarget.type==='lb'){
     const lb=lbRecords.find(r=>r.id===deleteTarget.id);
     if(lb){
-      // Remove the main tx and all repayment txs
       const txIds=[lb.txId,...(lb.repayments||[]).map(r=>r.txId)].filter(Boolean);
       transactions=transactions.filter(t=>!txIds.includes(t.id));
       lbRecords=lbRecords.filter(r=>r.id!==deleteTarget.id);
@@ -1355,24 +1451,39 @@ function clearAllData(){
 function openSettings(){ document.getElementById('settingsOverlay').classList.add('active'); syncSettings(); }
 function closeSettings(){ document.getElementById('settingsOverlay').classList.remove('active'); }
 function handleSettingsClick(e){ if(e.target.id==='settingsOverlay') closeSettings(); }
+
 function syncSettings(){
-  const tog=document.getElementById('lockToggle');
-  tog.checked=settings.lockEnabled;
-  document.getElementById('lockStatusText').textContent=settings.lockEnabled?'Enabled':'Disabled';
-  document.getElementById('pinItem').style.display=settings.lockEnabled?'':'none';
-  const slider=document.getElementById('lockSlider');
-  const knob=document.getElementById('lockKnob');
-  if(settings.lockEnabled){slider.style.background='rgba(245,166,35,.25)';knob.style.transform='translateX(18px)';knob.style.background='var(--gold)';}
-  else{slider.style.background='var(--border2)';knob.style.transform='';knob.style.background='var(--muted)';}
+  const enabled = settings.lockEnabled;
+  const hasPin  = !!settings.pin;
+
+  // Status text
+  document.getElementById('lockStatusText').textContent = enabled ? 'Enabled' : 'Disabled';
+
+  // Toggle checkbox + visual
+  document.getElementById('lockToggle').checked = enabled;
+  const track = document.getElementById('toggleTrack');
+  const knob  = document.getElementById('toggleKnob');
+  track.className = 'toggle-track' + (enabled ? ' on' : '');
+  knob.className  = 'toggle-knob'  + (enabled ? ' on' : '');
+
+  // Show/hide PIN items
+  document.getElementById('pinItem').style.display       = enabled ? '' : 'none';
+  document.getElementById('changePinItem').style.display = (enabled && hasPin) ? '' : 'none';
 }
+
 function toggleLock(){
-  settings.lockEnabled=document.getElementById('lockToggle').checked;
-  if(settings.lockEnabled&&!settings.pin){ setTimeout(openPinModal,100); }
+  settings.lockEnabled = document.getElementById('lockToggle').checked;
+  if(settings.lockEnabled && !settings.pin){ setTimeout(openPinModal, 100); }
   saveCfg(); syncSettings();
 }
 
 // ── PIN ──
-function openPinModal(){ document.getElementById('pinInput1').value=''; document.getElementById('pinInput2').value=''; document.getElementById('pinError').textContent=''; openModal('pinOverlay'); }
+function openPinModal(){
+  document.getElementById('pinInput1').value='';
+  document.getElementById('pinInput2').value='';
+  document.getElementById('pinError').textContent='';
+  openModal('pinOverlay');
+}
 function savePin(){
   const p1=document.getElementById('pinInput1').value.trim();
   const p2=document.getElementById('pinInput2').value.trim();
@@ -1384,7 +1495,7 @@ function savePin(){
 // ── LOCK SCREEN ──
 let lockBuf='';
 function initLock(){
-  if(settings.lockEnabled&&settings.pin){
+  if(settings.lockEnabled && settings.pin){
     document.getElementById('lockScreen').classList.add('active');
     lockBuf=''; updateLockDots(); document.getElementById('lockError').textContent='';
   }
@@ -1431,7 +1542,6 @@ async function generatePDF(){
     const W=210,PH=297;
     const C={dark:[22,22,30],gold:[200,130,30],mid:[90,90,110],green:[40,160,100],red:[210,65,65],border:[200,200,215],white:[255,255,255],light:[245,245,252],blue:[120,170,255]};
     let y=0;
-    // Header
     doc.setFillColor(...C.dark); doc.rect(0,0,W,38,'F');
     if(LOGO_B64){ try{ doc.addImage(LOGO_B64,'JPEG',14,7,24,24,undefined,'FAST'); }catch(e){} }
     doc.setTextColor(...C.gold);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text(company,42,18);
@@ -1440,7 +1550,6 @@ async function generatePDF(){
     doc.setTextColor(160,160,185);doc.setFontSize(7.5);doc.text('Generated: '+genStr,W-14,15,{align:'right'});
     y=48;
     doc.setFontSize(22);doc.setFont('helvetica','bold');doc.setTextColor(...C.dark);doc.text('STATEMENT',14,y);y+=10;
-    // Summary
     const totalExp=filtered.filter(t=>t.type==='expense'||t.type==='lend'||t.type==='repayment-out').reduce((s,t)=>s+t.amount,0);
     const totalInc=filtered.filter(t=>t.type==='income'||t.type==='borrow'||t.type==='repayment-in').reduce((s,t)=>s+t.amount,0);
     const net=totalInc-totalExp;
@@ -1449,7 +1558,6 @@ async function generatePDF(){
     const cw=(W-28)/4;
     cols.forEach((col,i)=>{const cx=14+cw*i+cw/2;doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(...col.c);doc.text(col.v,cx,y+12,{align:'center'});doc.setFontSize(7);doc.setFont('helvetica','normal');doc.setTextColor(...C.mid);doc.text(col.l,cx,y+22,{align:'center'});if(i<3){doc.setDrawColor(...C.border);doc.line(14+cw*(i+1),y+5,14+cw*(i+1),y+25);}});
     y+=38;
-    // Table
     const rows=filtered.map(t=>[
       t.date+'\n'+(t.time||''),
       t.type.replace('-',' ').toUpperCase(),
@@ -1477,7 +1585,6 @@ updateLogo();
 renderAll();
 initLock();
 
-// Close overlays on backdrop click
 ['addTxOverlay','addLBOverlay','repayOverlay','deleteOverlay','clearOverlay','pdfOverlay','pinOverlay'].forEach(id=>{
   document.getElementById(id).addEventListener('click',e=>{ if(e.target.id===id) closeModal(id); });
 });
