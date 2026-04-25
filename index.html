@@ -17,6 +17,9 @@
     --gold2: #e8922a;
     --red: #e05555;
     --green: #4caf7d;
+    --blue: #5b9cf6;
+    --blue2: #4480e0;
+    --purple: #a78bfa;
     --text: #e8e8f0;
     --muted: #7a7a9a;
     --card-radius: 18px;
@@ -80,7 +83,6 @@
   .settings-close:hover { color: var(--text); background: var(--surface2); }
   .settings-close svg { width: 20px; height: 20px; }
 
-  /* Profile section inside settings */
   .settings-profile {
     padding: 24px 20px 20px;
     border-bottom: 1px solid var(--border);
@@ -114,7 +116,6 @@
   .profile-pic-btn.danger:hover { border-color: var(--red); color: var(--red); }
   .profile-pic-btn svg { width: 13px; height: 13px; }
 
-  /* Settings sections */
   .settings-section { padding: 16px 20px 0; }
   .settings-section-title {
     font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
@@ -144,123 +145,53 @@
   .settings-item-btn:hover { border-color: var(--gold); color: var(--gold); }
   .settings-item-btn.danger:hover { border-color: var(--red); color: var(--red); }
 
-  /* Toggle switch */
-  .toggle-wrap { display: flex; align-items: center; gap: 8px; }
-  .toggle {
-    position: relative; width: 42px; height: 24px; cursor: pointer;
-  }
+  .toggle { position: relative; width: 42px; height: 24px; cursor: pointer; }
   .toggle input { opacity: 0; width: 0; height: 0; }
-  .toggle-slider {
-    position: absolute; inset: 0; background: var(--border);
-    border-radius: 12px; transition: 0.25s;
-  }
-  .toggle-slider::before {
-    content: ''; position: absolute; width: 18px; height: 18px;
-    left: 3px; top: 3px; background: var(--muted);
-    border-radius: 50%; transition: 0.25s;
-  }
+  .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 12px; transition: 0.25s; }
+  .toggle-slider::before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: var(--muted); border-radius: 50%; transition: 0.25s; }
   .toggle input:checked + .toggle-slider { background: rgba(245,166,35,0.25); }
   .toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--gold); }
-  .toggle-label { font-size: 12px; color: var(--muted); font-weight: 500; }
 
   .settings-footer { padding: 20px; margin-top: auto; }
-  .clear-data-btn {
-    width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(224,85,85,0.35);
-    background: rgba(224,85,85,0.08); color: var(--red); font-family: 'DM Sans', sans-serif;
-    font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
-  .clear-data-btn:hover { background: rgba(224,85,85,0.18); border-color: var(--red); }
-  .clear-data-btn svg { width: 16px; height: 16px; }
 
   /* ── LOCK SCREEN ── */
-  .lock-screen {
-    position: fixed; inset: 0; background: var(--bg); z-index: 9999;
-    display: none; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
-  }
+  .lock-screen { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
   .lock-screen.active { display: flex; }
-  .lock-logo-wrap {
-    width: 72px; height: 72px; border-radius: 20px;
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, #f5a623, #e8922a);
-    font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #1a0a00;
-    border: 1px solid rgba(245,166,35,0.3);
-  }
+  .lock-logo-wrap { width: 72px; height: 72px; border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f5a623, #e8922a); font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #1a0a00; border: 1px solid rgba(245,166,35,0.3); }
   .lock-logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .lock-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-weight: 700; }
   .lock-sub { font-size: 13px; color: var(--muted); }
-  .lock-icon-wrap {
-    width: 64px; height: 64px; border-radius: 50%;
-    background: var(--surface); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; margin-bottom: -8px;
-  }
+  .lock-icon-wrap { width: 64px; height: 64px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: -8px; }
   .lock-icon-wrap svg { width: 30px; height: 30px; color: var(--gold); }
   .pin-dots { display: flex; gap: 14px; margin: 4px 0; }
-  .pin-dot {
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--border); border: 2px solid var(--muted);
-    transition: all 0.15s;
-  }
+  .pin-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--border); border: 2px solid var(--muted); transition: all 0.15s; }
   .pin-dot.filled { background: var(--gold); border-color: var(--gold); transform: scale(1.1); }
   .pin-dot.error { background: var(--red); border-color: var(--red); }
   .pin-keypad { display: grid; grid-template-columns: repeat(3, 64px); gap: 12px; }
-  .pin-key {
-    width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--border);
-    background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif;
-    font-size: 20px; font-weight: 600; cursor: pointer; transition: all 0.15s;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .pin-key { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
   .pin-key:hover { background: var(--surface2); border-color: var(--gold); color: var(--gold); }
   .pin-key:active { transform: scale(0.92); }
   .pin-key.del { font-size: 14px; color: var(--muted); }
   .pin-error-msg { font-size: 12px; color: var(--red); font-weight: 600; min-height: 18px; }
 
   /* ── PASSWORD MODAL ── */
-  .pw-modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(6px); z-index: 600; display: none;
-    align-items: center; justify-content: center;
-  }
+  .pw-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 600; display: none; align-items: center; justify-content: center; }
   .pw-modal-overlay.active { display: flex; }
-  .pw-modal {
-    background: var(--surface); border-radius: 20px; padding: 28px 28px 32px;
-    width: 90%; max-width: 400px; border: 1px solid var(--border);
-    animation: fadeScaleIn 0.25s ease;
-  }
+  .pw-modal { background: var(--surface); border-radius: 20px; padding: 28px 28px 32px; width: 90%; max-width: 400px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; }
   @keyframes fadeScaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
   .pw-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
   .pw-modal-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--gold); font-weight: 700; }
   .pw-modal-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; align-items: center; }
   .pw-modal-close:hover { color: var(--text); }
   .pw-modal-close svg { width: 20px; height: 20px; }
-  .pw-pin-row { display: flex; gap: 10px; margin-bottom: 14px; justify-content: center; }
-  .pw-pin-input {
-    width: 52px; height: 56px; text-align: center; border-radius: 12px;
-    border: 1px solid var(--border); background: var(--surface2);
-    color: var(--text); font-size: 22px; font-family: 'DM Sans', sans-serif;
-    outline: none; transition: border-color 0.2s; letter-spacing: 2px;
-  }
-  .pw-pin-input:focus { border-color: var(--gold); }
-  .pw-hint { font-size: 12px; color: var(--muted); margin-bottom: 18px; text-align: center; }
   .pw-error { font-size: 12px; color: var(--red); font-weight: 600; text-align: center; margin-bottom: 10px; min-height: 18px; }
 
   /* ── CROP MODAL ── */
-  .crop-modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px); z-index: 700; display: none;
-    align-items: center; justify-content: center;
-  }
+  .crop-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 700; display: none; align-items: center; justify-content: center; }
   .crop-modal-overlay.active { display: flex; }
-  .crop-modal {
-    background: var(--surface); border-radius: 20px; padding: 24px;
-    width: 94%; max-width: 380px; border: 1px solid var(--border);
-    animation: fadeScaleIn 0.25s ease; display: flex; flex-direction: column; gap: 16px;
-  }
+  .crop-modal { background: var(--surface); border-radius: 20px; padding: 24px; width: 94%; max-width: 380px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; display: flex; flex-direction: column; gap: 16px; }
   .crop-modal-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-weight: 700; }
-  .crop-canvas-wrap {
-    width: 100%; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden;
-    position: relative; background: #111; border: 1px solid var(--border); cursor: crosshair;
-  }
+  .crop-canvas-wrap { width: 100%; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; position: relative; background: #111; border: 1px solid var(--border); cursor: crosshair; }
   #cropCanvas { display: block; width: 100%; height: 100%; touch-action: none; }
   .crop-controls { display: flex; flex-direction: column; gap: 10px; }
   .crop-slider-row { display: flex; align-items: center; gap: 10px; }
@@ -269,22 +200,89 @@
   .crop-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
   /* ── CONFIRM MODAL ── */
-  .confirm-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(6px); z-index: 800; display: none;
-    align-items: center; justify-content: center;
-  }
+  .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 800; display: none; align-items: center; justify-content: center; }
   .confirm-overlay.active { display: flex; }
-  .confirm-modal {
-    background: var(--surface); border-radius: 20px; padding: 28px 28px 28px;
-    width: 90%; max-width: 360px; border: 1px solid var(--border);
-    animation: fadeScaleIn 0.25s ease; text-align: center;
-  }
+  .confirm-modal { background: var(--surface); border-radius: 20px; padding: 28px; width: 90%; max-width: 360px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; text-align: center; }
   .confirm-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(224,85,85,0.12); border: 1px solid rgba(224,85,85,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
   .confirm-icon svg { width: 26px; height: 26px; color: var(--red); }
   .confirm-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text); font-weight: 700; margin-bottom: 8px; }
   .confirm-body { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
   .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* ── REPAYMENT MODAL ── */
+  .repay-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 450; display: none; align-items: center; justify-content: center; }
+  .repay-modal-overlay.active { display: flex; }
+  .repay-modal { background: var(--surface); border-radius: 20px; padding: 28px; width: 92%; max-width: 440px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; }
+  .repay-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .repay-modal-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-weight: 700; }
+  .repay-modal-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; align-items: center; }
+  .repay-modal-close:hover { color: var(--text); }
+  .repay-modal-close svg { width: 20px; height: 20px; }
+  .repay-context { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; }
+  .repay-context-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; margin-bottom: 4px; }
+  .repay-context-row:last-child { margin-bottom: 0; }
+  .repay-context-label { color: var(--muted); }
+  .repay-context-val { font-weight: 600; }
+  .repay-progress { height: 6px; background: var(--border); border-radius: 3px; margin-top: 10px; overflow: hidden; }
+  .repay-progress-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+  .repay-progress-bar.lend { background: var(--green); }
+  .repay-progress-bar.borrow { background: var(--blue); }
+
+  /* ── LEND/BORROW TRACKER PANEL ── */
+  .lb-panel { padding: 0 24px 0; }
+  .lb-panel-title {
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text);
+    margin-bottom: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .lb-panel-badge {
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    padding: 3px 8px; border-radius: 6px; letter-spacing: 0.5px;
+  }
+  .lb-panel-badge.active { background: rgba(91,156,246,0.15); color: var(--blue); border: 1px solid rgba(91,156,246,0.3); }
+  .lb-empty { font-size: 13px; color: var(--muted); padding: 14px 0; }
+  .lb-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 16px; margin-bottom: 10px; transition: border-color 0.2s;
+  }
+  .lb-card:hover { border-color: rgba(91,156,246,0.3); }
+  .lb-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .lb-card-left { display: flex; align-items: center; gap: 10px; }
+  .lb-card-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lb-card-icon.lend { background: rgba(76,175,125,0.12); color: var(--green); }
+  .lb-card-icon.borrow { background: rgba(91,156,246,0.12); color: var(--blue); }
+  .lb-card-icon svg { width: 18px; height: 18px; }
+  .lb-card-name { font-weight: 700; font-size: 14px; color: var(--text); }
+  .lb-card-type { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 5px; display: inline-block; }
+  .lb-card-type.lend { background: rgba(76,175,125,0.15); color: var(--green); }
+  .lb-card-type.borrow { background: rgba(91,156,246,0.15); color: var(--blue); }
+  .lb-card-amounts { display: flex; gap: 18px; align-items: flex-end; flex-wrap: wrap; }
+  .lb-amt-block { display: flex; flex-direction: column; gap: 1px; }
+  .lb-amt-label { font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .lb-amt-val { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; }
+  .lb-amt-val.original { color: var(--text); }
+  .lb-amt-val.paid { color: var(--green); }
+  .lb-amt-val.remaining { color: var(--gold); }
+  .lb-amt-val.remaining.blue { color: var(--blue); }
+  .lb-progress { height: 4px; background: var(--border); border-radius: 2px; margin: 10px 0 10px; overflow: hidden; }
+  .lb-progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+  .lb-progress-fill.lend { background: var(--green); }
+  .lb-progress-fill.borrow { background: var(--blue); }
+  .lb-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .lb-card-meta { font-size: 11px; color: var(--muted); }
+  .lb-card-actions { display: flex; gap: 8px; }
+  .lb-action-btn {
+    padding: 5px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; font-family: 'DM Sans', sans-serif; font-size: 12px;
+    font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+  }
+  .lb-action-btn.repay-lend { color: var(--green); border-color: rgba(76,175,125,0.3); }
+  .lb-action-btn.repay-lend:hover { background: rgba(76,175,125,0.1); border-color: var(--green); }
+  .lb-action-btn.repay-borrow { color: var(--blue); border-color: rgba(91,156,246,0.3); }
+  .lb-action-btn.repay-borrow:hover { background: rgba(91,156,246,0.1); border-color: var(--blue); }
+  .lb-action-btn.settled { color: var(--muted); border-color: var(--border); cursor: default; }
+  .lb-action-btn svg { width: 13px; height: 13px; }
+  .lb-settled-badge { font-size: 11px; color: var(--green); font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .lb-settled-badge svg { width: 13px; height: 13px; }
 
   /* ── MAIN APP ── */
   .summary-section { padding: 24px 24px 0; }
@@ -300,6 +298,21 @@
   .stat-value.expense { color: var(--red); }
   .stat-value.income  { color: var(--green); }
   .stat-value.balance { color: var(--gold); }
+
+  /* ── LEND/BORROW SUMMARY MINI CARDS ── */
+  .lb-summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .lb-mini-card {
+    background: var(--surface); border-radius: 14px; padding: 14px 16px;
+    border: 1px solid var(--border); display: flex; align-items: center; gap: 12px;
+  }
+  .lb-mini-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lb-mini-icon.lend { background: rgba(76,175,125,0.12); color: var(--green); }
+  .lb-mini-icon.borrow { background: rgba(91,156,246,0.12); color: var(--blue); }
+  .lb-mini-icon svg { width: 18px; height: 18px; }
+  .lb-mini-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+  .lb-mini-val { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
+  .lb-mini-val.lend { color: var(--green); }
+  .lb-mini-val.borrow { color: var(--blue); }
 
   .filter-bar { padding: 0 24px; display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
   .filter-bar select, .filter-bar input {
@@ -318,16 +331,24 @@
     margin-bottom: 8px; transition: transform 0.15s; cursor: pointer;
   }
   .tx-item:hover { transform: translateX(2px); }
+  .tx-item.lend-linked { border-left: 3px solid rgba(76,175,125,0.4); }
+  .tx-item.borrow-linked { border-left: 3px solid rgba(91,156,246,0.4); }
   .tx-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .tx-icon.expense-icon { background: rgba(224,85,85,0.12); }
   .tx-icon.income-icon  { background: rgba(76,175,125,0.12); }
+  .tx-icon.lend-icon    { background: rgba(76,175,125,0.12); }
+  .tx-icon.borrow-icon  { background: rgba(91,156,246,0.12); }
+  .tx-icon.repay-lend-icon  { background: rgba(76,175,125,0.08); }
+  .tx-icon.repay-borrow-icon { background: rgba(91,156,246,0.08); }
   .tx-icon svg { width: 20px; height: 20px; }
   .tx-info { flex: 1; }
   .tx-desc { font-weight: 600; font-size: 14px; color: var(--text); }
-  .tx-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .tx-meta { font-size: 12px; color: var(--muted); margin-top: 2px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .tx-amount { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
   .tx-amount.neg { color: var(--red); }
   .tx-amount.pos { color: var(--green); }
+  .tx-amount.lend-color { color: var(--green); }
+  .tx-amount.borrow-color { color: var(--blue); }
   .tx-delete { background: none; border: none; color: var(--muted); cursor: pointer; padding: 6px; border-radius: 6px; transition: color 0.2s, background 0.2s; display: flex; align-items: center; }
   .tx-delete:hover { color: var(--red); background: rgba(224,85,85,0.1); }
   .tx-delete svg { width: 16px; height: 16px; }
@@ -335,14 +356,39 @@
   .empty-state .big-icon { margin-bottom: 12px; display: flex; justify-content: center; }
   .empty-state svg { width: 52px; height: 52px; opacity: 0.4; }
   .category-badge { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .lend-badge { background: rgba(76,175,125,0.1); border-color: rgba(76,175,125,0.3); color: var(--green); }
+  .borrow-badge { background: rgba(91,156,246,0.1); border-color: rgba(91,156,246,0.3); color: var(--blue); }
+  .repay-badge { background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.3); color: var(--purple); }
 
+  /* FAB Group */
+  .fab-group { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; z-index: 200; }
+  .fab-mini-group { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; transform: scale(0.8); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(.16,1,.3,1); transform-origin: bottom right; }
+  .fab-group.open .fab-mini-group { transform: scale(1); opacity: 1; pointer-events: all; }
+  .fab-mini-row { display: flex; align-items: center; gap: 10px; }
+  .fab-mini-label { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 8px; white-space: nowrap; }
+  .fab-mini-label.lend { background: rgba(76,175,125,0.15); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+  .fab-mini-label.borrow { background: rgba(91,156,246,0.15); color: var(--blue); border: 1px solid rgba(91,156,246,0.3); }
+  .fab-mini-label.expense { background: rgba(224,85,85,0.15); color: var(--red); border: 1px solid rgba(224,85,85,0.3); }
+  .fab-mini-label.income { background: rgba(76,175,125,0.15); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+  .fab-mini {
+    width: 46px; height: 46px; border-radius: 14px; border: none; cursor: pointer;
+    color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;
+  }
+  .fab-mini:hover { transform: scale(1.08); }
+  .fab-mini.expense { background: var(--red); box-shadow: 0 4px 16px rgba(224,85,85,0.3); }
+  .fab-mini.income  { background: var(--green); box-shadow: 0 4px 16px rgba(76,175,125,0.3); }
+  .fab-mini.lend    { background: linear-gradient(135deg, #4caf7d, #2d8f5e); box-shadow: 0 4px 16px rgba(76,175,125,0.35); }
+  .fab-mini.borrow  { background: linear-gradient(135deg, var(--blue), var(--blue2)); box-shadow: 0 4px 16px rgba(91,156,246,0.35); }
+  .fab-mini svg { width: 20px; height: 20px; }
   .fab {
-    position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px; border-radius: 18px;
+    width: 58px; height: 58px; border-radius: 18px;
     background: linear-gradient(135deg, var(--gold), var(--gold2)); border: none; cursor: pointer;
     color: #1a0a00; font-weight: 700; box-shadow: 0 8px 24px rgba(245,166,35,0.35);
-    transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; z-index: 200;
+    transition: transform 0.3s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center;
   }
-  .fab:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 12px 32px rgba(245,166,35,0.45); }
+  .fab-group.open .fab { transform: rotate(45deg); }
+  .fab:hover { box-shadow: 0 12px 32px rgba(245,166,35,0.45); }
   .fab svg { width: 28px; height: 28px; }
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 300; display: none; align-items: flex-end; justify-content: center; }
@@ -350,25 +396,34 @@
   .modal { background: var(--surface); border-radius: 24px 24px 0 0; padding: 28px 24px 40px; width: 100%; max-width: 520px; border: 1px solid var(--border); border-bottom: none; animation: slideUp 0.3s cubic-bezier(.16,1,.3,1); }
   @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(--gold); }
-  .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-  .type-btn { padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
-  .type-btn svg { width: 16px; height: 16px; }
-  .type-btn.active-expense { background: rgba(224,85,85,0.15); border-color: var(--red); color: var(--red); }
-  .type-btn.active-income  { background: rgba(76,175,125,0.15); border-color: var(--green); color: var(--green); }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+  .modal-title.expense { color: var(--red); }
+  .modal-title.income  { color: var(--green); }
+  .modal-title.lend    { color: var(--green); }
+  .modal-title.borrow  { color: var(--blue); }
   .form-group { margin-bottom: 14px; }
   .form-label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 6px; display: block; }
   .form-input, .form-select { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 11px 14px; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
   .form-input:focus, .form-select:focus { border-color: var(--gold); }
-  .form-input[type="date"] { color-scheme: dark; }
+  .form-input[type="date"], .form-input[type="time"] { color-scheme: dark; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .submit-btn { width: 100%; padding: 14px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #1a0a00; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 8px; transition: opacity 0.2s, transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .submit-btn { width: 100%; padding: 14px; border-radius: 14px; border: none; color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 8px; transition: opacity 0.2s, transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .submit-btn svg { width: 18px; height: 18px; }
   .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .submit-btn.expense-btn { background: var(--red); box-shadow: 0 4px 16px rgba(224,85,85,0.3); }
+  .submit-btn.income-btn  { background: var(--green); box-shadow: 0 4px 16px rgba(76,175,125,0.3); }
+  .submit-btn.lend-btn    { background: linear-gradient(135deg, #4caf7d, #2d8f5e); box-shadow: 0 6px 20px rgba(76,175,125,0.3); }
+  .submit-btn.borrow-btn  { background: linear-gradient(135deg, var(--blue), var(--blue2)); box-shadow: 0 6px 20px rgba(91,156,246,0.3); }
+  .submit-btn.repay-btn   { background: linear-gradient(135deg, var(--purple), #7c5ce4); box-shadow: 0 6px 20px rgba(167,139,250,0.3); }
+  .modal-hint { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 12px; color: var(--muted); line-height: 1.6; display: flex; gap: 8px; }
+  .modal-hint-icon { flex-shrink: 0; margin-top: 1px; }
+  .modal-hint-icon svg { width: 14px; height: 14px; }
+  .modal-hint.lend { border-color: rgba(76,175,125,0.25); color: #7acc9f; }
+  .modal-hint.borrow { border-color: rgba(91,156,246,0.25); color: #89b6f7; }
 
   .pdf-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 400; display: none; align-items: center; justify-content: center; }
   .pdf-modal-overlay.active { display: flex; }
-  .pdf-modal { background: var(--surface); border-radius: 20px; padding: 28px 28px 32px; width: 90%; max-width: 440px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; }
+  .pdf-modal { background: var(--surface); border-radius: 20px; padding: 28px 28px 32px; width: 90%; max-width: 440px; border: 1px solid var(--border); animation: fadeScaleIn 0.25s ease; max-height: 90vh; overflow-y: auto; }
   .pdf-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
   .pdf-modal-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-weight: 700; }
   .pdf-modal-close { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; border-radius: 6px; display: flex; align-items: center; }
@@ -383,15 +438,17 @@
     header { padding: 14px 16px; }
     .summary-card { padding: 16px; }
     .stat-value { font-size: 20px; }
-    .summary-section, .transactions-section, .filter-bar { padding-left: 16px; padding-right: 16px; }
+    .summary-section, .transactions-section, .filter-bar, .lb-panel { padding-left: 16px; padding-right: 16px; }
     .form-row { grid-template-columns: 1fr; }
     .settings-panel { width: 100%; }
+    .lb-summary-row { grid-template-columns: 1fr; }
+    .fab-group { bottom: 20px; right: 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── LOCK SCREEN ── -->
+<!-- LOCK SCREEN -->
 <div class="lock-screen" id="lockScreen">
   <div class="lock-logo-wrap" id="lockLogo">M</div>
   <div>
@@ -402,10 +459,8 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </div>
   <div class="pin-dots" id="lockDots">
-    <div class="pin-dot" id="ld0"></div>
-    <div class="pin-dot" id="ld1"></div>
-    <div class="pin-dot" id="ld2"></div>
-    <div class="pin-dot" id="ld3"></div>
+    <div class="pin-dot" id="ld0"></div><div class="pin-dot" id="ld1"></div>
+    <div class="pin-dot" id="ld2"></div><div class="pin-dot" id="ld3"></div>
   </div>
   <div class="pin-error-msg" id="lockError"></div>
   <div class="pin-keypad">
@@ -426,7 +481,7 @@
 
 <header>
   <div class="brand">
-    <div class="brand-logo" id="headerLogoWrap"></div>
+    <div class="brand-logo" id="headerLogoWrap" style="cursor:pointer;" title="Click to change photo"></div>
     <div>
       <div class="brand-name">MOVA</div>
       <div class="brand-sub">Income &amp; Expense</div>
@@ -434,11 +489,11 @@
   </div>
   <div class="header-actions">
     <button class="btn btn-outline" onclick="openPdfModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Export PDF
     </button>
     <button class="icon-btn" onclick="openSettings()" title="Settings">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
   </div>
 </header>
@@ -450,7 +505,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         Expense
       </div>
-      <div class="stat-value expense" id="totalExpense">&#8377;0.00</div>
+      <div class="stat-value expense" id="totalExpense">₹0.00</div>
     </div>
     <div class="divider-v"></div>
     <div class="stat-block">
@@ -458,7 +513,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
         Income
       </div>
-      <div class="stat-value income" id="totalIncome">&#8377;0.00</div>
+      <div class="stat-value income" id="totalIncome">₹0.00</div>
     </div>
     <div class="divider-v"></div>
     <div class="stat-block">
@@ -466,9 +521,40 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Balance
       </div>
-      <div class="stat-value balance" id="totalBalance">&#8377;0.00</div>
+      <div class="stat-value balance" id="totalBalance">₹0.00</div>
     </div>
   </div>
+
+  <!-- Lend/Borrow Summary Mini Cards -->
+  <div class="lb-summary-row">
+    <div class="lb-mini-card">
+      <div class="lb-mini-icon lend">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      </div>
+      <div>
+        <div class="lb-mini-label">LENT OUT (PENDING)</div>
+        <div class="lb-mini-val lend" id="miniLentPending">₹0.00</div>
+      </div>
+    </div>
+    <div class="lb-mini-card">
+      <div class="lb-mini-icon borrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      </div>
+      <div>
+        <div class="lb-mini-label">BORROWED (PENDING)</div>
+        <div class="lb-mini-val borrow" id="miniBorrowedPending">₹0.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lend & Borrow Tracker Panel -->
+<div class="lb-panel" id="lbPanel" style="display:none;">
+  <div class="lb-panel-title">
+    Lend &amp; Borrow Tracker
+    <span class="lb-panel-badge active" id="lbActiveCount">0 Active</span>
+  </div>
+  <div id="lbList"></div>
 </div>
 
 <div class="filter-bar" style="padding-top:0;margin-top:12px;">
@@ -476,6 +562,8 @@
     <option value="all">All Types</option>
     <option value="expense">Expense</option>
     <option value="income">Income</option>
+    <option value="lend">Lend</option>
+    <option value="borrow">Borrow</option>
   </select>
   <select id="filterCat" onchange="renderList()">
     <option value="all">All Categories</option>
@@ -488,43 +576,62 @@
   <div id="txList"></div>
 </div>
 
-<button class="fab" onclick="openModal()">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-</button>
-
-<!-- ADD MODAL -->
-<div class="modal-overlay" id="addModal">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title">Add Entry</div>
-    <div class="type-toggle">
-      <button class="type-btn active-expense" id="typeExpense" onclick="setType('expense')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        Expense
-      </button>
-      <button class="type-btn" id="typeIncome" onclick="setType('income')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-        Income
+<!-- FAB Group -->
+<div class="fab-group" id="fabGroup">
+  <div class="fab-mini-group" id="fabMiniGroup">
+    <div class="fab-mini-row">
+      <span class="fab-mini-label borrow">Borrow Money</span>
+      <button class="fab-mini borrow" onclick="openAddModal('borrow')" title="Record Borrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
       </button>
     </div>
+    <div class="fab-mini-row">
+      <span class="fab-mini-label lend">Lend Money</span>
+      <button class="fab-mini lend" onclick="openAddModal('lend')" title="Record Lend">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      </button>
+    </div>
+    <div class="fab-mini-row">
+      <span class="fab-mini-label income">Add Income</span>
+      <button class="fab-mini income" onclick="openAddModal('income')" title="Add Income">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      </button>
+    </div>
+    <div class="fab-mini-row">
+      <span class="fab-mini-label expense">Add Expense</span>
+      <button class="fab-mini expense" onclick="openAddModal('expense')" title="Add Expense">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <button class="fab" id="mainFab" onclick="toggleFab()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  </button>
+</div>
+
+<!-- ADD EXPENSE MODAL -->
+<div class="modal-overlay" id="addExpenseModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title expense">Add Expense</div>
     <div class="form-row">
       <div class="form-group">
-        <label class="form-label">AMOUNT (&#8377;)</label>
-        <input class="form-input" type="number" id="amount" placeholder="0.00" step="0.01" min="0">
+        <label class="form-label">AMOUNT (₹)</label>
+        <input class="form-input" type="number" id="exp_amount" placeholder="0.00" step="0.01" min="0">
       </div>
       <div class="form-group">
         <label class="form-label">DATE</label>
-        <input class="form-input" type="date" id="txDate">
+        <input class="form-input" type="date" id="exp_date">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">TIME</label>
-        <input class="form-input" type="time" id="txTime">
+        <input class="form-input" type="time" id="exp_time">
       </div>
       <div class="form-group">
         <label class="form-label">MODE</label>
-        <select class="form-select" id="txMode">
+        <select class="form-select" id="exp_mode">
           <option>Cash</option><option>UPI</option><option>Card</option>
           <option>Bank Transfer</option><option>Cheque</option><option>Other</option>
         </select>
@@ -532,20 +639,215 @@
     </div>
     <div class="form-group">
       <label class="form-label">CATEGORY</label>
-      <select class="form-select" id="txCategory"></select>
+      <select class="form-select" id="exp_cat">
+        <option>Food &amp; Drink</option><option>Travel</option><option>Groceries</option>
+        <option>Education</option><option>Shopping</option><option>Health</option>
+        <option>Entertainment</option><option>Utilities</option><option>Rent</option><option>Other</option>
+      </select>
     </div>
     <div class="form-group">
       <label class="form-label">DESCRIPTION</label>
-      <input class="form-input" type="text" id="txDesc" placeholder="What was this for?">
+      <input class="form-input" type="text" id="exp_desc" placeholder="What was this for?">
     </div>
-    <button class="submit-btn" onclick="addTransaction()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Add Entry
+    <button class="submit-btn expense-btn" onclick="submitExpense()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Expense
     </button>
-    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      Cancel
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal('addExpenseModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- ADD INCOME MODAL -->
+<div class="modal-overlay" id="addIncomeModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title income">Add Income</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">AMOUNT (₹)</label>
+        <input class="form-input" type="number" id="inc_amount" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">DATE</label>
+        <input class="form-input" type="date" id="inc_date">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">TIME</label>
+        <input class="form-input" type="time" id="inc_time">
+      </div>
+      <div class="form-group">
+        <label class="form-label">MODE</label>
+        <select class="form-select" id="inc_mode">
+          <option>Cash</option><option>UPI</option><option>Card</option>
+          <option>Bank Transfer</option><option>Cheque</option><option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">CATEGORY</label>
+      <select class="form-select" id="inc_cat">
+        <option>Salary</option><option>Business</option><option>Freelance</option>
+        <option>Gift</option><option>Investment</option><option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">DESCRIPTION</label>
+      <input class="form-input" type="text" id="inc_desc" placeholder="Source of income?">
+    </div>
+    <button class="submit-btn income-btn" onclick="submitIncome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Income
     </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal('addIncomeModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- ADD LEND MODAL -->
+<div class="modal-overlay" id="addLendModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title lend">Lend Money</div>
+    <div class="modal-hint lend">
+      <div class="modal-hint-icon" style="color:var(--green)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      Lending will be recorded as an <strong>expense</strong> (reduces your balance). When repaid, it will be recorded as income.
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">AMOUNT (₹)</label>
+        <input class="form-input" type="number" id="lend_amount" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">DATE</label>
+        <input class="form-input" type="date" id="lend_date">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">TIME</label>
+        <input class="form-input" type="time" id="lend_time">
+      </div>
+      <div class="form-group">
+        <label class="form-label">MODE</label>
+        <select class="form-select" id="lend_mode">
+          <option>Cash</option><option>UPI</option><option>Card</option>
+          <option>Bank Transfer</option><option>Cheque</option><option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">LENT TO (NAME)</label>
+      <input class="form-input" type="text" id="lend_person" placeholder="Who did you lend to?">
+    </div>
+    <div class="form-group">
+      <label class="form-label">DESCRIPTION / REASON</label>
+      <input class="form-input" type="text" id="lend_desc" placeholder="Why was this lent?">
+    </div>
+    <button class="submit-btn lend-btn" onclick="submitLend()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Record Lend
+    </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal('addLendModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- ADD BORROW MODAL -->
+<div class="modal-overlay" id="addBorrowModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title borrow">Borrow Money</div>
+    <div class="modal-hint borrow">
+      <div class="modal-hint-icon" style="color:var(--blue)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      Borrowing will be recorded as <strong>income</strong> (increases your balance). When repaid, it will be recorded as expense.
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">AMOUNT (₹)</label>
+        <input class="form-input" type="number" id="borrow_amount" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">DATE</label>
+        <input class="form-input" type="date" id="borrow_date">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">TIME</label>
+        <input class="form-input" type="time" id="borrow_time">
+      </div>
+      <div class="form-group">
+        <label class="form-label">MODE</label>
+        <select class="form-select" id="borrow_mode">
+          <option>Cash</option><option>UPI</option><option>Card</option>
+          <option>Bank Transfer</option><option>Cheque</option><option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">BORROWED FROM (NAME)</label>
+      <input class="form-input" type="text" id="borrow_person" placeholder="Who did you borrow from?">
+    </div>
+    <div class="form-group">
+      <label class="form-label">DESCRIPTION / REASON</label>
+      <input class="form-input" type="text" id="borrow_desc" placeholder="Why was this borrowed?">
+    </div>
+    <button class="submit-btn borrow-btn" onclick="submitBorrow()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Record Borrow
+    </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal('addBorrowModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- REPAYMENT MODAL -->
+<div class="repay-modal-overlay" id="repayModal">
+  <div class="repay-modal">
+    <div class="repay-modal-header">
+      <div class="repay-modal-title" id="repayModalTitle">Record Repayment</div>
+      <button class="repay-modal-close" onclick="closeRepayModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="repay-context" id="repayContext"></div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">REPAYMENT AMOUNT (₹)</label>
+        <input class="form-input" type="number" id="repay_amount" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">DATE</label>
+        <input class="form-input" type="date" id="repay_date">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">TIME</label>
+        <input class="form-input" type="time" id="repay_time">
+      </div>
+      <div class="form-group">
+        <label class="form-label">MODE</label>
+        <select class="form-select" id="repay_mode">
+          <option>Cash</option><option>UPI</option><option>Card</option>
+          <option>Bank Transfer</option><option>Cheque</option><option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">NOTE (optional)</label>
+      <input class="form-input" type="text" id="repay_note" placeholder="Any note about this repayment?">
+    </div>
+    <button class="submit-btn repay-btn" onclick="submitRepayment()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20 6 9 17 4 12"/></svg>
+      Confirm Repayment
+    </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeRepayModal()">Cancel</button>
   </div>
 </div>
 
@@ -579,19 +881,18 @@
     <div class="form-group">
       <label class="form-label">FILTER TYPE</label>
       <select class="form-select" id="pdfTypeFilter">
-        <option value="all">All (Expense + Income)</option>
+        <option value="all">All (Expense + Income + Lend + Borrow)</option>
         <option value="expense">Expense Only</option>
         <option value="income">Income Only</option>
+        <option value="lend">Lend Only</option>
+        <option value="borrow">Borrow Only</option>
       </select>
     </div>
-    <button class="submit-btn" onclick="generatePDF()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <button class="submit-btn" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0a00;" onclick="generatePDF()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Download PDF
     </button>
-    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closePdfModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      Cancel
-    </button>
+    <button class="btn btn-outline" style="width:100%;margin-top:10px;justify-content:center;" onclick="closePdfModal()">Cancel</button>
   </div>
 </div>
 
@@ -604,8 +905,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-
-    <!-- Profile Picture -->
     <div class="settings-profile">
       <div class="profile-avatar-wrap">
         <div class="profile-avatar" id="settingsAvatar">M</div>
@@ -625,12 +924,8 @@
         </button>
       </div>
     </div>
-
-    <!-- Security Section -->
     <div class="settings-section" style="margin-top:16px;">
       <div class="settings-section-title">Security</div>
-
-      <!-- Lock Toggle -->
       <div class="settings-item">
         <div class="settings-item-left">
           <div class="settings-item-icon" style="background:rgba(245,166,35,0.1);color:var(--gold);">
@@ -642,14 +937,9 @@
           </div>
         </div>
         <div class="settings-item-action">
-          <label class="toggle">
-            <input type="checkbox" id="lockToggle" onchange="toggleLock()">
-            <span class="toggle-slider"></span>
-          </label>
+          <label class="toggle"><input type="checkbox" id="lockToggle" onchange="toggleLock()"><span class="toggle-slider"></span></label>
         </div>
       </div>
-
-      <!-- Set / Change Password -->
       <div class="settings-item" id="setPwItem" style="display:none;">
         <div class="settings-item-left">
           <div class="settings-item-icon" style="background:rgba(120,170,255,0.1);color:#78aaff;">
@@ -664,8 +954,6 @@
           <button class="settings-item-btn" onclick="openSetPin('set')">Configure</button>
         </div>
       </div>
-
-      <!-- Change Password (only when pin exists) -->
       <div class="settings-item" id="changePwItem" style="display:none;">
         <div class="settings-item-left">
           <div class="settings-item-icon" style="background:rgba(76,175,125,0.1);color:var(--green);">
@@ -681,8 +969,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Data Section -->
     <div class="settings-section" style="margin-top:16px;">
       <div class="settings-section-title">Data</div>
       <div class="settings-item">
@@ -700,12 +986,11 @@
         </div>
       </div>
     </div>
-
     <div class="settings-footer"></div>
   </div>
 </div>
 
-<!-- PASSWORD / PIN MODAL -->
+<!-- PIN MODAL -->
 <div class="pw-modal-overlay" id="pwModal">
   <div class="pw-modal">
     <div class="pw-modal-header">
@@ -731,8 +1016,8 @@
       </div>
     </div>
     <div class="pw-error" id="pwError"></div>
-    <button class="submit-btn" onclick="savePinAction()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <button class="submit-btn" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0a00;" onclick="savePinAction()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20 6 9 17 4 12"/></svg>
       <span id="pwSaveLabel">Save PIN</span>
     </button>
   </div>
@@ -753,15 +1038,15 @@
     </div>
     <div class="crop-actions">
       <button class="profile-pic-btn" onclick="closeCropModal()">Cancel</button>
-      <button class="submit-btn" style="margin-top:0;" onclick="applyCrop()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <button class="submit-btn" style="margin-top:0;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0a00;" onclick="applyCrop()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20 6 9 17 4 12"/></svg>
         Apply Crop
       </button>
     </div>
   </div>
 </div>
 
-<!-- CLEAR DATA CONFIRM -->
+<!-- CLEAR CONFIRM -->
 <div class="confirm-overlay" id="confirmOverlay">
   <div class="confirm-modal">
     <div class="confirm-icon">
@@ -780,40 +1065,54 @@
 // ── CATEGORY ICONS ──
 const CATEGORY_ICONS = {
   'Food & Drink': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-  'Travel':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
-  'Groceries':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
-  'Education':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
-  'Shopping':     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
-  'Health':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
-  'Entertainment':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
-  'Utilities':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-  'Rent':         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-  'Salary':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
-  'Business':     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
-  'Freelance':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>`,
-  'Gift':         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
-  'Investment':   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
-  'Other':        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+  'Travel': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  'Groceries': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  'Education': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+  'Shopping': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+  'Health': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+  'Entertainment': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+  'Utilities': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  'Rent': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  'Salary': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+  'Business': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  'Freelance': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>`,
+  'Gift': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
+  'Investment': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+  'Other': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
 };
-const INCOME_DEFAULT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`;
-const EXPENSE_DEFAULT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`;
-function getCategoryIcon(type, cat) { return CATEGORY_ICONS[cat] || (type === 'income' ? INCOME_DEFAULT : EXPENSE_DEFAULT); }
+const LEND_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>`;
+const BORROW_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>`;
+const REPAY_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+function getCategoryIcon(type, cat) {
+  if (type === 'lend') return LEND_ICON;
+  if (type === 'borrow') return BORROW_ICON;
+  if (type === 'repay_lend' || type === 'repay_borrow') return REPAY_ICON;
+  return CATEGORY_ICONS[cat] || CATEGORY_ICONS['Other'];
+}
 
 // ── STATE ──
 let LOGO_BASE64 = localStorage.getItem('mova_logo_b64') || null;
 let transactions = JSON.parse(localStorage.getItem('mova_tx') || '[]');
 transactions = transactions.filter(t => t.type !== 'tax');
-let currentType = 'expense';
 let appSettings = JSON.parse(localStorage.getItem('mova_settings') || '{"lockEnabled":false,"pin":""}');
-let pinMode = 'set'; // 'set' | 'change'
+let pinMode = 'set';
+let currentRepayId = null;
+let fabOpen = false;
 
 function save() { localStorage.setItem('mova_tx', JSON.stringify(transactions)); }
 function saveSettings() { localStorage.setItem('mova_settings', JSON.stringify(appSettings)); }
 
-const fmt = n => '\u20B9' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-const pdfMoney = n => 'Rs.' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const fmt = n => '₹' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const pdfMoney = n => 'Rs.' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 function todayStr() { return new Date().toISOString().slice(0,10); }
 function nowTime()  { return new Date().toTimeString().slice(0,5); }
+
+// ── FAB ──
+function toggleFab() {
+  fabOpen = !fabOpen;
+  document.getElementById('fabGroup').classList.toggle('open', fabOpen);
+}
+function closeFab() { fabOpen = false; document.getElementById('fabGroup').classList.remove('open'); }
 
 // ── LOGO / AVATAR ──
 function setHeaderLogo(dataUrl) {
@@ -830,48 +1129,27 @@ function setLockLogo(dataUrl) {
   const el = document.getElementById('lockLogo');
   el.innerHTML = dataUrl ? `<img src="${dataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;">` : 'M';
 }
-function updateAllAvatars() {
-  setHeaderLogo(LOGO_BASE64);
-  setSettingsAvatar(LOGO_BASE64);
-  setLockLogo(LOGO_BASE64);
-}
+function updateAllAvatars() { setHeaderLogo(LOGO_BASE64); setSettingsAvatar(LOGO_BASE64); setLockLogo(LOGO_BASE64); }
 updateAllAvatars();
-
-// Click logo in header to pick image (opens crop flow)
-document.getElementById('headerLogoWrap').style.cursor = 'pointer';
-document.getElementById('headerLogoWrap').title = 'Click to change photo';
 document.getElementById('headerLogoWrap').addEventListener('click', triggerPhotoPick);
 
 function triggerPhotoPick() {
   const inp = document.createElement('input');
   inp.type = 'file'; inp.accept = 'image/*';
-  inp.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  inp.onchange = e => {
+    const file = e.target.files[0]; if (!file) return;
     const reader = new FileReader();
-    reader.onload = ev => {
-      cropSourceDataUrl = ev.target.result;
-      openCropModal();
-    };
+    reader.onload = ev => { cropSourceDataUrl = ev.target.result; openCropModal(); };
     reader.readAsDataURL(file);
   };
   inp.click();
 }
+function removePhoto() { LOGO_BASE64 = null; localStorage.removeItem('mova_logo_b64'); updateAllAvatars(); }
 
-function removePhoto() {
-  LOGO_BASE64 = null;
-  localStorage.removeItem('mova_logo_b64');
-  updateAllAvatars();
-}
-
-// ── SETTINGS PANEL ──
-function openSettings() {
-  document.getElementById('settingsOverlay').classList.add('active');
-  syncSettingsUI();
-}
+// ── SETTINGS ──
+function openSettings() { document.getElementById('settingsOverlay').classList.add('active'); syncSettingsUI(); }
 function closeSettings() { document.getElementById('settingsOverlay').classList.remove('active'); }
 function handleSettingsOverlayClick(e) { if (e.target.id === 'settingsOverlay') closeSettings(); }
-
 function syncSettingsUI() {
   const tog = document.getElementById('lockToggle');
   tog.checked = appSettings.lockEnabled;
@@ -880,52 +1158,36 @@ function syncSettingsUI() {
   document.getElementById('changePwItem').style.display = (appSettings.lockEnabled && appSettings.pin) ? '' : 'none';
   document.getElementById('pwBtnLabel').textContent = appSettings.pin ? 'PIN Set' : 'Set PIN';
 }
-
 function toggleLock() {
   const tog = document.getElementById('lockToggle');
   appSettings.lockEnabled = tog.checked;
-  if (tog.checked && !appSettings.pin) {
-    // Prompt to set PIN first
-    setTimeout(() => openSetPin('set'), 100);
-  }
-  saveSettings();
-  syncSettingsUI();
+  if (tog.checked && !appSettings.pin) { setTimeout(() => openSetPin('set'), 100); }
+  saveSettings(); syncSettingsUI();
 }
-
-// ── PIN SETUP MODAL ──
 function openSetPin(mode) {
   pinMode = mode;
   document.getElementById('pwModal').classList.add('active');
   document.getElementById('pwModalTitle').textContent = mode === 'change' ? 'Change PIN' : 'Set PIN';
-  document.getElementById('pw1Label').textContent = mode === 'change' ? 'NEW PIN (4 digits)' : 'NEW PIN (4 digits)';
   document.getElementById('pwStep0').style.display = mode === 'change' ? '' : 'none';
   document.getElementById('pwStep1').style.display = '';
   document.getElementById('pwSaveLabel').textContent = mode === 'change' ? 'Update PIN' : 'Save PIN';
   document.getElementById('pwError').textContent = '';
-  document.getElementById('pin1').value = '';
-  document.getElementById('pin2').value = '';
-  document.getElementById('pinOld').value = '';
+  document.getElementById('pin1').value = ''; document.getElementById('pin2').value = ''; document.getElementById('pinOld').value = '';
   document.getElementById('pin1').focus();
 }
 function closePwModal() { document.getElementById('pwModal').classList.remove('active'); }
-
 function savePinAction() {
   const p1 = document.getElementById('pin1').value.trim();
   const p2 = document.getElementById('pin2').value.trim();
   const err = document.getElementById('pwError');
-
   if (pinMode === 'change') {
     const pOld = document.getElementById('pinOld').value.trim();
     if (pOld !== appSettings.pin) { err.textContent = 'Current PIN is incorrect.'; return; }
   }
   if (!/^\d{4}$/.test(p1)) { err.textContent = 'PIN must be exactly 4 digits.'; return; }
   if (p1 !== p2) { err.textContent = 'PINs do not match.'; return; }
-
-  appSettings.pin = p1;
-  appSettings.lockEnabled = true;
-  saveSettings();
-  syncSettingsUI();
-  closePwModal();
+  appSettings.pin = p1; appSettings.lockEnabled = true;
+  saveSettings(); syncSettingsUI(); closePwModal();
 }
 
 // ── LOCK SCREEN ──
@@ -933,212 +1195,377 @@ let lockBuffer = '';
 function initLockScreen() {
   if (appSettings.lockEnabled && appSettings.pin) {
     document.getElementById('lockScreen').classList.add('active');
-    lockBuffer = '';
-    updateLockDots();
+    lockBuffer = ''; updateLockDots();
     document.getElementById('lockError').textContent = '';
   }
 }
 function lockKey(d) {
   if (lockBuffer.length >= 4) return;
-  lockBuffer += d;
-  updateLockDots();
+  lockBuffer += d; updateLockDots();
   if (lockBuffer.length === 4) {
     if (lockBuffer === appSettings.pin) {
       document.getElementById('lockScreen').classList.remove('active');
     } else {
       document.querySelectorAll('.pin-dot').forEach(el => el.classList.add('error'));
       document.getElementById('lockError').textContent = 'Incorrect PIN. Try again.';
-      setTimeout(() => {
-        lockBuffer = '';
-        updateLockDots();
-        document.querySelectorAll('.pin-dot').forEach(el => el.classList.remove('error'));
-        document.getElementById('lockError').textContent = '';
-      }, 700);
+      setTimeout(() => { lockBuffer = ''; updateLockDots(); document.querySelectorAll('.pin-dot').forEach(el => el.classList.remove('error')); document.getElementById('lockError').textContent = ''; }, 700);
     }
   }
 }
-function lockDel() {
-  lockBuffer = lockBuffer.slice(0,-1);
-  updateLockDots();
-}
-function updateLockDots() {
-  for (let i=0;i<4;i++) {
-    const el = document.getElementById('ld'+i);
-    el.classList.toggle('filled', i < lockBuffer.length);
-  }
-}
+function lockDel() { lockBuffer = lockBuffer.slice(0,-1); updateLockDots(); }
+function updateLockDots() { for (let i=0;i<4;i++) { document.getElementById('ld'+i).classList.toggle('filled', i < lockBuffer.length); } }
 
-// ── CROP MODAL ──
-let cropSourceDataUrl = null;
-let cropOffsetX = 0, cropOffsetY = 0;
-let cropDragStart = null;
+// ── CROP ──
+let cropSourceDataUrl = null, cropOffsetX = 0, cropOffsetY = 0, cropDragStart = null;
 let cropCanvas, cropCtx, cropImg;
-
 function openCropModal() {
   if (!cropSourceDataUrl) { triggerPhotoPick(); return; }
   document.getElementById('cropModalOverlay').classList.add('active');
-  document.getElementById('cropZoom').value = 1;
-  cropOffsetX = 0; cropOffsetY = 0;
-
-  cropCanvas = document.getElementById('cropCanvas');
-  cropCtx    = cropCanvas.getContext('2d');
-  cropImg    = new Image();
-  cropImg.onload = () => {
-    cropCanvas.width  = cropCanvas.offsetWidth  || 300;
-    cropCanvas.height = cropCanvas.offsetHeight || 300;
-    drawCrop();
-  };
+  document.getElementById('cropZoom').value = 1; cropOffsetX = 0; cropOffsetY = 0;
+  cropCanvas = document.getElementById('cropCanvas'); cropCtx = cropCanvas.getContext('2d');
+  cropImg = new Image();
+  cropImg.onload = () => { cropCanvas.width = cropCanvas.offsetWidth||300; cropCanvas.height = cropCanvas.offsetHeight||300; drawCrop(); };
   cropImg.src = cropSourceDataUrl;
-
-  // Drag to pan
-  cropCanvas.onmousedown = e => { cropDragStart = { x:e.clientX - cropOffsetX, y:e.clientY - cropOffsetY }; };
-  cropCanvas.onmousemove = e => { if (!cropDragStart) return; cropOffsetX = e.clientX - cropDragStart.x; cropOffsetY = e.clientY - cropDragStart.y; drawCrop(); };
-  cropCanvas.onmouseup = cropCanvas.onmouseleave = () => { cropDragStart = null; };
+  cropCanvas.onmousedown = e => { cropDragStart={x:e.clientX-cropOffsetX,y:e.clientY-cropOffsetY}; };
+  cropCanvas.onmousemove = e => { if(!cropDragStart)return; cropOffsetX=e.clientX-cropDragStart.x; cropOffsetY=e.clientY-cropDragStart.y; drawCrop(); };
+  cropCanvas.onmouseup = cropCanvas.onmouseleave = () => { cropDragStart=null; };
   cropCanvas.ontouchstart = e => { const t=e.touches[0]; cropDragStart={x:t.clientX-cropOffsetX,y:t.clientY-cropOffsetY}; };
-  cropCanvas.ontouchmove  = e => { if(!cropDragStart)return; e.preventDefault(); const t=e.touches[0]; cropOffsetX=t.clientX-cropDragStart.x; cropOffsetY=t.clientY-cropDragStart.y; drawCrop(); };
-  cropCanvas.ontouchend   = () => { cropDragStart=null; };
+  cropCanvas.ontouchmove = e => { if(!cropDragStart)return; e.preventDefault(); const t=e.touches[0]; cropOffsetX=t.clientX-cropDragStart.x; cropOffsetY=t.clientY-cropDragStart.y; drawCrop(); };
+  cropCanvas.ontouchend = () => { cropDragStart=null; };
 }
-
 function drawCrop() {
-  if (!cropImg || !cropImg.complete) return;
-  const cw = cropCanvas.width  = cropCanvas.offsetWidth  || 300;
-  const ch = cropCanvas.height = cropCanvas.offsetHeight || 300;
-  const zoom = parseFloat(document.getElementById('cropZoom').value);
+  if (!cropImg||!cropImg.complete) return;
+  const cw=cropCanvas.width=cropCanvas.offsetWidth||300, ch=cropCanvas.height=cropCanvas.offsetHeight||300;
+  const zoom=parseFloat(document.getElementById('cropZoom').value);
   cropCtx.clearRect(0,0,cw,ch);
-
-  // Clip to circle
-  cropCtx.save();
-  cropCtx.beginPath();
-  cropCtx.arc(cw/2, ch/2, Math.min(cw,ch)/2, 0, Math.PI*2);
-  cropCtx.clip();
-
-  const scale = zoom * Math.min(cw/cropImg.width, ch/cropImg.height);
-  const dw = cropImg.width * scale, dh = cropImg.height * scale;
-  const dx = (cw-dw)/2 + cropOffsetX;
-  const dy = (ch-dh)/2 + cropOffsetY;
-  cropCtx.drawImage(cropImg, dx, dy, dw, dh);
-  cropCtx.restore();
-
-  // Dim outside circle
-  cropCtx.save();
-  cropCtx.fillStyle = 'rgba(15,15,19,0.6)';
-  cropCtx.beginPath();
-  cropCtx.rect(0,0,cw,ch);
-  cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2,0,Math.PI*2,true);
-  cropCtx.fill();
-  cropCtx.restore();
-
-  // Circle border
-  cropCtx.save();
-  cropCtx.strokeStyle = 'rgba(245,166,35,0.6)';
-  cropCtx.lineWidth = 2;
-  cropCtx.beginPath();
-  cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2-1,0,Math.PI*2);
-  cropCtx.stroke();
-  cropCtx.restore();
+  cropCtx.save(); cropCtx.beginPath(); cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2,0,Math.PI*2); cropCtx.clip();
+  const scale=zoom*Math.min(cw/cropImg.width,ch/cropImg.height);
+  const dw=cropImg.width*scale,dh=cropImg.height*scale,dx=(cw-dw)/2+cropOffsetX,dy=(ch-dh)/2+cropOffsetY;
+  cropCtx.drawImage(cropImg,dx,dy,dw,dh); cropCtx.restore();
+  cropCtx.save(); cropCtx.fillStyle='rgba(15,15,19,0.6)'; cropCtx.beginPath(); cropCtx.rect(0,0,cw,ch); cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2,0,Math.PI*2,true); cropCtx.fill(); cropCtx.restore();
+  cropCtx.save(); cropCtx.strokeStyle='rgba(245,166,35,0.6)'; cropCtx.lineWidth=2; cropCtx.beginPath(); cropCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2-1,0,Math.PI*2); cropCtx.stroke(); cropCtx.restore();
 }
-
 function applyCrop() {
-  const cw = cropCanvas.width, ch = cropCanvas.height;
-  const size = Math.min(cw,ch);
-  const out = document.createElement('canvas');
-  out.width = out.height = 200;
-  const oc = out.getContext('2d');
-  oc.save();
-  oc.beginPath();
-  oc.arc(100,100,100,0,Math.PI*2);
-  oc.clip();
-  oc.drawImage(cropCanvas, (cw-size)/2, (ch-size)/2, size, size, 0, 0, 200, 200);
-  oc.restore();
-  LOGO_BASE64 = out.toDataURL('image/png');
-  localStorage.setItem('mova_logo_b64', LOGO_BASE64);
-  updateAllAvatars();
-  closeCropModal();
-  cropSourceDataUrl = null;
+  const cw=cropCanvas.width,ch=cropCanvas.height,size=Math.min(cw,ch);
+  const out=document.createElement('canvas'); out.width=out.height=200;
+  const oc=out.getContext('2d'); oc.save(); oc.beginPath(); oc.arc(100,100,100,0,Math.PI*2); oc.clip();
+  oc.drawImage(cropCanvas,(cw-size)/2,(ch-size)/2,size,size,0,0,200,200); oc.restore();
+  LOGO_BASE64=out.toDataURL('image/png'); localStorage.setItem('mova_logo_b64',LOGO_BASE64);
+  updateAllAvatars(); closeCropModal(); cropSourceDataUrl=null;
 }
-function closeCropModal() {
-  document.getElementById('cropModalOverlay').classList.remove('active');
-  cropSourceDataUrl = null;
-}
+function closeCropModal() { document.getElementById('cropModalOverlay').classList.remove('active'); cropSourceDataUrl=null; }
 
-// ── CLEAR DATA ──
+// ── CONFIRM / CLEAR ──
 function openClearConfirm() { document.getElementById('confirmOverlay').classList.add('active'); }
 function closeConfirm()     { document.getElementById('confirmOverlay').classList.remove('active'); }
-function clearAllData() {
-  transactions = [];
-  save();
-  renderAll();
-  closeConfirm();
-  closeSettings();
-}
+function clearAllData()     { transactions=[]; save(); renderAll(); closeConfirm(); closeSettings(); }
 
-// ── MAIN APP ──
-function openModal() {
-  document.getElementById('addModal').classList.add('active');
-  document.getElementById('txDate').value = todayStr();
-  document.getElementById('txTime').value = nowTime();
-  setType('expense');
+// ── MODAL HELPERS ──
+function openAddModal(type) {
+  closeFab();
+  const ids = { expense:'addExpenseModal', income:'addIncomeModal', lend:'addLendModal', borrow:'addBorrowModal' };
+  const prefix = type;
+  document.getElementById(ids[type]).classList.add('active');
+  const d = type+'_date', ti = type+'_time';
+  if(document.getElementById(d)) document.getElementById(d).value = todayStr();
+  if(document.getElementById(ti)) document.getElementById(ti).value = nowTime();
 }
-function closeModal() {
-  document.getElementById('addModal').classList.remove('active');
-  document.getElementById('amount').value = '';
-  document.getElementById('txDesc').value = '';
-}
-function openPdfModal() {
-  document.getElementById('pdfModal').classList.add('active');
-  document.getElementById('pdfFrom').value = todayStr().slice(0,7)+'-01';
-  document.getElementById('pdfTo').value   = todayStr();
-}
-function closePdfModal() { document.getElementById('pdfModal').classList.remove('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-const CATEGORIES = {
-  expense: ['Food & Drink','Travel','Groceries','Education','Shopping','Health','Entertainment','Utilities','Rent','Other'],
-  income:  ['Salary','Business','Freelance','Gift','Investment','Other']
-};
-function setType(t) {
-  currentType = t;
-  ['expense','income'].forEach(x => {
-    const btn = document.getElementById('type'+x.charAt(0).toUpperCase()+x.slice(1));
-    btn.className = 'type-btn'+(x===t?' active-'+t:'');
-  });
-  document.getElementById('txCategory').innerHTML = CATEGORIES[t].map(c=>`<option>${c}</option>`).join('');
-}
-
-function addTransaction() {
-  const amount = parseFloat(document.getElementById('amount').value);
+// ── SUBMIT EXPENSE ──
+function submitExpense() {
+  const amount = parseFloat(document.getElementById('exp_amount').value);
   if (!amount || amount <= 0) { alert('Enter a valid amount'); return; }
-  const desc = document.getElementById('txDesc').value.trim() || 'Untitled';
-  const cat  = document.getElementById('txCategory').value;
-  const date = document.getElementById('txDate').value;
-  const time = document.getElementById('txTime').value;
-  const mode = document.getElementById('txMode').value;
-  transactions.push({ id:Date.now(), type:currentType, amount, desc, cat, date, time, mode });
-  transactions.sort((a,b) => (a.date+a.time)>(b.date+b.time)?1:-1);
-  save(); renderAll(); closeModal();
+  transactions.push({
+    id: Date.now(), type: 'expense', amount,
+    desc: document.getElementById('exp_desc').value.trim() || 'Expense',
+    cat:  document.getElementById('exp_cat').value,
+    date: document.getElementById('exp_date').value,
+    time: document.getElementById('exp_time').value,
+    mode: document.getElementById('exp_mode').value
+  });
+  sortTx(); save(); renderAll();
+  document.getElementById('exp_amount').value = ''; document.getElementById('exp_desc').value = '';
+  closeModal('addExpenseModal');
+}
+
+// ── SUBMIT INCOME ──
+function submitIncome() {
+  const amount = parseFloat(document.getElementById('inc_amount').value);
+  if (!amount || amount <= 0) { alert('Enter a valid amount'); return; }
+  transactions.push({
+    id: Date.now(), type: 'income', amount,
+    desc: document.getElementById('inc_desc').value.trim() || 'Income',
+    cat:  document.getElementById('inc_cat').value,
+    date: document.getElementById('inc_date').value,
+    time: document.getElementById('inc_time').value,
+    mode: document.getElementById('inc_mode').value
+  });
+  sortTx(); save(); renderAll();
+  document.getElementById('inc_amount').value = ''; document.getElementById('inc_desc').value = '';
+  closeModal('addIncomeModal');
+}
+
+// ── SUBMIT LEND ──
+function submitLend() {
+  const amount = parseFloat(document.getElementById('lend_amount').value);
+  if (!amount || amount <= 0) { alert('Enter a valid amount'); return; }
+  const person = document.getElementById('lend_person').value.trim();
+  if (!person) { alert('Please enter the name of the person you lent to'); return; }
+  const lendId = Date.now();
+  // Lend → recorded as expense (reduces balance)
+  transactions.push({
+    id: lendId,
+    type: 'lend',
+    lendBorrowType: 'lend',
+    amount,
+    person,
+    desc: document.getElementById('lend_desc').value.trim() || `Lent to ${person}`,
+    cat: 'Lend',
+    date: document.getElementById('lend_date').value,
+    time: document.getElementById('lend_time').value,
+    mode: document.getElementById('lend_mode').value,
+    totalRepaid: 0,
+    settled: false
+  });
+  sortTx(); save(); renderAll();
+  document.getElementById('lend_amount').value=''; document.getElementById('lend_person').value=''; document.getElementById('lend_desc').value='';
+  closeModal('addLendModal');
+}
+
+// ── SUBMIT BORROW ──
+function submitBorrow() {
+  const amount = parseFloat(document.getElementById('borrow_amount').value);
+  if (!amount || amount <= 0) { alert('Enter a valid amount'); return; }
+  const person = document.getElementById('borrow_person').value.trim();
+  if (!person) { alert('Please enter the name of the person you borrowed from'); return; }
+  const borrowId = Date.now();
+  // Borrow → recorded as income (increases balance)
+  transactions.push({
+    id: borrowId,
+    type: 'borrow',
+    lendBorrowType: 'borrow',
+    amount,
+    person,
+    desc: document.getElementById('borrow_desc').value.trim() || `Borrowed from ${person}`,
+    cat: 'Borrow',
+    date: document.getElementById('borrow_date').value,
+    time: document.getElementById('borrow_time').value,
+    mode: document.getElementById('borrow_mode').value,
+    totalRepaid: 0,
+    settled: false
+  });
+  sortTx(); save(); renderAll();
+  document.getElementById('borrow_amount').value=''; document.getElementById('borrow_person').value=''; document.getElementById('borrow_desc').value='';
+  closeModal('addBorrowModal');
+}
+
+// ── REPAYMENT ──
+function openRepayModal(id) {
+  const tx = transactions.find(t => t.id === id);
+  if (!tx || tx.settled) return;
+  currentRepayId = id;
+  const isLend = tx.lendBorrowType === 'lend';
+  const remaining = tx.amount - (tx.totalRepaid || 0);
+  document.getElementById('repayModalTitle').textContent = isLend ? 'Received Repayment' : 'Record Repayment';
+  const pct = Math.min(100, Math.round(((tx.totalRepaid||0)/tx.amount)*100));
+  document.getElementById('repayContext').innerHTML = `
+    <div class="repay-context-row">
+      <span class="repay-context-label">${isLend ? 'Lent to' : 'Borrowed from'}</span>
+      <span class="repay-context-val">${tx.person}</span>
+    </div>
+    <div class="repay-context-row">
+      <span class="repay-context-label">Original Amount</span>
+      <span class="repay-context-val">${fmt(tx.amount)}</span>
+    </div>
+    <div class="repay-context-row">
+      <span class="repay-context-label">Already ${isLend ? 'Received' : 'Repaid'}</span>
+      <span class="repay-context-val" style="color:var(--green)">${fmt(tx.totalRepaid||0)}</span>
+    </div>
+    <div class="repay-context-row">
+      <span class="repay-context-label">Remaining</span>
+      <span class="repay-context-val" style="color:var(--gold)">${fmt(remaining)}</span>
+    </div>
+    <div class="repay-progress">
+      <div class="repay-progress-bar ${isLend ? 'lend' : 'borrow'}" style="width:${pct}%"></div>
+    </div>
+  `;
+  document.getElementById('repay_amount').value = remaining.toFixed(2);
+  document.getElementById('repay_date').value = todayStr();
+  document.getElementById('repay_time').value = nowTime();
+  document.getElementById('repay_note').value = '';
+  document.getElementById('repayModal').classList.add('active');
+}
+
+function closeRepayModal() { document.getElementById('repayModal').classList.remove('active'); currentRepayId = null; }
+
+function submitRepayment() {
+  const tx = transactions.find(t => t.id === currentRepayId);
+  if (!tx) return;
+  const amount = parseFloat(document.getElementById('repay_amount').value);
+  if (!amount || amount <= 0) { alert('Enter a valid repayment amount'); return; }
+  const remaining = tx.amount - (tx.totalRepaid || 0);
+  if (amount > remaining + 0.001) { alert(`Amount exceeds remaining balance of ${fmt(remaining)}`); return; }
+  const isLend = tx.lendBorrowType === 'lend';
+  const note = document.getElementById('repay_note').value.trim();
+  // Create repayment transaction
+  // Lend repayment → income (money coming back to you)
+  // Borrow repayment → expense (you're paying back)
+  transactions.push({
+    id: Date.now(),
+    type: isLend ? 'repay_lend' : 'repay_borrow',
+    amount,
+    desc: note || `${isLend ? 'Repayment from' : 'Repaid to'} ${tx.person}`,
+    cat: isLend ? 'Repayment Received' : 'Repayment Made',
+    date: document.getElementById('repay_date').value,
+    time: document.getElementById('repay_time').value,
+    mode: document.getElementById('repay_mode').value,
+    linkedId: tx.id,
+    person: tx.person
+  });
+  // Update original transaction's totalRepaid (never modify original amount)
+  tx.totalRepaid = (tx.totalRepaid || 0) + amount;
+  if (Math.abs(tx.totalRepaid - tx.amount) < 0.001) tx.settled = true;
+  sortTx(); save(); renderAll(); closeRepayModal();
 }
 
 function deleteTransaction(id) {
-  if (!confirm('Delete this entry?')) return;
+  const tx = transactions.find(t => t.id === id);
+  if (!tx) return;
+  let msg = 'Delete this entry?';
+  // Check if it's a lend/borrow with repayments
+  if (tx.lendBorrowType) {
+    const linked = transactions.filter(t => t.linkedId === id);
+    if (linked.length > 0) msg = `This will also remove ${linked.length} linked repayment(s). Continue?`;
+  }
+  if (!confirm(msg)) return;
+  // Remove linked repayments too
+  if (tx.lendBorrowType) {
+    transactions = transactions.filter(t => t.linkedId !== id);
+  }
   transactions = transactions.filter(t => t.id !== id);
   save(); renderAll();
 }
 
-function renderAll() { renderSummary(); renderList(); updateFilterCats(); }
+function sortTx() { transactions.sort((a,b)=>(a.date+a.time)>(b.date+b.time)?1:-1); }
 
+// ── BALANCE LOGIC ──
+// lend = expense (money leaves), repay_lend = income (money returns)
+// borrow = income (money arrives), repay_borrow = expense (money leaves)
+function getTxSign(t) {
+  if (t.type === 'income' || t.type === 'borrow' || t.type === 'repay_lend') return 1;
+  if (t.type === 'expense' || t.type === 'lend' || t.type === 'repay_borrow') return -1;
+  return 0;
+}
+function getTxCategory(t) {
+  if (t.type === 'expense') return 'expense';
+  if (t.type === 'income') return 'income';
+  return t.type; // lend, borrow, repay_lend, repay_borrow
+}
+
+// ── LEND/BORROW TRACKER ──
+function getLendBorrowEntries() {
+  return transactions.filter(t => t.lendBorrowType);
+}
+function getRemainingForEntry(tx) {
+  return Math.max(0, tx.amount - (tx.totalRepaid || 0));
+}
+
+function renderLBPanel() {
+  const entries = getLendBorrowEntries();
+  const panel = document.getElementById('lbPanel');
+  const list = document.getElementById('lbList');
+  const activeCount = entries.filter(e => !e.settled).length;
+  document.getElementById('lbActiveCount').textContent = `${activeCount} Active`;
+
+  if (!entries.length) { panel.style.display = 'none'; return; }
+  panel.style.display = '';
+
+  // Lent pending (money owed TO me)
+  const lentPending = entries.filter(e => e.lendBorrowType === 'lend' && !e.settled)
+    .reduce((s,e) => s + getRemainingForEntry(e), 0);
+  // Borrowed pending (money I OWE)
+  const borrowedPending = entries.filter(e => e.lendBorrowType === 'borrow' && !e.settled)
+    .reduce((s,e) => s + getRemainingForEntry(e), 0);
+  document.getElementById('miniLentPending').textContent = fmt(lentPending);
+  document.getElementById('miniBorrowedPending').textContent = fmt(borrowedPending);
+
+  const sorted = [...entries].sort((a,b) => {
+    if (a.settled !== b.settled) return a.settled ? 1 : -1;
+    return (b.date+b.time) > (a.date+a.time) ? 1 : -1;
+  });
+
+  list.innerHTML = sorted.map(tx => {
+    const isLend = tx.lendBorrowType === 'lend';
+    const remaining = getRemainingForEntry(tx);
+    const pct = Math.min(100, Math.round(((tx.totalRepaid||0)/tx.amount)*100));
+    const fmtDate = d => new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+    return `
+      <div class="lb-card">
+        <div class="lb-card-header">
+          <div class="lb-card-left">
+            <div class="lb-card-icon ${isLend?'lend':'borrow'}">${isLend?LEND_ICON:BORROW_ICON}</div>
+            <div>
+              <div class="lb-card-name">${tx.person}</div>
+              <span class="lb-card-type ${isLend?'lend':'borrow'}">${isLend?'LENT OUT':'BORROWED'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="lb-card-amounts">
+          <div class="lb-amt-block">
+            <div class="lb-amt-label">Original</div>
+            <div class="lb-amt-val original">${fmt(tx.amount)}</div>
+          </div>
+          <div class="lb-amt-block">
+            <div class="lb-amt-label">${isLend?'Received':'Repaid'}</div>
+            <div class="lb-amt-val paid">${fmt(tx.totalRepaid||0)}</div>
+          </div>
+          <div class="lb-amt-block">
+            <div class="lb-amt-label">Remaining</div>
+            <div class="lb-amt-val remaining ${isLend?'':'blue'}">${fmt(remaining)}</div>
+          </div>
+        </div>
+        <div class="lb-progress">
+          <div class="lb-progress-fill ${isLend?'lend':'borrow'}" style="width:${pct}%"></div>
+        </div>
+        <div class="lb-card-footer">
+          <div class="lb-card-meta">${tx.desc} &bull; ${fmtDate(tx.date)}</div>
+          <div class="lb-card-actions">
+            ${tx.settled
+              ? `<span class="lb-settled-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>Settled</span>`
+              : `<button class="lb-action-btn ${isLend?'repay-lend':'repay-borrow'}" onclick="openRepayModal(${tx.id})">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>
+                  ${isLend?'Mark Received':'Mark Repaid'}
+                </button>`
+            }
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── SUMMARY ──
 function renderSummary() {
-  const exp = transactions.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
-  const inc = transactions.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
+  const exp = transactions.filter(t => t.type==='expense' || t.type==='lend' || t.type==='repay_borrow').reduce((s,t)=>s+t.amount,0);
+  const inc = transactions.filter(t => t.type==='income' || t.type==='borrow' || t.type==='repay_lend').reduce((s,t)=>s+t.amount,0);
   const bal = inc - exp;
   document.getElementById('totalExpense').textContent = fmt(exp);
   document.getElementById('totalIncome').textContent  = fmt(inc);
   document.getElementById('totalBalance').textContent = (bal>=0?'+':'-')+fmt(Math.abs(bal));
   document.getElementById('totalBalance').className   = 'stat-value '+(bal>=0?'balance':'expense');
+  // Mini summary
+  const entries = getLendBorrowEntries();
+  const lentPending = entries.filter(e=>e.lendBorrowType==='lend'&&!e.settled).reduce((s,e)=>s+getRemainingForEntry(e),0);
+  const borrowedPending = entries.filter(e=>e.lendBorrowType==='borrow'&&!e.settled).reduce((s,e)=>s+getRemainingForEntry(e),0);
+  document.getElementById('miniLentPending').textContent = fmt(lentPending);
+  document.getElementById('miniBorrowedPending').textContent = fmt(borrowedPending);
 }
 
 function updateFilterCats() {
-  const sel  = document.getElementById('filterCat');
-  const cur  = sel.value;
-  const cats = [...new Set(transactions.map(t=>t.cat))].sort();
+  const sel = document.getElementById('filterCat');
+  const cur = sel.value;
+  const cats = [...new Set(transactions.map(t=>t.cat).filter(Boolean))].sort();
   sel.innerHTML = '<option value="all">All Categories</option>'+cats.map(c=>`<option>${c}</option>`).join('');
   sel.value = cats.includes(cur) ? cur : 'all';
 }
@@ -1146,208 +1573,163 @@ function updateFilterCats() {
 function renderList() {
   const typeF = document.getElementById('filterType').value;
   const catF  = document.getElementById('filterCat').value;
-  const q     = document.getElementById('searchInput').value.toLowerCase();
+  const q     = (document.getElementById('searchInput').value||'').toLowerCase();
+
   let filtered = transactions.filter(t => {
-    if (typeF!=='all' && t.type!==typeF) return false;
-    if (catF!=='all'  && t.cat!==catF)  return false;
-    if (q && !t.desc.toLowerCase().includes(q) && !t.cat.toLowerCase().includes(q)) return false;
+    const tcat = getTxCategory(t);
+    if (typeF !== 'all') {
+      // Map filter options to actual types
+      if (typeF === 'expense' && !['expense','repay_borrow'].includes(t.type)) return false;
+      if (typeF === 'income'  && !['income','repay_lend'].includes(t.type)) return false;
+      if (typeF === 'lend'    && t.type !== 'lend') return false;
+      if (typeF === 'borrow'  && t.type !== 'borrow') return false;
+    }
+    if (catF !== 'all' && t.cat !== catF) return false;
+    if (q && !t.desc.toLowerCase().includes(q) && !(t.cat||'').toLowerCase().includes(q) && !(t.person||'').toLowerCase().includes(q)) return false;
     return true;
   });
+
   const container = document.getElementById('txList');
   if (!filtered.length) {
     container.innerHTML = `<div class="empty-state"><div class="big-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div>No transactions yet.<br>Tap <strong>+</strong> to add your first entry.</div></div>`;
     return;
   }
+
   const groups = {};
   [...filtered].reverse().forEach(t => { (groups[t.date]=groups[t.date]||[]).push(t); });
   let html = '';
+
   for (const [date, txs] of Object.entries(groups)) {
     const d = new Date(date+'T00:00:00');
     html += `<div class="tx-group-date">${d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'long',year:'numeric'})}</div>`;
+
     txs.forEach(t => {
-      const isInc = t.type==='income';
+      const isInc = getTxSign(t) > 0;
       const iconSvg = getCategoryIcon(t.type, t.cat);
-      html += `<div class="tx-item">
-        <div class="tx-icon ${isInc?'income-icon':'expense-icon'}" style="color:${isInc?'#4caf7d':'#e05555'}">${iconSvg}</div>
-        <div class="tx-info"><div class="tx-desc">${t.desc}</div><div class="tx-meta">${t.cat} &bull; ${t.time} &bull; ${t.mode} <span class="category-badge">${t.type.toUpperCase()}</span></div></div>
-        <div class="tx-amount ${isInc?'pos':'neg'}">${isInc?'+':'-'}${fmt(t.amount)}</div>
-        <button class="tx-delete" onclick="deleteTransaction(${t.id})" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>
+
+      let iconClass = '', amountClass = '', badgeHtml = '', linkedClass = '';
+      let displaySign = isInc ? '+' : '-';
+      let displayColor = isInc ? 'var(--green)' : 'var(--red)';
+
+      if (t.type === 'lend') {
+        iconClass = 'lend-icon'; amountClass = 'neg'; linkedClass = 'lend-linked';
+        badgeHtml = `<span class="category-badge lend-badge">LENT</span>`;
+        if (t.person) badgeHtml += ` <span style="font-size:11px;color:var(--muted)">→ ${t.person}</span>`;
+      } else if (t.type === 'borrow') {
+        iconClass = 'borrow-icon'; amountClass = 'borrow-color'; linkedClass = 'borrow-linked';
+        displaySign = '+';
+        badgeHtml = `<span class="category-badge borrow-badge">BORROWED</span>`;
+        if (t.person) badgeHtml += ` <span style="font-size:11px;color:var(--muted)">← ${t.person}</span>`;
+      } else if (t.type === 'repay_lend') {
+        iconClass = 'repay-lend-icon'; amountClass = 'pos'; linkedClass = 'lend-linked';
+        badgeHtml = `<span class="category-badge repay-badge">REPAID</span>`;
+        if (t.person) badgeHtml += ` <span style="font-size:11px;color:var(--muted)">← ${t.person}</span>`;
+      } else if (t.type === 'repay_borrow') {
+        iconClass = 'repay-borrow-icon'; amountClass = 'neg'; linkedClass = 'borrow-linked';
+        badgeHtml = `<span class="category-badge repay-badge">REPAID</span>`;
+        if (t.person) badgeHtml += ` <span style="font-size:11px;color:var(--muted)">→ ${t.person}</span>`;
+      } else {
+        iconClass = isInc ? 'income-icon' : 'expense-icon';
+        amountClass = isInc ? 'pos' : 'neg';
+        badgeHtml = `<span class="category-badge">${t.type.toUpperCase()}</span>`;
+      }
+
+      const iconColor = ['lend','repay_lend'].includes(t.type) ? 'var(--green)' : t.type==='borrow' ? 'var(--blue)' : t.type==='repay_borrow' ? 'var(--purple)' : isInc ? '#4caf7d' : '#e05555';
+
+      html += `<div class="tx-item ${linkedClass}">
+        <div class="tx-icon ${iconClass}" style="color:${iconColor}">${iconSvg}</div>
+        <div class="tx-info">
+          <div class="tx-desc">${t.desc}</div>
+          <div class="tx-meta">${(t.cat||'')} ${t.time?'&bull; '+t.time:''} ${t.mode?'&bull; '+t.mode:''} ${badgeHtml}</div>
+        </div>
+        <div class="tx-amount ${amountClass}">${displaySign}${fmt(t.amount)}</div>
+        <button class="tx-delete" onclick="deleteTransaction(${t.id})" title="Delete">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
       </div>`;
     });
   }
   container.innerHTML = html;
 }
 
-// ── PDF GENERATION ──
+function renderAll() { renderSummary(); renderList(); renderLBPanel(); updateFilterCats(); }
+
+// ── PDF ──
+function openPdfModal()  { document.getElementById('pdfModal').classList.add('active'); document.getElementById('pdfFrom').value=todayStr().slice(0,7)+'-01'; document.getElementById('pdfTo').value=todayStr(); }
+function closePdfModal() { document.getElementById('pdfModal').classList.remove('active'); }
+
 async function generatePDF() {
   const { jsPDF } = window.jspdf;
-  const company  = document.getElementById('pdfCompany').value || 'MOVA';
-  const website  = document.getElementById('pdfWebsite').value || '';
-  const fromDate = document.getElementById('pdfFrom').value;
-  const toDate   = document.getElementById('pdfTo').value;
-  const typeF    = document.getElementById('pdfTypeFilter').value;
-  let filtered   = transactions.filter(t => {
-    if (t.date < fromDate || t.date > toDate) return false;
-    if (typeF !== 'all' && t.type !== typeF) return false;
+  const company=document.getElementById('pdfCompany').value||'MOVA';
+  const website=document.getElementById('pdfWebsite').value||'';
+  const fromDate=document.getElementById('pdfFrom').value;
+  const toDate=document.getElementById('pdfTo').value;
+  const typeF=document.getElementById('pdfTypeFilter').value;
+  let filtered=transactions.filter(t=>{
+    if(t.date<fromDate||t.date>toDate)return false;
+    if(typeF==='expense'&&!['expense','repay_borrow'].includes(t.type))return false;
+    if(typeF==='income'&&!['income','repay_lend'].includes(t.type))return false;
+    if(typeF==='lend'&&t.type!=='lend')return false;
+    if(typeF==='borrow'&&t.type!=='borrow')return false;
     return true;
   });
-  const doc    = new jsPDF({ unit:'mm', format:'a4' });
-  const W      = 210;
-  const PAGE_H = 297;
-  let y        = 0;
-  const C = { dark:[22,22,30], gold:[200,130,30], mid:[90,90,110], green:[40,160,100], red:[210,65,65], border:[200,200,215], white:[255,255,255], light:[245,245,252], blue:[120,170,255] };
-  const checkPage = (need=20) => { if (y+need > PAGE_H-20) { doc.addPage(); y=20; } };
-
-  doc.setFillColor(...C.dark);
-  doc.rect(0,0,W,38,'F');
-
-  const logoX=14, logoY=7, logoW=24, logoH=24;
-  if (LOGO_BASE64) {
-    try {
-      const circCanvas = document.createElement('canvas');
-      circCanvas.width = circCanvas.height = 120;
-      const circCtx = circCanvas.getContext('2d');
-      circCtx.beginPath(); circCtx.arc(60,60,60,0,Math.PI*2); circCtx.closePath(); circCtx.clip();
-      const logoImg = new Image(); logoImg.src = LOGO_BASE64;
-      await new Promise(res => { logoImg.onload=res; logoImg.onerror=res; });
-      circCtx.drawImage(logoImg,0,0,120,120);
-      doc.addImage(circCanvas.toDataURL('image/png'),'PNG',logoX,logoY,logoW,logoH,undefined,'FAST');
-    } catch(e) {
-      doc.setFillColor(...C.gold); doc.circle(logoX+logoW/2,logoY+logoH/2,logoW/2,'F');
-      doc.setTextColor(...C.dark); doc.setFontSize(14); doc.setFont('helvetica','bold');
-      doc.text('M',logoX+logoW/2,logoY+logoH/2+1,{align:'center'});
-    }
-  } else {
-    doc.setFillColor(...C.gold); doc.circle(logoX+logoW/2,logoY+logoH/2,logoW/2,'F');
-    doc.setTextColor(...C.dark); doc.setFontSize(14); doc.setFont('helvetica','bold');
-    doc.text('M',logoX+logoW/2,logoY+logoH/2+1,{align:'center'});
-  }
-
-  doc.setTextColor(...C.gold); doc.setFontSize(18); doc.setFont('helvetica','bold');
-  doc.text(company,42,18);
-  doc.setTextColor(180,180,200); doc.setFontSize(8.5); doc.setFont('helvetica','normal');
-  doc.text('Income & Expense Manager',42,26);
-  const now = new Date();
-  const genStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+', '+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase();
-  doc.setTextColor(160,160,185); doc.setFontSize(8);
-  doc.text('Generated: '+genStr,W-14,15,{align:'right'});
-  y=48;
-  doc.setTextColor(...C.dark); doc.setFontSize(26); doc.setFont('helvetica','bold'); doc.text('STATEMENT',14,y); y+=8;
-  const fmtMY = d => new Date(d+'T00:00:00').toLocaleDateString('en-IN',{month:'short',year:'numeric'});
-  doc.setFontSize(10); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
-  doc.text((fromDate?fmtMY(fromDate):'Start')+' - '+(toDate?fmtMY(toDate):'Now'),14,y); y+=12;
-
-  const totalExp=filtered.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
-  const totalInc=filtered.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210,PAGE_H=297;let y=0;
+  const C={dark:[22,22,30],gold:[200,130,30],mid:[90,90,110],green:[40,160,100],red:[210,65,65],border:[200,200,215],white:[255,255,255],light:[245,245,252],blue:[91,156,246]};
+  const checkPage=(need=20)=>{if(y+need>PAGE_H-20){doc.addPage();y=20;}};
+  doc.setFillColor(...C.dark);doc.rect(0,0,W,38,'F');
+  const logoX=14,logoY=7,logoW=24,logoH=24;
+  if(LOGO_BASE64){
+    try{
+      const cc=document.createElement('canvas');cc.width=cc.height=120;
+      const cx=cc.getContext('2d');cx.beginPath();cx.arc(60,60,60,0,Math.PI*2);cx.closePath();cx.clip();
+      const li=new Image();li.src=LOGO_BASE64;await new Promise(r=>{li.onload=r;li.onerror=r;});
+      cx.drawImage(li,0,0,120,120);doc.addImage(cc.toDataURL('image/png'),'PNG',logoX,logoY,logoW,logoH,undefined,'FAST');
+    }catch(e){doc.setFillColor(...C.gold);doc.circle(logoX+logoW/2,logoY+logoH/2,logoW/2,'F');doc.setTextColor(...C.dark);doc.setFontSize(14);doc.setFont('helvetica','bold');doc.text('M',logoX+logoW/2,logoY+logoH/2+1,{align:'center'});}
+  }else{doc.setFillColor(...C.gold);doc.circle(logoX+logoW/2,logoY+logoH/2,logoW/2,'F');doc.setTextColor(...C.dark);doc.setFontSize(14);doc.setFont('helvetica','bold');doc.text('M',logoX+logoW/2,logoY+logoH/2+1,{align:'center'});}
+  doc.setTextColor(...C.gold);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text(company,42,18);
+  doc.setTextColor(180,180,200);doc.setFontSize(8.5);doc.setFont('helvetica','normal');doc.text('Income & Expense Manager + Lend/Borrow Tracker',42,26);
+  const now=new Date();const genStr=now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+', '+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase();
+  doc.setTextColor(160,160,185);doc.setFontSize(8);doc.text('Generated: '+genStr,W-14,15,{align:'right'});
+  y=48;doc.setTextColor(...C.dark);doc.setFontSize(26);doc.setFont('helvetica','bold');doc.text('STATEMENT',14,y);y+=8;
+  const fmtMY=d=>new Date(d+'T00:00:00').toLocaleDateString('en-IN',{month:'short',year:'numeric'});
+  doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(...C.mid);doc.text((fromDate?fmtMY(fromDate):'Start')+' - '+(toDate?fmtMY(toDate):'Now'),14,y);y+=12;
+  const totalExp=filtered.filter(t=>['expense','lend','repay_borrow'].includes(t.type)).reduce((s,t)=>s+t.amount,0);
+  const totalInc=filtered.filter(t=>['income','borrow','repay_lend'].includes(t.type)).reduce((s,t)=>s+t.amount,0);
   const netBal=totalInc-totalExp;
-  const txCount=filtered.length;
-  const activeDays=new Set(filtered.map(t=>t.date)).size;
-
-  doc.setFillColor(...C.light); doc.roundedRect(14,y,W-28,34,5,5,'F');
-  doc.setDrawColor(...C.border); doc.roundedRect(14,y,W-28,34,5,5,'S');
-  const statCols=[
-    {label:'Balance',val:(netBal>=0?'+':'-')+pdfMoney(Math.abs(netBal)),color:netBal>=0?C.green:C.red},
-    {label:'Expense',val:pdfMoney(totalExp),color:C.red},
-    {label:'Income',val:pdfMoney(totalInc),color:C.green},
-    {label:'Transactions',val:String(txCount),color:C.dark},
-    {label:'Active Days',val:String(activeDays),color:C.dark}
-  ];
-  const colW=(W-28)/5;
-  statCols.forEach((c,i)=>{
-    const cx=14+colW*i+colW/2;
-    doc.setFontSize(10.5); doc.setFont('helvetica','bold'); doc.setTextColor(...c.color); doc.text(c.val,cx,y+13,{align:'center'});
-    doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid); doc.text(c.label,cx,y+22,{align:'center'});
-    if(i<4){doc.setDrawColor(...C.border);doc.line(14+colW*(i+1),y+5,14+colW*(i+1),y+29);}
-  });
-  y+=38;
-  const days=activeDays||1;
-  doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
-  doc.text('Daily Avg:  Expense '+pdfMoney(totalExp/days)+'   |   Income '+pdfMoney(totalInc/days),W/2,y,{align:'center'});
-  y+=12;
-
-  const renderCatSection=(heading,list,color)=>{
-    if(!list.length)return;
-    checkPage(28);
-    const total=list.reduce((s,t)=>s+t.amount,0);
-    const catMap={};
-    list.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amount;});
-    const sorted=Object.entries(catMap).sort((a,b)=>b[1]-a[1]);
-    const grand=totalInc+totalExp;
-    const pct=grand>0?Math.round(total/grand*100):0;
-    doc.setFontSize(10); doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text(heading,14,y);
-    doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(...color);
-    const hw=doc.getTextWidth(heading)+3; doc.text(pdfMoney(total),14+hw,y);
-    doc.setTextColor(...C.mid); doc.text(' ('+pct+'%)',14+hw+doc.getTextWidth(pdfMoney(total)),y);
-    y+=6;
-    let px=14;
-    sorted.forEach(([cat,amt])=>{
-      const p=total>0?((amt/total)*100).toFixed(1):'0.0';
-      const txt=cat+': '+pdfMoney(amt)+' ('+p+'%)';
-      const tw=doc.getTextWidth(txt)+8;
-      if(px+tw>W-14){px=14;y+=7;checkPage(14);}
-      doc.setFillColor(235,235,248); doc.setDrawColor(...C.border); doc.roundedRect(px,y-4,tw,6.5,2,2,'FD');
-      doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...C.dark); doc.text(txt,px+4,y+0.8);
-      px+=tw+4;
-    });
-    y+=10;
-  };
-  renderCatSection('Expense Categories',filtered.filter(t=>t.type==='expense'),C.red);
-  renderCatSection('Income Categories',filtered.filter(t=>t.type==='income'),C.green);
-  y+=4;
-  checkPage(30);
-  doc.setFontSize(11); doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Transaction Details',14,y); y+=5;
+  doc.setFillColor(...C.light);doc.roundedRect(14,y,W-28,26,5,5,'F');doc.setDrawColor(...C.border);doc.roundedRect(14,y,W-28,26,5,5,'S');
+  const statCols=[{label:'Net Balance',val:(netBal>=0?'+':'-')+pdfMoney(Math.abs(netBal)),color:netBal>=0?C.green:C.red},{label:'Total Expense',val:pdfMoney(totalExp),color:C.red},{label:'Total Income',val:pdfMoney(totalInc),color:C.green},{label:'Transactions',val:String(filtered.length),color:C.dark}];
+  const colW=(W-28)/4;
+  statCols.forEach((c,i)=>{const cx=14+colW*i+colW/2;doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(...c.color);doc.text(c.val,cx,y+11,{align:'center'});doc.setFontSize(7.5);doc.setFont('helvetica','normal');doc.setTextColor(...C.mid);doc.text(c.label,cx,y+19,{align:'center'});if(i<3){doc.setDrawColor(...C.border);doc.line(14+colW*(i+1),y+4,14+colW*(i+1),y+22);}});
+  y+=30;
   const fmtD=d=>new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-  doc.setFontSize(7.5); doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid);
-  doc.text('Statement from '+fmtD(fromDate)+' to '+fmtD(toDate),14,y+4);
-  doc.setTextColor(...C.red); doc.text('Expense('+pdfMoney(totalExp)+') | Income('+pdfMoney(totalInc)+')',W-14,y+4,{align:'right'});
-  y+=8;
+  // Lend/Borrow Summary in PDF
+  const lbEntries=getLendBorrowEntries();
+  if(lbEntries.length){
+    checkPage(30);doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(...C.dark);doc.text('Lend & Borrow Summary',14,y);y+=7;
+    lbEntries.forEach(e=>{
+      checkPage(14);
+      const rem=getRemainingForEntry(e);const isLend=e.lendBorrowType==='lend';
+      doc.setFontSize(8.5);doc.setFont('helvetica','normal');doc.setTextColor(...(isLend?C.green:C.blue));
+      doc.text((isLend?'LENT to ':'BORROWED from ')+e.person,14,y);
+      doc.setTextColor(...C.dark);doc.text('Orig: '+pdfMoney(e.amount),90,y);
+      doc.setTextColor(...C.green);doc.text('Repaid: '+pdfMoney(e.totalRepaid||0),130,y);
+      doc.setTextColor(e.settled?C.green:C.gold);doc.text('Rem: '+pdfMoney(rem),170,y);
+      y+=6;
+    });y+=6;
+  }
+  checkPage(20);doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(...C.dark);doc.text('Transaction Details',14,y);y+=8;
+  const footerFn=data=>{doc.setFillColor(...C.dark);doc.rect(0,PAGE_H-14,W,14,'F');doc.setFontSize(7);doc.setFont('helvetica','bold');doc.setTextColor(...C.gold);doc.text(company,14,PAGE_H-5);if(website){doc.setFont('helvetica','normal');doc.setTextColor(...C.blue);doc.text(website,14+doc.getTextWidth(company)+3,PAGE_H-5);}doc.setTextColor(160,160,185);doc.text('Page '+data.pageNumber,W-14,PAGE_H-5,{align:'right'});};
   const tableRows=filtered.map(t=>{
     const dStr=fmtD(t.date);
-    const[h,m]=t.time.split(':');const hh=parseInt(h);const ampm=hh>=12?'PM':'AM';const hDisp=hh===0?12:hh>12?hh-12:hh;
+    const[h,m]=(t.time||'00:00').split(':');const hh=parseInt(h);const ampm=hh>=12?'PM':'AM';const hDisp=hh===0?12:hh>12?hh-12:hh;
     const tStr=hDisp+':'+m+' '+ampm;
-    const isInc=t.type==='income';
-    return[dStr+'\n'+tStr,t.cat,t.desc,t.mode,isInc?'':pdfMoney(t.amount),isInc?pdfMoney(t.amount):'',''];
+    const txType=t.type.replace(/_/g,' ').toUpperCase();
+    const isOutflow=['expense','lend','repay_borrow'].includes(t.type);
+    const personStr=t.person?` (${t.person})`:'';
+    return[dStr+'\n'+tStr,txType,t.desc+personStr,t.mode||'-',isOutflow?pdfMoney(t.amount):'',isOutflow?'':pdfMoney(t.amount)];
   });
-  const footerFn=data=>{
-    doc.setFillColor(...C.dark); doc.rect(0,PAGE_H-14,W,14,'F');
-    doc.setFontSize(7); doc.setFont('helvetica','bold'); doc.setTextColor(...C.gold); doc.text(company,14,PAGE_H-5);
-    if(website){doc.setFont('helvetica','normal');doc.setTextColor(...C.blue);doc.text(website,14+doc.getTextWidth(company)+3,PAGE_H-5);}
-    doc.setTextColor(160,160,185); doc.text('Page '+data.pageNumber,W-14,PAGE_H-5,{align:'right'});
-    doc.text('Generated: '+genStr,W-14,PAGE_H-9,{align:'right'});
-  };
-  doc.autoTable({
-    startY:y,
-    head:[['Date & Time','Category','Description','Mode','Expense','Income','Transfer']],
-    body:tableRows,
-    styles:{font:'helvetica',fontSize:8,cellPadding:3,textColor:C.dark,lineColor:C.border,lineWidth:0.2},
-    headStyles:{fillColor:C.dark,textColor:C.white,fontStyle:'bold',fontSize:8},
-    alternateRowStyles:{fillColor:[248,248,253]},
-    columnStyles:{0:{cellWidth:26},1:{cellWidth:28},2:{cellWidth:46},3:{cellWidth:22},4:{cellWidth:27,halign:'right',textColor:C.red},5:{cellWidth:27,halign:'right',textColor:C.green},6:{cellWidth:15,halign:'right'}},
-    margin:{left:14,right:14},
-    didDrawPage:footerFn
-  });
-  y=doc.lastAutoTable.finalY+10; checkPage(44);
-  doc.setFillColor(...C.light); doc.setDrawColor(...C.border); doc.roundedRect(14,y,W-28,34,4,4,'FD');
-  const expCnt=filtered.filter(t=>t.type==='expense').length;
-  const incCnt=filtered.filter(t=>t.type==='income').length;
-  doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Total Expense',20,y+10);
-  doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid); doc.text(expCnt+' No. of Transactions',72,y+10);
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.red); doc.text(pdfMoney(totalExp),W-20,y+10,{align:'right'});
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Total Income',20,y+20);
-  doc.setFont('helvetica','normal'); doc.setTextColor(...C.mid); doc.text(incCnt+' No. of Transactions',72,y+20);
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.green); doc.text(pdfMoney(totalInc),W-20,y+20,{align:'right'});
-  doc.setDrawColor(...C.border); doc.line(20,y+23,W-20,y+23);
-  doc.setFont('helvetica','bold'); doc.setTextColor(...C.dark); doc.text('Net Balance',20,y+31);
-  doc.setTextColor(...(netBal>=0?C.green:C.red)); doc.text((netBal>=0?'+ ':'-')+pdfMoney(Math.abs(netBal)),W-20,y+31,{align:'right'});
-  y+=42;
-  doc.setFontSize(7.5); doc.setFont('helvetica','italic'); doc.setTextColor(...C.mid);
-  doc.text('* This is an auto-generated statement based on your recorded transactions.',14,y);
-  doc.setFillColor(...C.dark); doc.rect(0,PAGE_H-14,W,14,'F');
-  doc.setFontSize(7); doc.setFont('helvetica','bold'); doc.setTextColor(...C.gold); doc.text(company,14,PAGE_H-5);
-  if(website){doc.setFont('helvetica','normal');doc.setTextColor(...C.blue);doc.text(website,14+doc.getTextWidth(company)+3,PAGE_H-5);}
-  doc.setTextColor(160,160,185);
-  doc.text('Generated: '+genStr,W-14,PAGE_H-9,{align:'right'});
-  doc.text('Page '+doc.internal.getNumberOfPages(),W-14,PAGE_H-5,{align:'right'});
+  doc.autoTable({startY:y,head:[['Date & Time','Type','Description','Mode','Outflow','Inflow']],body:tableRows,styles:{font:'helvetica',fontSize:8,cellPadding:3,textColor:C.dark,lineColor:C.border,lineWidth:0.2},headStyles:{fillColor:C.dark,textColor:C.white,fontStyle:'bold',fontSize:8},alternateRowStyles:{fillColor:[248,248,253]},columnStyles:{0:{cellWidth:28},1:{cellWidth:26},2:{cellWidth:56},3:{cellWidth:22},4:{cellWidth:27,halign:'right',textColor:C.red},5:{cellWidth:27,halign:'right',textColor:C.green}},margin:{left:14,right:14},didDrawPage:footerFn});
   doc.save(company.replace(/\s+/g,'_')+'_Statement_'+fromDate+'_to_'+toDate+'.pdf');
   closePdfModal();
 }
@@ -1355,11 +1737,16 @@ async function generatePDF() {
 // ── INIT ──
 renderAll();
 initLockScreen();
-document.getElementById('addModal').addEventListener('click', e => { if(e.target.id==='addModal') closeModal(); });
-document.getElementById('pdfModal').addEventListener('click', e => { if(e.target.id==='pdfModal') closePdfModal(); });
-document.getElementById('pwModal').addEventListener('click', e => { if(e.target.id==='pwModal') closePwModal(); });
-document.getElementById('cropModalOverlay').addEventListener('click', e => { if(e.target.id==='cropModalOverlay') closeCropModal(); });
-document.getElementById('confirmOverlay').addEventListener('click', e => { if(e.target.id==='confirmOverlay') closeConfirm(); });
+
+// Close modals on backdrop click
+['addExpenseModal','addIncomeModal','addLendModal','addBorrowModal','pdfModal','pwModal','cropModalOverlay','confirmOverlay','repayModal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',e=>{ if(e.target.id===id){ if(id==='cropModalOverlay') closeCropModal(); else if(id==='repayModal') closeRepayModal(); else if(id==='confirmOverlay') closeConfirm(); else if(id==='pwModal') closePwModal(); else if(id==='pdfModal') closePdfModal(); else closeModal(id); } });
+});
+
+// Close FAB on outside click
+document.addEventListener('click', e => {
+  if (fabOpen && !e.target.closest('.fab-group')) closeFab();
+});
 </script>
 </body>
 </html>
