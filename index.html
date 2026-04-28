@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MOVA – Smart Finance Tracker</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+
+  --bg: #0c0c10;
+
+  --surface: #16161f;
+
+  --surface2: #1e1e2a;
+
+  --surface3: #252533;
+
+  --border: #2a2a3d;
+
+  --border2: #333348;
+
+  --gold: #f5a623;
+
+  --gold2: #e8922a;
+
+  --gold-dim: rgba(245,166,35,0.12);
+
+  --red: #e05555;
+
+  --red-dim: rgba(224,85,85,0.12);
+
+  --green: #4caf7d;
+
+  --green-dim: rgba(76,175,125,0.12);
+
+  --blue: #5b9bd5;
+
+  --blue-dim: rgba(91,155,213,0.12);
+
+  --purple: #9b7fcf;
+
+  --purple-dim: rgba(155,127,207,0.12);
+
+  --amber: #f59e0b;
+
+  --text: #eaeaf4;
+
+  --text2: #b0b0c8;
+
+  --muted: #6a6a8a;
+
+  --r: 16px;
+
+  --r-sm: 10px;
+
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* ── SCROLLBAR ── */
+
+::-webkit-scrollbar{width:5px;}
+
+::-webkit-scrollbar-track{background:transparent;}
+
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ── HEADER ── */
+
+header{
+
+  background:linear-gradient(180deg,#181824 0%,rgba(22,22,31,0.96) 100%);
+
+  border-bottom:1px solid var(--border);
+
+  padding:13px 22px;
+
+  display:flex;align-items:center;justify-content:space-between;
+
+  position:sticky;top:0;z-index:200;backdrop-filter:blur(16px);
+
+}
+
+.brand{display:flex;align-items:center;gap:12px;}
+
+.brand-logo{
+
+  width:40px;height:40px;border-radius:12px;overflow:hidden;
+
+  display:flex;align-items:center;justify-content:center;
+
+  background:linear-gradient(135deg,#f5a623,#e8922a);
+
+  border:1px solid rgba(245,166,35,0.3);flex-shrink:0;cursor:pointer;
+
+  font-family:'Bebas Neue',sans-serif;font-size:20px;color:#1a0a00;
+
+}
+
+.brand-logo img{width:100%;height:100%;object-fit:cover;}
+
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--gold);}
+
+.brand-sub{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;}
+
+.header-right{display:flex;gap:8px;align-items:center;}
+
+.hbtn{
+
+  display:flex;align-items:center;gap:6px;
+
+  padding:8px 16px;border-radius:10px;border:1px solid var(--border2);
+
+  background:transparent;color:var(--text2);font-family:'DM Sans',sans-serif;
+
+  font-weight:600;font-size:12px;cursor:pointer;transition:all .2s;
+
+}
+
+.hbtn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+
+.hbtn svg{width:14px;height:14px;}
+
+.icon-btn{
+
+  width:36px;height:36px;border-radius:9px;border:1px solid var(--border2);
+
+  background:transparent;color:var(--muted);cursor:pointer;
+
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+
+}
+
+.icon-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+
+.icon-btn svg{width:17px;height:17px;}
+
+/* ── SUMMARY STRIP ── */
+
+.summary-strip{
+
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+
+  background:var(--surface);border-bottom:1px solid var(--border);
+
+  padding:0;
+
+}
+
+.stat-cell{
+
+  padding:18px 22px;text-align:center;position:relative;
+
+}
+
+.stat-cell+.stat-cell::before{
+
+  content:'';position:absolute;left:0;top:20%;height:60%;
+
+  width:1px;background:var(--border);
+
+}
+
+.stat-label{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;justify-content:center;gap:5px;}
+
+.stat-label svg{width:12px;height:12px;}
+
+.stat-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
+
+.stat-val.expense{color:var(--red);}
+
+.stat-val.income{color:var(--green);}
+
+.stat-val.balance{color:var(--gold);}
+
+.stat-val.balance.neg{color:var(--red);}
+
+/* ── TABS ── */
+
+.tab-row{
+
+  display:flex;gap:0;background:var(--surface);
+
+  border-bottom:1px solid var(--border);
+
+  padding:0 22px;overflow-x:auto;
+
+}
+
+.tab-btn{
+
+  padding:12px 18px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;
+
+  color:var(--muted);background:transparent;border:none;cursor:pointer;
+
+  border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;
+
+  display:flex;align-items:center;gap:7px;
+
+}
+
+.tab-btn svg{width:15px;height:15px;}
+
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+.tab-btn:hover:not(.active){color:var(--text2);}
+
+/* ── FILTER BAR ── */
+
+.filter-bar{
+
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+
+  padding:14px 22px;background:var(--bg);
+
+  border-bottom:1px solid var(--border);
+
+}
+
+.filter-select,.filter-input{
+
+  background:var(--surface);border:1px solid var(--border2);color:var(--text);
+
+  padding:8px 12px;border-radius:9px;font-family:'DM Sans',sans-serif;
+
+  font-size:12px;outline:none;transition:border-color .2s;
+
+}
+
+.filter-select:focus,.filter-input:focus{border-color:var(--gold);}
+
+.filter-input[type=date]{color-scheme:dark;}
+
+.filter-input[type=search]{min-width:160px;}
+
+/* ── MAIN LAYOUT ── */
+
+.main-content{padding:20px 22px 120px;}
+
+/* ── SECTION HEADER ── */
+
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+
+.sec-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px;}
+
+.sec-count{font-size:11px;background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:3px 10px;font-family:'DM Sans',sans-serif;font-weight:600;color:var(--muted);}
+
+/* ── TRANSACTION ITEM ── */
+
+.tx-date-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin:18px 0 8px;padding-left:2px;}
+
+.tx-item{
+
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+
+  padding:13px 16px;display:flex;align-items:center;gap:13px;
+
+  margin-bottom:7px;transition:border-color .2s,transform .15s;cursor:default;
+
+  position:relative;overflow:hidden;
+
+}
+
+.tx-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;}
+
+.tx-item.expense::before{background:var(--red);}
+
+.tx-item.income::before{background:var(--green);}
+
+.tx-item.lend::before{background:var(--blue);}
+
+.tx-item.borrow::before{background:var(--purple);}
+
+.tx-item.repayment-in::before{background:var(--green);}
+
+.tx-item.repayment-out::before{background:var(--red);}
+
+.tx-item:hover{border-color:var(--border2);transform:translateX(2px);}
+
+.tx-icon{
+
+  width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+
+}
+
+.tx-icon svg{width:19px;height:19px;}
+
+.tx-icon.expense{background:var(--red-dim);color:var(--red);}
+
+.tx-icon.income{background:var(--green-dim);color:var(--green);}
+
+.tx-icon.lend{background:var(--blue-dim);color:var(--blue);}
+
+.tx-icon.borrow{background:var(--purple-dim);color:var(--purple);}
+
+.tx-icon.repayment-in{background:var(--green-dim);color:var(--green);}
+
+.tx-icon.repayment-out{background:var(--red-dim);color:var(--red);}
+
+.tx-info{flex:1;min-width:0;}
+
+.tx-desc{font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.tx-meta{font-size:11.5px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+
+.tx-tag{
+
+  display:inline-flex;align-items:center;gap:3px;
+
+  border-radius:5px;padding:2px 7px;font-size:10px;font-weight:700;letter-spacing:.5px;
+
+}
+
+.tx-tag.expense{background:var(--red-dim);color:var(--red);}
+
+.tx-tag.income{background:var(--green-dim);color:var(--green);}
+
+.tx-tag.lend{background:var(--blue-dim);color:var(--blue);}
+
+.tx-tag.borrow{background:var(--purple-dim);color:var(--purple);}
+
+.tx-tag.repay{background:rgba(76,175,125,0.15);color:var(--green);}
+
+.tx-tag.repay-out{background:var(--red-dim);color:var(--red);}
+
+.tx-link-badge{
+
+  display:inline-flex;align-items:center;gap:4px;
+
+  background:var(--surface2);border:1px solid var(--border2);
+
+  border-radius:5px;padding:2px 7px;font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;cursor:pointer;transition:all .2s;
+
+}
+
+.tx-link-badge:hover{border-color:var(--gold);color:var(--gold);}
+
+.tx-link-badge svg{width:10px;height:10px;}
+
+.tx-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+
+.tx-amount{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
+
+.tx-amount.neg{color:var(--red);}
+
+.tx-amount.pos{color:var(--green);}
+
+.tx-amount.blue{color:var(--blue);}
+
+.tx-amount.purple{color:var(--purple);}
+
+.tx-actions{display:flex;gap:4px;}
+
+.tx-btn{
+
+  width:28px;height:28px;border-radius:7px;border:1px solid var(--border2);
+
+  background:transparent;color:var(--muted);cursor:pointer;
+
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+
+}
+
+.tx-btn svg{width:13px;height:13px;}
+
+.tx-btn.repay-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-dim);}
+
+.tx-btn.del-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-dim);}
+
+/* ── LEND/BORROW DETAIL CARD ── */
+
+.lb-card{
+
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+
+  padding:15px 18px;margin-bottom:8px;position:relative;overflow:hidden;
+
+}
+
+.lb-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+
+.lb-card.lend::before{background:var(--blue);}
+
+.lb-card.borrow::before{background:var(--purple);}
+
+.lb-card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+
+.lb-person{font-weight:700;font-size:15px;color:var(--text);}
+
+.lb-type-tag{
+
+  display:inline-flex;align-items:center;gap:4px;border-radius:6px;
+
+  padding:3px 9px;font-size:10px;font-weight:700;letter-spacing:.5px;
+
+}
+
+.lb-type-tag.lend{background:var(--blue-dim);color:var(--blue);}
+
+.lb-type-tag.borrow{background:var(--purple-dim);color:var(--purple);}
+
+.lb-status{
+
+  margin-left:auto;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;
+
+  display:inline-flex;align-items:center;gap:4px;
+
+}
+
+.lb-status.pending{background:rgba(245,166,35,0.12);color:var(--gold);border:1px solid rgba(245,166,35,0.25);}
+
+.lb-status.partial{background:rgba(91,155,213,0.12);color:var(--blue);border:1px solid rgba(91,155,213,0.25);}
+
+.lb-status.settled{background:var(--green-dim);color:var(--green);border:1px solid rgba(76,175,125,0.25);}
+
+.lb-progress-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+
+.lb-progress-bar{flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden;}
+
+.lb-progress-fill{height:100%;border-radius:3px;transition:width .4s ease;}
+
+.lb-progress-fill.lend{background:var(--blue);}
+
+.lb-progress-fill.borrow{background:var(--purple);}
+
+.lb-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+
+.lb-amt-cell{text-align:center;background:var(--surface2);border-radius:9px;padding:8px 6px;}
+
+.lb-amt-label{font-size:10px;color:var(--muted);font-weight:600;margin-bottom:3px;}
+
+.lb-amt-val{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;}
+
+.lb-amt-val.orig{color:var(--text2);}
+
+.lb-amt-val.repaid{color:var(--green);}
+
+.lb-amt-val.remain{color:var(--amber);}
+
+.lb-remain-zero{color:var(--green);}
+
+.lb-card-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+
+.lb-meta-chip{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+
+.lb-meta-chip svg{width:12px;height:12px;}
+
+.lb-card-actions{margin-left:auto;display:flex;gap:6px;}
+
+.lb-action-btn{
+
+  display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:8px;
+
+  border:1px solid;background:transparent;font-family:'DM Sans',sans-serif;
+
+  font-weight:600;font-size:12px;cursor:pointer;transition:all .2s;
+
+}
+
+.lb-action-btn.repay{border-color:rgba(76,175,125,0.4);color:var(--green);}
+
+.lb-action-btn.repay:hover{background:var(--green-dim);border-color:var(--green);}
+
+.lb-action-btn.delete{border-color:var(--border2);color:var(--muted);}
+
+.lb-action-btn.delete:hover{border-color:var(--red);color:var(--red);background:var(--red-dim);}
+
+.lb-action-btn svg{width:13px;height:13px;}
+
+/* ── EMPTY ── */
+
+.empty{text-align:center;padding:48px 20px;color:var(--muted);}
+
+.empty svg{width:48px;height:48px;opacity:.3;margin-bottom:12px;}
+
+.empty p{font-size:14px;line-height:1.7;}
+
+/* ── FAB ── */
+
+.fab-area{position:fixed;bottom:28px;right:28px;display:flex;flex-direction:column;align-items:flex-end;gap:12px;z-index:300;}
+
+.fab{
+
+  width:56px;height:56px;border-radius:16px;
+
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+
+  border:none;cursor:pointer;color:#1a0a00;
+
+  box-shadow:0 8px 24px rgba(245,166,35,.35);
+
+  transition:transform .2s,box-shadow .2s;
+
+  display:flex;align-items:center;justify-content:center;
+
+}
+
+.fab:hover{transform:scale(1.07) translateY(-2px);box-shadow:0 12px 32px rgba(245,166,35,.45);}
+
+.fab svg{width:26px;height:26px;}
+
+.fab-mini{
+
+  display:flex;align-items:center;gap:10px;
+
+  background:var(--surface);border:1px solid var(--border2);border-radius:14px;
+
+  padding:10px 16px;cursor:pointer;transition:all .2s;
+
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;color:var(--text);
+
+}
+
+.fab-mini:hover{border-color:var(--gold);color:var(--gold);}
+
+.fab-mini svg{width:16px;height:16px;}
+
+.fab-mini.blue{border-color:rgba(91,155,213,.3);}
+
+.fab-mini.blue:hover{border-color:var(--blue);color:var(--blue);}
+
+.fab-mini.purple{border-color:rgba(155,127,207,.3);}
+
+.fab-mini.purple:hover{border-color:var(--purple);color:var(--purple);}
+
+.fab-submenu{display:none;flex-direction:column;align-items:flex-end;gap:8px;animation:fadeUp .2s ease;}
+
+.fab-submenu.open{display:flex;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+.fab-overlay{position:fixed;inset:0;z-index:299;display:none;}
+
+.fab-overlay.open{display:block;}
+
+/* ── MODALS ── */
+
+.overlay{
+
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+
+  backdrop-filter:blur(8px);z-index:400;display:none;
+
+  align-items:center;justify-content:center;padding:16px;
+
+}
+
+.overlay.active{display:flex;}
+
+.overlay.bottom{align-items:flex-end;padding:0;}
+
+@keyframes fadeScaleIn{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:scale(1);}}
+
+@keyframes slideUp{from{transform:translateY(100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+.modal{
+
+  background:var(--surface);border-radius:22px;padding:26px 24px 32px;
+
+  width:100%;max-width:440px;border:1px solid var(--border2);
+
+  animation:fadeScaleIn .25s ease;max-height:92vh;overflow-y:auto;
+
+}
+
+.modal.bottom-sheet{
+
+  border-radius:24px 24px 0 0;padding:26px 22px 44px;
+
+  max-width:520px;animation:slideUp .3s cubic-bezier(.16,1,.3,1);
+
+  max-height:90vh;overflow-y:auto;
+
+}
+
+.modal-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 22px;}
+
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);}
+
+.modal-close{background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:7px;display:flex;transition:color .2s;}
+
+.modal-close:hover{color:var(--text);}
+
+.modal-close svg{width:20px;height:20px;}
+
+/* ── TYPE TOGGLE ── */
+
+.type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+
+.type-btn{
+
+  padding:10px;border-radius:10px;border:1px solid var(--border2);
+
+  background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;
+
+  font-weight:600;font-size:13px;cursor:pointer;transition:all .2s;
+
+  display:flex;align-items:center;justify-content:center;gap:7px;
+
+}
+
+.type-btn svg{width:15px;height:15px;}
+
+.type-btn.active-expense{background:var(--red-dim);border-color:var(--red);color:var(--red);}
+
+.type-btn.active-income{background:var(--green-dim);border-color:var(--green);color:var(--green);}
+
+/* ── FORM ── */
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+.form-group{margin-bottom:14px;}
+
+.form-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;display:block;}
+
+.form-input,.form-select{
+
+  width:100%;background:var(--surface2);border:1px solid var(--border2);
+
+  color:var(--text);padding:11px 13px;border-radius:11px;
+
+  font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s;
+
+}
+
+.form-input:focus,.form-select:focus{border-color:var(--gold);}
+
+.form-input[type=date]{color-scheme:dark;}
+
+.form-input[type=time]{color-scheme:dark;}
+
+textarea.form-input{resize:vertical;min-height:72px;}
+
+/* ── REPAYMENT INFO BOX ── */
+
+.repay-info{
+
+  background:var(--surface2);border:1px solid var(--border2);border-radius:12px;
+
+  padding:14px 16px;margin-bottom:16px;
+
+}
+
+.repay-info-title{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+
+.repay-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+
+.repay-info-cell{text-align:center;}
+
+.repay-info-label{font-size:10px;color:var(--muted);font-weight:600;}
+
+.repay-info-val{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;}
+
+/* ── SUBMIT BTN ── */
+
+.submit-btn{
+
+  width:100%;padding:13px;border-radius:13px;border:none;
+
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+
+  color:#1a0a00;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;
+
+  cursor:pointer;margin-top:8px;transition:opacity .2s,transform .2s;
+
+  display:flex;align-items:center;justify-content:center;gap:8px;
+
+}
+
+.submit-btn svg{width:17px;height:17px;}
+
+.submit-btn:hover{opacity:.88;transform:translateY(-1px);}
+
+.submit-btn.green{background:linear-gradient(135deg,#4caf7d,#3a9e6e);}
+
+.submit-btn.blue{background:linear-gradient(135deg,#5b9bd5,#4a8ac4);}
+
+.submit-btn.purple{background:linear-gradient(135deg,#9b7fcf,#7b5faf);}
+
+.cancel-btn{
+
+  width:100%;padding:11px;border-radius:11px;border:1px solid var(--border2);
+
+  background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;
+
+  font-weight:600;font-size:14px;cursor:pointer;margin-top:8px;transition:all .2s;
+
+}
+
+.cancel-btn:hover{border-color:var(--text2);color:var(--text);}
+
+/* ── CONFIRM MODAL ── */
+
+.confirm-modal{
+
+  background:var(--surface);border-radius:20px;padding:28px;
+
+  width:100%;max-width:360px;border:1px solid var(--border2);
+
+  animation:fadeScaleIn .25s ease;text-align:center;
+
+}
+
+.confirm-icon{width:52px;height:52px;border-radius:50%;background:var(--red-dim);border:1px solid rgba(224,85,85,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+
+.confirm-icon svg{width:26px;height:26px;color:var(--red);}
+
+.confirm-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--text);font-weight:700;margin-bottom:8px;}
+
+.confirm-body{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:22px;}
+
+.confirm-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+.confirm-btn{padding:12px;border-radius:10px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;}
+
+.confirm-btn.danger{background:var(--red);color:#fff;border-color:var(--red);}
+
+.confirm-btn:hover:not(.danger){border-color:var(--text2);color:var(--text);}
+
+/* ── SETTINGS PANEL ── */
+
+.settings-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);z-index:500;display:none;align-items:flex-start;justify-content:flex-end;}
+
+.settings-overlay.active{display:flex;}
+
+.settings-panel{width:310px;background:var(--surface);border-left:1px solid var(--border);min-height:100vh;display:flex;flex-direction:column;overflow-y:auto;animation:slideInRight .3s cubic-bezier(.16,1,.3,1);}
+
+@keyframes slideInRight{from{transform:translateX(100%);}to{transform:translateX(0);}}
+
+.settings-header{padding:18px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1;}
+
+.settings-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);font-weight:700;}
+
+.settings-section{padding:16px 16px 0;}
+
+.settings-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px;}
+
+.settings-item{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;border-radius:12px;margin-bottom:6px;background:var(--surface2);border:1px solid var(--border);transition:border-color .2s;}
+
+.settings-item:hover{border-color:rgba(245,166,35,.25);}
+
+.settings-item-left{display:flex;align-items:center;gap:11px;}
+
+.settings-item-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+.settings-item-icon svg{width:16px;height:16px;}
+
+.settings-item-label{font-size:13px;font-weight:600;color:var(--text);}
+
+.settings-item-sub{font-size:11px;color:var(--muted);}
+
+.settings-btn{padding:6px 12px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
+
+.settings-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* ── PDF LOADING ── */
+
+.pdf-loading{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+
+.pdf-loading.active{display:flex;}
+
+.pdf-loading-text{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);}
+
+.pdf-loading-sub{font-size:13px;color:var(--muted);}
+
+.spinner{width:42px;height:42px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
+
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── LOCK SCREEN ── */
+
+.lock-screen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;}
+
+.lock-screen.active{display:flex;}
+
+.lock-logo{width:68px;height:68px;border-radius:20px;background:linear-gradient(135deg,#f5a623,#e8922a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:34px;color:#1a0a00;border:1px solid rgba(245,166,35,.3);}
+
+.lock-logo img{width:100%;height:100%;object-fit:cover;border-radius:18px;}
+
+.lock-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);font-weight:700;text-align:center;}
+
+.lock-sub{font-size:12px;color:var(--muted);text-align:center;}
+
+.lock-icon-wrap{width:58px;height:58px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+
+.lock-icon-wrap svg{width:28px;height:28px;color:var(--gold);}
+
+.pin-dots{display:flex;gap:13px;}
+
+.pin-dot{width:13px;height:13px;border-radius:50%;background:var(--border);border:2px solid var(--muted);transition:all .15s;}
+
+.pin-dot.filled{background:var(--gold);border-color:var(--gold);transform:scale(1.1);}
+
+.pin-dot.error{background:var(--red);border-color:var(--red);}
+
+.pin-keypad{display:grid;grid-template-columns:repeat(3,62px);gap:11px;}
+
+.pin-key{width:62px;height:62px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif;font-size:20px;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+
+.pin-key:hover{background:var(--surface2);border-color:var(--gold);color:var(--gold);}
+
+.pin-key:active{transform:scale(.92);}
+
+.pin-key.del{font-size:13px;color:var(--muted);}
+
+.pin-error-msg{font-size:12px;color:var(--red);font-weight:600;min-height:18px;}
+
+@media(max-width:520px){
+
+  .summary-strip{grid-template-columns:repeat(3,1fr);}
+
+  .stat-val{font-size:17px;}
+
+  header{padding:12px 14px;}
+
+  .main-content{padding:16px 14px 120px;}
+
+  .filter-bar{padding:12px 14px;}
+
+  .tab-row{padding:0 14px;}
+
+  .form-row{grid-template-columns:1fr;}
+
+  .settings-panel{width:100%;}
+
+  .lb-amounts{grid-template-columns:1fr 1fr 1fr;}
+
+  .modal{padding:22px 16px 28px;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOCK SCREEN -->
+
+<div class="lock-screen" id="lockScreen">
+
+  <div class="lock-logo" id="lockLogo">M</div>
+
+  <div><div class="lock-title">MOVA</div><div class="lock-sub" style="margin-top:4px;">Enter your PIN to continue</div></div>
+
+  <div class="lock-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+
+  <div class="pin-dots" id="lockDots">
+
+    <div class="pin-dot" id="ld0"></div><div class="pin-dot" id="ld1"></div>
+
+    <div class="pin-dot" id="ld2"></div><div class="pin-dot" id="ld3"></div>
+
+  </div>
+
+  <div class="pin-error-msg" id="lockError"></div>
+
+  <div class="pin-keypad">
+
+    <button class="pin-key" onclick="lockKey('1')">1</button><button class="pin-key" onclick="lockKey('2')">2</button><button class="pin-key" onclick="lockKey('3')">3</button>
+
+    <button class="pin-key" onclick="lockKey('4')">4</button><button class="pin-key" onclick="lockKey('5')">5</button><button class="pin-key" onclick="lockKey('6')">6</button>
+
+    <button class="pin-key" onclick="lockKey('7')">7</button><button class="pin-key" onclick="lockKey('8')">8</button><button class="pin-key" onclick="lockKey('9')">9</button>
+
+    <button class="pin-key" style="visibility:hidden"></button><button class="pin-key" onclick="lockKey('0')">0</button><button class="pin-key del" onclick="lockDel()">✕</button>
+
+  </div>
+
+</div>
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="brand">
+
+    <div class="brand-logo" id="headerLogo" onclick="triggerPhotoPick()">M</div>
+
+    <div>
+
+      <div class="brand-name">MOVA</div>
+
+      <div class="brand-sub">Smart Finance Tracker</div>
+
+    </div>
+
+  </div>
+
+  <div class="header-right">
+
+    <button class="hbtn" onclick="openPdfModal()">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+
+      Export
+
+    </button>
+
+    <button class="icon-btn" onclick="openSettings()">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+
+    </button>
+
+  </div>
+
+</header>
+
+<!-- SUMMARY -->
+
+<div class="summary-strip">
+
+  <div class="stat-cell">
+
+    <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>Expense</div>
+
+    <div class="stat-val expense" id="sumExpense">₹0.00</div>
+
+  </div>
+
+  <div class="stat-cell">
+
+    <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>Income</div>
+
+    <div class="stat-val income" id="sumIncome">₹0.00</div>
+
+  </div>
+
+  <div class="stat-cell">
+
+    <div class="stat-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Balance</div>
+
+    <div class="stat-val balance" id="sumBalance">₹0.00</div>
+
+  </div>
+
+</div>
+
+<!-- TABS -->
+
+<div class="tab-row">
+
+  <button class="tab-btn active" id="tabAll" onclick="switchTab('all')">
+
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+
+    All Transactions
+
+  </button>
+
+  <button class="tab-btn" id="tabLB" onclick="switchTab('lb')">
+
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+
+    Lend &amp; Borrow
+
+    <span id="lbPendingBadge" style="display:none;background:var(--amber);color:#1a0a00;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;" id="lbBadge">0</span>
+
+  </button>
+
+</div>
+
+<!-- FILTER BAR -->
+
+<div class="filter-bar" id="filterBar">
+
+  <select class="filter-select" id="filterType" onchange="renderAll()">
+
+    <option value="all">All Types</option>
+
+    <option value="expense">Expense</option>
+
+    <option value="income">Income</option>
+
+    <option value="lend">Lend</option>
+
+    <option value="borrow">Borrow</option>
+
+    <option value="repayment">Repayments</option>
+
+  </select>
+
+  <select class="filter-select" id="filterCat" onchange="renderAll()">
+
+    <option value="all">All Categories</option>
+
+  </select>
+
+  <input type="text" class="filter-input" id="searchQ" placeholder="Search..." oninput="renderAll()">
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+  <!-- ALL TRANSACTIONS TAB -->
+
+  <div id="viewAll">
+
+    <div class="sec-header">
+
+      <div class="sec-title">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+
+        Transaction History
+
+      </div>
+
+      <span class="sec-count" id="txCount">0 entries</span>
+
+    </div>
+
+    <div id="txList"></div>
+
+  </div>
+
+  <!-- LEND & BORROW TAB -->
+
+  <div id="viewLB" style="display:none;">
+
+    <!-- LB Summary mini-strip -->
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;border-left:3px solid var(--blue);">
+
+        <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Total Lent (Pending)</div>
+
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--blue);" id="lbLentPending">₹0.00</div>
+
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;border-left:3px solid var(--purple);">
+
+        <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Total Borrowed (Pending)</div>
+
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--purple);" id="lbBorrowedPending">₹0.00</div>
+
+      </div>
+
+    </div>
+
+    <div class="sec-header">
+
+      <div class="sec-title">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="color:var(--purple)"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+
+        Active Records
+
+      </div>
+
+      <span class="sec-count" id="lbCount">0 records</span>
+
+    </div>
+
+    <div id="lbList"></div>
+
+  </div>
+
+</div>
+
+<!-- FAB -->
+
+<div class="fab-overlay" id="fabOverlay" onclick="closeFabMenu()"></div>
+
+<div class="fab-area">
+
+  <div class="fab-submenu" id="fabSubmenu">
+
+    <div class="fab-mini purple" onclick="openAddLBModal('borrow'); closeFabMenu();">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+
+      Borrowed Money
+
+    </div>
+
+    <div class="fab-mini blue" onclick="openAddLBModal('lend'); closeFabMenu();">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+
+      Lent Money
+
+    </div>
+
+    <div class="fab-mini" onclick="openAddTxModal(); closeFabMenu();">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+
+      Transaction
+
+    </div>
+
+  </div>
+
+  <button class="fab" id="fabMain" onclick="toggleFabMenu()" title="Add Entry">
+
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+
+  </button>
+
+</div>
+
+<!-- ADD TRANSACTION MODAL -->
+
+<div class="overlay bottom active" id="addTxOverlay" style="display:none;">
+
+  <div class="modal bottom-sheet">
+
+    <div class="modal-handle"></div>
+
+    <div class="modal-title" style="margin-bottom:20px;">Add Transaction</div>
+
+    <div class="type-toggle">
+
+      <button class="type-btn active-expense" id="txTypeExpense" onclick="setTxType('expense')">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>Expense
+
+      </button>
+
+      <button class="type-btn" id="txTypeIncome" onclick="setTxType('income')">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>Income
+
+      </button>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">Amount (₹)</label><input class="form-input" type="number" id="txAmount" placeholder="0.00" min="0" step="0.01"></div>
+
+      <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" id="txDate"></div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">Time</label><input class="form-input" type="time" id="txTime"></div>
+
+      <div class="form-group"><label class="form-label">Mode</label><select class="form-select" id="txMode"><option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option><option>Cheque</option><option>Other</option></select></div>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">Category</label><select class="form-select" id="txCat"></select></div>
+
+    <div class="form-group"><label class="form-label">Description</label><input class="form-input" type="text" id="txDesc" placeholder="What was this for?"></div>
+
+    <button class="submit-btn" onclick="submitTx()">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Entry
+
+    </button>
+
+    <button class="cancel-btn" onclick="closeModal('addTxOverlay')">Cancel</button>
+
+  </div>
+
+</div>
+
+<!-- ADD LEND/BORROW MODAL -->
+
+<div class="overlay" id="addLBOverlay" style="display:none;">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <div class="modal-title" id="lbModalTitle">Lend Money</div>
+
+      <button class="modal-close" onclick="closeModal('addLBOverlay')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+
+    </div>
+
+    <!-- Auto-classify notice -->
+
+    <div id="lbAutoNotice" style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;margin-bottom:16px;font-size:12px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="margin-top:1px;flex-shrink:0;color:var(--gold)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+
+      <span id="lbAutoText">Lending will be <strong style="color:var(--red)">recorded as Expense</strong> (reduces your balance). Repayments will be tracked as income when received.</span>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">Amount (₹)</label><input class="form-input" type="number" id="lbAmount" placeholder="0.00" min="0" step="0.01"></div>
+
+      <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" id="lbDate"></div>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">Person Name</label><input class="form-input" type="text" id="lbPerson" placeholder="Who are you lending to / borrowing from?"></div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">Mode</label><select class="form-select" id="lbMode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Card</option><option>Other</option></select></div>
+
+      <div class="form-group"><label class="form-label">Due Date (optional)</label><input class="form-input" type="date" id="lbDue"></div>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">Note</label><input class="form-input" type="text" id="lbNote" placeholder="Reason / purpose..."></div>
+
+    <button class="submit-btn" id="lbSubmitBtn" onclick="submitLB()">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Record &amp; Add to Transactions
+
+    </button>
+
+    <button class="cancel-btn" onclick="closeModal('addLBOverlay')">Cancel</button>
+
+  </div>
+
+</div>
+
+<!-- REPAYMENT MODAL -->
+
+<div class="overlay" id="repayOverlay" style="display:none;">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <div class="modal-title" id="repayTitle">Record Repayment</div>
+
+      <button class="modal-close" onclick="closeModal('repayOverlay')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+
+    </div>
+
+    <div class="repay-info" id="repayInfo"></div>
+
+    <div id="repayAutoNotice" style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;margin-bottom:16px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0;color:var(--gold)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+
+      <span id="repayAutoText"></span>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">Repayment Amount (₹)</label><input class="form-input" type="number" id="repayAmount" placeholder="0.00" min="0" step="0.01"></div>
+
+      <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" id="repayDate"></div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">Mode</label><select class="form-select" id="repayMode"><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Card</option><option>Other</option></select></div>
+
+      <div class="form-group"><label class="form-label">Time</label><input class="form-input" type="time" id="repayTime"></div>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">Note</label><input class="form-input" type="text" id="repayNote" placeholder="Optional note..."></div>
+
+    <button class="submit-btn green" onclick="submitRepayment()">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Record Repayment
+
+    </button>
+
+    <button class="cancel-btn" onclick="closeModal('repayOverlay')">Cancel</button>
+
+  </div>
+
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+
+<div class="overlay" id="deleteOverlay" style="display:none;">
+
+  <div class="confirm-modal">
+
+    <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg></div>
+
+    <div class="confirm-title" id="deleteTitle">Delete Entry?</div>
+
+    <div class="confirm-body" id="deleteBody">This action cannot be undone.</div>
+
+    <div class="confirm-actions">
+
+      <button class="confirm-btn" onclick="closeModal('deleteOverlay')">Cancel</button>
+
+      <button class="confirm-btn danger" onclick="confirmDelete()">Delete</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- CLEAR ALL CONFIRM -->
+
+<div class="overlay" id="clearOverlay" style="display:none;">
+
+  <div class="confirm-modal">
+
+    <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg></div>
+
+    <div class="confirm-title">Clear All Data?</div>
+
+    <div class="confirm-body">This permanently deletes all transactions and lend/borrow records. Cannot be undone.</div>
+
+    <div class="confirm-actions">
+
+      <button class="confirm-btn" onclick="closeModal('clearOverlay')">Cancel</button>
+
+      <button class="confirm-btn danger" onclick="clearAllData()">Yes, Clear</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- PDF MODAL -->
+
+<div class="overlay" id="pdfOverlay" style="display:none;">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <div class="modal-title">Export Statement</div>
+
+      <button class="modal-close" onclick="closeModal('pdfOverlay')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">Company / App Name</label><input class="form-input" id="pdfCompany" value="MOVA"></div>
+
+    <div class="form-group"><label class="form-label">Website (optional)</label><input class="form-input" id="pdfWebsite" value="https://mohanraj211204-ai.github.io/Income-and-Expenses/"></div>
+
+    <div class="form-row">
+
+      <div class="form-group"><label class="form-label">From Date</label><input class="form-input" type="date" id="pdfFrom"></div>
+
+      <div class="form-group"><label class="form-label">To Date</label><input class="form-input" type="date" id="pdfTo"></div>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">Filter Type</label><select class="form-select" id="pdfFilter"><option value="all">All Transactions</option><option value="expense">Expense Only</option><option value="income">Income Only</option><option value="lend">Lend Only</option><option value="borrow">Borrow Only</option></select></div>
+
+    <button class="submit-btn" onclick="generatePDF()">
+
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF
+
+    </button>
+
+    <button class="cancel-btn" onclick="closeModal('pdfOverlay')">Cancel</button>
+
+  </div>
+
+</div>
+
+<!-- SETTINGS PANEL -->
+
+<div class="settings-overlay" id="settingsOverlay" onclick="handleSettingsClick(event)">
+
+  <div class="settings-panel" id="settingsPanel">
+
+    <div class="settings-header">
+
+      <div class="settings-title">Settings</div>
+
+      <button class="modal-close" onclick="closeSettings()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+
+    </div>
+
+    <div class="settings-section" style="margin-top:14px;">
+
+      <div class="settings-section-label">Profile</div>
+
+      <div class="settings-item">
+
+        <div class="settings-item-left">
+
+          <div class="settings-item-icon" style="background:var(--gold-dim);color:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+
+          <div><div class="settings-item-label">Profile Photo</div><div class="settings-item-sub">Tap to change</div></div>
+
+        </div>
+
+        <button class="settings-btn" style="border-color:var(--border2);color:var(--text2);" onclick="triggerPhotoPick()">Change</button>
+
+      </div>
+
+      <div class="settings-item">
+
+        <div class="settings-item-left">
+
+          <div class="settings-item-icon" style="background:var(--red-dim);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+
+          <div><div class="settings-item-label">Remove Photo</div><div class="settings-item-sub">Reset to default</div></div>
+
+        </div>
+
+        <button class="settings-btn" onclick="removePhoto()">Remove</button>
+
+      </div>
+
+    </div>
+
+    <div class="settings-section" style="margin-top:14px;">
+
+      <div class="settings-section-label">Security</div>
+
+      <div class="settings-item">
+
+        <div class="settings-item-left">
+
+          <div class="settings-item-icon" style="background:var(--gold-dim);color:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+
+          <div><div class="settings-item-label">App Lock</div><div class="settings-item-sub" id="lockStatusText">Disabled</div></div>
+
+        </div>
+
+        <label style="position:relative;width:40px;height:22px;cursor:pointer;">
+
+          <input type="checkbox" id="lockToggle" onchange="toggleLock()" style="opacity:0;width:0;height:0;">
+
+          <span id="lockSlider" style="position:absolute;inset:0;background:var(--border2);border-radius:11px;transition:.25s;"></span>
+
+          <span id="lockKnob" style="position:absolute;width:16px;height:16px;left:3px;top:3px;background:var(--muted);border-radius:50%;transition:.25s;"></span>
+
+        </label>
+
+      </div>
+
+      <div class="settings-item" id="pinItem" style="display:none;">
+
+        <div class="settings-item-left">
+
+          <div class="settings-item-icon" style="background:var(--blue-dim);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg></div>
+
+          <div><div class="settings-item-label">Set / Change PIN</div><div class="settings-item-sub">4-digit unlock code</div></div>
+
+        </div>
+
+        <button class="settings-btn" style="border-color:var(--border2);color:var(--text2);" onclick="openPinModal()">Configure</button>
+
+      </div>
+
+    </div>
+
+    <div class="settings-section" style="margin-top:14px;">
+
+      <div class="settings-section-label">Data</div>
+
+      <div class="settings-item">
+
+        <div class="settings-item-left">
+
+          <div class="settings-item-icon" style="background:var(--red-dim);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg></div>
+
+          <div><div class="settings-item-label">Clear All Data</div><div class="settings-item-sub">Remove all records</div></div>
+
+        </div>
+
+        <button class="settings-btn" onclick="document.getElementById('clearOverlay').style.display='flex'">Clear</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- PIN MODAL -->
+
+<div class="overlay" id="pinOverlay" style="display:none;">
+
+  <div class="modal" style="max-width:360px;">
+
+    <div class="modal-header">
+
+      <div class="modal-title">Set PIN</div>
+
+      <button class="modal-close" onclick="closeModal('pinOverlay')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+
+    </div>
+
+    <div class="form-group"><label class="form-label">New PIN (4 digits)</label><input class="form-input" type="password" id="pinInput1" maxlength="4" inputmode="numeric" placeholder="••••" style="letter-spacing:8px;font-size:22px;text-align:center;"></div>
+
+    <div class="form-group"><label class="form-label">Confirm PIN</label><input class="form-input" type="password" id="pinInput2" maxlength="4" inputmode="numeric" placeholder="••••" style="letter-spacing:8px;font-size:22px;text-align:center;"></div>
+
+    <div style="font-size:12px;color:var(--red);font-weight:600;text-align:center;margin-bottom:8px;min-height:18px;" id="pinError"></div>
+
+    <button class="submit-btn" onclick="savePin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save PIN</button>
+
+  </div>
+
+</div>
+
+<!-- PDF LOADING -->
+
+<div class="pdf-loading" id="pdfLoading">
+
+  <div class="spinner"></div>
+
+  <div class="pdf-loading-text">Generating PDF...</div>
+
+  <div class="pdf-loading-sub">Please wait</div>
+
+</div>
+
+<script>
+
+// ──────────────────────────────────────────────────
+
+// DATA STRUCTURES
+
+// ──────────────────────────────────────────────────
+
+/*
+
+  Transaction (unified list):
+
+  {
+
+    id: number,         // unique timestamp-based id
+
+    type: 'expense'|'income'|'lend'|'borrow'|'repayment-in'|'repayment-out',
+
+    amount: number,
+
+    date: 'YYYY-MM-DD',
+
+    time: 'HH:MM',
+
+    mode: string,
+
+    cat: string,        // category (expense/income only)
+
+    desc: string,       // description
+
+    person: string,     // for lend/borrow/repayments
+
+    lbId: number,       // for repayments: links to lbRecord.id
+
+    note: string,
+
+  }
+
+  LBRecord (lend/borrow master record):
+
+  {
+
+    id: number,
+
+    type: 'lend'|'borrow',
+
+    originalAmount: number,
+
+    person: string,
+
+    date: 'YYYY-MM-DD',
+
+    mode: string,
+
+    due: string,
+
+    note: string,
+
+    txId: number,       // links to the original transaction
+
+    repayments: [{ txId, amount, date }],  // list of repayment tx ids
+
+    status: 'pending'|'partial'|'settled'
+
+  }
+
+*/
+
+let transactions = JSON.parse(localStorage.getItem('mova_tx') || '[]');
+
+let lbRecords    = JSON.parse(localStorage.getItem('mova_lb2') || '[]');
+
+let settings     = JSON.parse(localStorage.getItem('mova_cfg') || '{"lockEnabled":false,"pin":""}');
+
+let LOGO_B64     = localStorage.getItem('mova_logo') || null;
+
+function saveTx()  { localStorage.setItem('mova_tx',  JSON.stringify(transactions)); }
+
+function saveLB()  { localStorage.setItem('mova_lb2', JSON.stringify(lbRecords)); }
+
+function saveCfg() { localStorage.setItem('mova_cfg', JSON.stringify(settings)); }
+
+// ── UTILS ──
+
+const fmt = n => '₹' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+
+function today() { return new Date().toISOString().slice(0,10); }
+
+function nowTime(){ return new Date().toTimeString().slice(0,5); }
+
+function fmtDate(d){ return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'long',year:'numeric'}); }
+
+function uid(){ return Date.now() + Math.floor(Math.random()*1000); }
+
+// ── LOGO ──
+
+function updateLogo(){
+
+  const el = document.getElementById('headerLogo');
+
+  const ll = document.getElementById('lockLogo');
+
+  if(LOGO_B64){
+
+    el.innerHTML = `<img src="${LOGO_B64}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`;
+
+    ll.innerHTML = `<img src="${LOGO_B64}" style="width:100%;height:100%;object-fit:cover;border-radius:18px;">`;
+
+  } else {
+
+    el.innerHTML = 'M'; ll.innerHTML = 'M';
+
+  }
+
+}
+
+function triggerPhotoPick(){
+
+  const inp = document.createElement('input'); inp.type='file'; inp.accept='image/*';
+
+  inp.onchange = e => {
+
+    const file=e.target.files[0]; if(!file) return;
+
+    const r=new FileReader();
+
+    r.onload = ev => {
+
+      // Simple crop to square and compress
+
+      const img=new Image(); img.onload=()=>{
+
+        const c=document.createElement('canvas'); c.width=c.height=200;
+
+        const ctx=c.getContext('2d');
+
+        ctx.beginPath();ctx.arc(100,100,100,0,Math.PI*2);ctx.closePath();ctx.clip();
+
+        const s=Math.min(img.width,img.height);
+
+        ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,200,200);
+
+        LOGO_B64=c.toDataURL('image/jpeg',0.8);
+
+        localStorage.setItem('mova_logo',LOGO_B64); updateLogo();
+
+      }; img.src=ev.target.result;
+
+    }; r.readAsDataURL(file);
+
+  }; inp.click();
+
+}
+
+function removePhoto(){ LOGO_B64=null; localStorage.removeItem('mova_logo'); updateLogo(); }
+
+// ── CATEGORIES ──
+
+const CATS = {
+
+  expense: ['Food & Drink','Travel','Groceries','Education','Shopping','Health','Entertainment','Utilities','Rent','Other'],
+
+  income:  ['Salary','Business','Freelance','Gift','Investment','Other']
+
+};
+
+const CAT_ICONS = {
+
+  'Food & Drink':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+
+  'Travel':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+
+  'Groceries':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+
+  'Education':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+
+  'Shopping':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+
+  'Health':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+
+  'Entertainment':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+
+  'Utilities':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+
+  'Rent':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+
+  'Salary':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+
+  'Business':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+
+  'Freelance':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>`,
+
+  'Gift':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
+
+  'Investment':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+
+  'Other':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+
+};
+
+const TYPE_ICONS = {
+
+  'expense':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+
+  'income':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+
+  'lend':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="19 11 22 11 22 8"/><path d="M16.5 14.5a5 5 0 0 1 5.5 0"/></svg>`,
+
+  'borrow':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="22 11 19 11 19 8"/><path d="M21.5 14.5a5 5 0 0 0-5.5 0"/></svg>`,
+
+  'repayment-in':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>`,
+
+  'repayment-out':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 6 10.5 15.5 15.5 10.5 23 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+
+};
+
+function getIcon(tx){
+
+  if(tx.cat && CAT_ICONS[tx.cat]) return CAT_ICONS[tx.cat];
+
+  return TYPE_ICONS[tx.type] || TYPE_ICONS['expense'];
+
+}
+
+function getTypeClass(type){
+
+  if(type==='income') return 'income';
+
+  if(type==='lend') return 'lend';
+
+  if(type==='borrow') return 'borrow';
+
+  if(type==='repayment-in') return 'repayment-in';
+
+  if(type==='repayment-out') return 'repayment-out';
+
+  return 'expense';
+
+}
+
+function getAmountClass(type){
+
+  if(type==='income'||type==='borrow'||type==='repayment-in') return 'pos';
+
+  if(type==='lend') return 'blue';
+
+  return 'neg';
+
+}
+
+function getAmountSign(type){
+
+  if(type==='income'||type==='borrow'||type==='repayment-in') return '+';
+
+  return '-';
+
+}
+
+function getTagLabel(type){
+
+  const map = {expense:'EXPENSE',income:'INCOME',lend:'LENT',borrow:'BORROWED','repayment-in':'REPAID IN','repayment-out':'REPAID OUT'};
+
+  return map[type]||type.toUpperCase();
+
+}
+
+function getTagClass(type){
+
+  if(type==='income') return 'income';
+
+  if(type==='lend') return 'lend';
+
+  if(type==='borrow') return 'borrow';
+
+  if(type==='repayment-in'||type==='repayment-out') return 'repay';
+
+  return 'expense';
+
+}
+
+// ── BALANCE LOGIC ──
+
+// lend = expense (money goes out)
+
+// borrow = income (money comes in)
+
+// repayment-in = income (someone pays you back → you lent)
+
+// repayment-out = expense (you pay back → you borrowed)
+
+function signedAmount(tx){
+
+  if(tx.type==='income'||tx.type==='borrow'||tx.type==='repayment-in') return tx.amount;
+
+  return -tx.amount;
+
+}
+
+// ── LB HELPERS ──
+
+function getLBRepaid(lb){
+
+  return lb.repayments ? lb.repayments.reduce((s,r)=>s+r.amount,0) : 0;
+
+}
+
+function getLBRemaining(lb){ return Math.max(0, lb.originalAmount - getLBRepaid(lb)); }
+
+function getLBStatus(lb){
+
+  const rem = getLBRemaining(lb);
+
+  if(rem<=0) return 'settled';
+
+  if(getLBRepaid(lb)>0) return 'partial';
+
+  return 'pending';
+
+}
+
+// ── SUMMARY ──
+
+function renderSummary(){
+
+  const exp = transactions.filter(t=>t.type==='expense'||t.type==='lend'||t.type==='repayment-out').reduce((s,t)=>s+t.amount,0);
+
+  const inc = transactions.filter(t=>t.type==='income'||t.type==='borrow'||t.type==='repayment-in').reduce((s,t)=>s+t.amount,0);
+
+  const bal = inc - exp;
+
+  document.getElementById('sumExpense').textContent = fmt(exp);
+
+  document.getElementById('sumIncome').textContent  = fmt(inc);
+
+  const bEl = document.getElementById('sumBalance');
+
+  bEl.textContent = (bal>=0?'+':'-')+fmt(Math.abs(bal));
+
+  bEl.className = 'stat-val balance'+(bal<0?' neg':'');
+
+  // LB pending totals
+
+  const pendingLent = lbRecords.filter(r=>r.type==='lend'&&getLBStatus(r)!=='settled').reduce((s,r)=>s+getLBRemaining(r),0);
+
+  const pendingBorr = lbRecords.filter(r=>r.type==='borrow'&&getLBStatus(r)!=='settled').reduce((s,r)=>s+getLBRemaining(r),0);
+
+  document.getElementById('lbLentPending').textContent     = fmt(pendingLent);
+
+  document.getElementById('lbBorrowedPending').textContent = fmt(pendingBorr);
+
+  // LB badge
+
+  const pending = lbRecords.filter(r=>getLBStatus(r)!=='settled').length;
+
+  const badge = document.getElementById('lbPendingBadge');
+
+  badge.textContent = pending;
+
+  badge.style.display = pending>0?'':'none';
+
+}
+
+// ── FILTER CATS ──
+
+function updateFilterCats(){
+
+  const sel = document.getElementById('filterCat');
+
+  const cur = sel.value;
+
+  const cats = [...new Set(transactions.filter(t=>t.cat).map(t=>t.cat))].sort();
+
+  sel.innerHTML = '<option value="all">All Categories</option>' + cats.map(c=>`<option>${c}</option>`).join('');
+
+  if(cats.includes(cur)) sel.value=cur;
+
+}
+
+// ── RENDER TRANSACTION LIST ──
+
+let currentTab = 'all';
+
+function renderTxList(){
+
+  const typeF = document.getElementById('filterType').value;
+
+  const catF  = document.getElementById('filterCat').value;
+
+  const q     = document.getElementById('searchQ').value.toLowerCase();
+
+  let filtered = [...transactions].filter(t=>{
+
+    if(typeF!=='all'){
+
+      if(typeF==='repayment' && t.type!=='repayment-in' && t.type!=='repayment-out') return false;
+
+      if(typeF!=='repayment' && t.type!==typeF) return false;
+
+    }
+
+    if(catF!=='all' && t.cat!==catF) return false;
+
+    if(q && !t.desc.toLowerCase().includes(q) && !(t.person||'').toLowerCase().includes(q) && !(t.cat||'').toLowerCase().includes(q)) return false;
+
+    return true;
+
+  });
+
+  filtered.sort((a,b)=> (b.date+b.time).localeCompare(a.date+a.time));
+
+  const container = document.getElementById('txList');
+
+  document.getElementById('txCount').textContent = `${filtered.length} entr${filtered.length===1?'y':'ies'}`;
+
+  if(!filtered.length){
+
+    container.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><p>No transactions yet.<br>Tap <strong>+</strong> to add your first entry.</p></div>`;
+
+    return;
+
+  }
+
+  // Group by date
+
+  const groups = {};
+
+  filtered.forEach(t=>{ (groups[t.date]=groups[t.date]||[]).push(t); });
+
+  let html='';
+
+  Object.keys(groups).sort((a,b)=>b.localeCompare(a)).forEach(date=>{
+
+    html+=`<div class="tx-date-label">${fmtDate(date)}</div>`;
+
+    groups[date].forEach(t=>{
+
+      const tc = getTypeClass(t.type);
+
+      const ac = getAmountClass(t.type);
+
+      const sign = getAmountSign(t.type);
+
+      const icon = getIcon(t);
+
+      const tag  = getTagLabel(t.type);
+
+      const tagC = getTagClass(t.type);
+
+      const lbLink = t.lbId ? `<span class="tx-link-badge" onclick="scrollToLB(${t.lbId})" title="Linked record"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Linked</span>` : '';
+
+      const personMeta = t.person ? `<span>👤 ${t.person}</span>` : '';
+
+      const catMeta = t.cat ? `<span>${t.cat}</span>` : '';
+
+      const timeMeta = t.time ? `<span>${t.time}</span>` : '';
+
+      const modeMeta = `<span>${t.mode}</span>`;
+
+      html+=`<div class="tx-item ${tc}">
+
+        <div class="tx-icon ${tc}">${icon}</div>
+
+        <div class="tx-info">
+
+          <div class="tx-desc">${t.desc||t.person||'—'}</div>
+
+          <div class="tx-meta">
+
+            <span class="tx-tag ${tagC}">${tag}</span>
+
+            ${catMeta}${timeMeta}${modeMeta}${personMeta}${lbLink}
+
+          </div>
+
+        </div>
+
+        <div class="tx-right">
+
+          <div class="tx-amount ${ac}">${sign}${fmt(t.amount)}</div>
+
+          <div class="tx-actions">
+
+            <button class="tx-btn del-btn" onclick="openDeleteTx(${t.id})" title="Delete">
+
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>`;
+
+    });
+
+  });
+
+  container.innerHTML=html;
+
+}
+
+// ── RENDER LB LIST ──
+
+function renderLBList(){
+
+  const container = document.getElementById('lbList');
+
+  document.getElementById('lbCount').textContent = `${lbRecords.length} record${lbRecords.length===1?'':'s'}`;
+
+  if(!lbRecords.length){
+
+    container.innerHTML=`<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><p>No lend/borrow records.<br>Tap <strong>+</strong> → Lent or Borrowed to create one.</p></div>`;
+
+    return;
+
+  }
+
+  const sorted=[...lbRecords].sort((a,b)=>b.date.localeCompare(a.date));
+
+  let html='';
+
+  sorted.forEach(lb=>{
+
+    const status = getLBStatus(lb);
+
+    const repaid = getLBRepaid(lb);
+
+    const remain = getLBRemaining(lb);
+
+    const pct    = lb.originalAmount>0 ? Math.min(100,(repaid/lb.originalAmount)*100) : 0;
+
+    const isLend = lb.type==='lend';
+
+    const color  = isLend ? 'var(--blue)' : 'var(--purple)';
+
+    let statusHtml='';
+
+    if(status==='settled') statusHtml=`<div class="lb-status settled">✓ Settled</div>`;
+
+    else if(status==='partial') statusHtml=`<div class="lb-status partial">◑ Partial</div>`;
+
+    else statusHtml=`<div class="lb-status pending">⏳ Pending</div>`;
+
+    const dueStr = lb.due ? `<span class="lb-meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Due: ${lb.due}</span>` : '';
+
+    const noteStr= lb.note ? `<span class="lb-meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>${lb.note}</span>` : '';
+
+    const repayBtn = status!=='settled' ? `<button class="lb-action-btn repay" onclick="openRepayModal(${lb.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Repayment</button>` : '';
+
+    html+=`<div class="lb-card ${lb.type}" id="lbCard-${lb.id}">
+
+      <div class="lb-card-header">
+
+        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;">
+
+          <span style="font-size:16px;">${isLend?'→':'←'}</span>
+
+          <div class="lb-person" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${lb.person}</div>
+
+          <div class="lb-type-tag ${lb.type}">${isLend?'LENT':'BORROWED'}</div>
+
+        </div>
+
+        ${statusHtml}
+
+      </div>
+
+      <div class="lb-amounts">
+
+        <div class="lb-amt-cell"><div class="lb-amt-label">Original</div><div class="lb-amt-val orig">${fmt(lb.originalAmount)}</div></div>
+
+        <div class="lb-amt-cell"><div class="lb-amt-label">${isLend?'Received':'Returned'}</div><div class="lb-amt-val repaid">${fmt(repaid)}</div></div>
+
+        <div class="lb-amt-cell"><div class="lb-amt-label">Remaining</div><div class="lb-amt-val remain ${remain<=0?'lb-remain-zero':''}">${remain<=0?'Nil':fmt(remain)}</div></div>
+
+      </div>
+
+      <div class="lb-progress-row">
+
+        <div class="lb-progress-bar"><div class="lb-progress-fill ${lb.type}" style="width:${pct.toFixed(1)}%"></div></div>
+
+        <span style="font-size:11px;color:var(--muted);font-weight:700;min-width:34px;text-align:right;">${pct.toFixed(0)}%</span>
+
+      </div>
+
+      <div class="lb-card-footer">
+
+        <span class="lb-meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${lb.date}</span>
+
+        <span class="lb-meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>${lb.mode}</span>
+
+        ${dueStr}${noteStr}
+
+        <div class="lb-card-actions">
+
+          ${repayBtn}
+
+          <button class="lb-action-btn delete" onclick="openDeleteLB(${lb.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg></button>
+
+        </div>
+
+      </div>
+
+    </div>`;
+
+  });
+
+  container.innerHTML=html;
+
+}
+
+function scrollToLB(lbId){
+
+  switchTab('lb');
+
+  setTimeout(()=>{
+
+    const el=document.getElementById('lbCard-'+lbId);
+
+    if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--gold)';setTimeout(()=>{el.style.outline='';},1500);}
+
+  },100);
+
+}
+
+function renderAll(){
+
+  renderSummary();
+
+  renderTxList();
+
+  renderLBList();
+
+  updateFilterCats();
+
+}
+
+// ── TABS ──
+
+function switchTab(tab){
+
+  currentTab=tab;
+
+  document.getElementById('viewAll').style.display = tab==='all'?'':'none';
+
+  document.getElementById('viewLB').style.display  = tab==='lb'?'':'none';
+
+  document.getElementById('filterBar').style.display = tab==='all'?'':'none';
+
+  document.getElementById('tabAll').className='tab-btn'+(tab==='all'?' active':'');
+
+  document.getElementById('tabLB').className='tab-btn'+(tab==='lb'?' active':'');
+
+}
+
+// ── MODAL HELPERS ──
+
+function openModal(id){ document.getElementById(id).style.display='flex'; }
+
+function closeModal(id){ document.getElementById(id).style.display='none'; }
+
+// ── FAB MENU ──
+
+function toggleFabMenu(){
+
+  const sub=document.getElementById('fabSubmenu');
+
+  const ov=document.getElementById('fabOverlay');
+
+  const open=sub.classList.contains('open');
+
+  sub.classList.toggle('open',!open);
+
+  ov.classList.toggle('open',!open);
+
+}
+
+function closeFabMenu(){
+
+  document.getElementById('fabSubmenu').classList.remove('open');
+
+  document.getElementById('fabOverlay').classList.remove('open');
+
+}
+
+// ── ADD TRANSACTION ──
+
+let txType='expense';
+
+function openAddTxModal(){
+
+  txType='expense'; setTxType('expense');
+
+  document.getElementById('txDate').value=today();
+
+  document.getElementById('txTime').value=nowTime();
+
+  document.getElementById('txAmount').value='';
+
+  document.getElementById('txDesc').value='';
+
+  openModal('addTxOverlay');
+
+}
+
+function setTxType(t){
+
+  txType=t;
+
+  document.getElementById('txTypeExpense').className='type-btn'+(t==='expense'?' active-expense':'');
+
+  document.getElementById('txTypeIncome').className='type-btn'+(t==='income'?' active-income':'');
+
+  document.getElementById('txCat').innerHTML = CATS[t].map(c=>`<option>${c}</option>`).join('');
+
+}
+
+function submitTx(){
+
+  const amount=parseFloat(document.getElementById('txAmount').value);
+
+  if(!amount||amount<=0){alert('Enter a valid amount');return;}
+
+  const desc=document.getElementById('txDesc').value.trim()||'Untitled';
+
+  const cat =document.getElementById('txCat').value;
+
+  const date=document.getElementById('txDate').value;
+
+  const time=document.getElementById('txTime').value;
+
+  const mode=document.getElementById('txMode').value;
+
+  transactions.push({id:uid(),type:txType,amount,desc,cat,date,time,mode,person:'',note:''});
+
+  saveTx(); renderAll(); closeModal('addTxOverlay');
+
+}
+
+// ── ADD LEND/BORROW ──
+
+let lbType='lend';
+
+function openAddLBModal(type){
+
+  lbType=type;
+
+  const isLend=type==='lend';
+
+  document.getElementById('lbModalTitle').textContent=isLend?'Lend Money':'Borrow Money';
+
+  document.getElementById('lbAutoText').innerHTML=isLend
+
+    ? `Lending will be <strong style="color:var(--red)">recorded as Expense</strong> (reduces your balance). Repayments received will be added as income.`
+
+    : `Borrowing will be <strong style="color:var(--green)">recorded as Income</strong> (increases your balance). Repayments made will be recorded as expense.`;
+
+  document.getElementById('lbSubmitBtn').className='submit-btn '+(isLend?'blue':'purple');
+
+  document.getElementById('lbDate').value=today();
+
+  document.getElementById('lbAmount').value='';
+
+  document.getElementById('lbPerson').value='';
+
+  document.getElementById('lbNote').value='';
+
+  document.getElementById('lbDue').value='';
+
+  openModal('addLBOverlay');
+
+}
+
+function submitLB(){
+
+  const amount=parseFloat(document.getElementById('lbAmount').value);
+
+  if(!amount||amount<=0){alert('Enter a valid amount');return;}
+
+  const person=document.getElementById('lbPerson').value.trim();
+
+  if(!person){alert('Enter the person name');return;}
+
+  const date=document.getElementById('lbDate').value;
+
+  const mode=document.getElementById('lbMode').value;
+
+  const due =document.getElementById('lbDue').value;
+
+  const note=document.getElementById('lbNote').value.trim();
+
+  const isLend=lbType==='lend';
+
+  // Create the transaction (auto-classified)
+
+  const txType=isLend?'lend':'borrow';
+
+  const txId=uid();
+
+  const desc=isLend?`Lent to ${person}`:`Borrowed from ${person}`;
+
+  transactions.push({id:txId,type:txType,amount,desc,cat:'',date,time:nowTime(),mode,person,note,lbId:null});
+
+  // Create LB master record
+
+  const lbId=uid()+1;
+
+  const lb={id:lbId,type:lbType,originalAmount:amount,person,date,mode,due,note,txId,repayments:[],status:'pending'};
+
+  // Link back
+
+  const tx=transactions.find(t=>t.id===txId);
+
+  if(tx) tx.lbId=lbId;
+
+  lbRecords.push(lb);
+
+  saveTx(); saveLB(); renderAll(); closeModal('addLBOverlay');
+
+}
+
+// ── REPAYMENT ──
+
+let repayLbId=null;
+
+function openRepayModal(lbId){
+
+  const lb=lbRecords.find(r=>r.id===lbId);
+
+  if(!lb) return;
+
+  repayLbId=lbId;
+
+  const isLend=lb.type==='lend';
+
+  const repaid=getLBRepaid(lb);
+
+  const remain=getLBRemaining(lb);
+
+  document.getElementById('repayTitle').textContent=isLend?'Record Repayment Received':'Record Repayment Made';
+
+  document.getElementById('repayAutoText').innerHTML=isLend
+
+    ? `Repayment received will be <strong style="color:var(--green)">recorded as Income</strong> and linked to the original lending.`
+
+    : `Repayment made will be <strong style="color:var(--red)">recorded as Expense</strong> and linked to the original borrowing.`;
+
+  document.getElementById('repayInfo').innerHTML=`
+
+    <div class="repay-info-title">Linked Record — ${lb.person}</div>
+
+    <div class="repay-info-grid">
+
+      <div class="repay-info-cell"><div class="repay-info-label">Original</div><div class="repay-info-val" style="color:var(--text2)">${fmt(lb.originalAmount)}</div></div>
+
+      <div class="repay-info-cell"><div class="repay-info-label">Repaid</div><div class="repay-info-val" style="color:var(--green)">${fmt(repaid)}</div></div>
+
+      <div class="repay-info-cell"><div class="repay-info-label">Remaining</div><div class="repay-info-val" style="color:var(--amber)">${fmt(remain)}</div></div>
+
+    </div>`;
+
+  document.getElementById('repayAmount').value='';
+
+  document.getElementById('repayDate').value=today();
+
+  document.getElementById('repayTime').value=nowTime();
+
+  document.getElementById('repayNote').value='';
+
+  openModal('repayOverlay');
+
+}
+
+function submitRepayment(){
+
+  const lb=lbRecords.find(r=>r.id===repayLbId);
+
+  if(!lb) return;
+
+  const amount=parseFloat(document.getElementById('repayAmount').value);
+
+  if(!amount||amount<=0){alert('Enter a valid amount');return;}
+
+  const remain=getLBRemaining(lb);
+
+  if(amount>remain+0.01){alert(`Maximum repayable amount is ${fmt(remain)}`);return;}
+
+  const date=document.getElementById('repayDate').value;
+
+  const time=document.getElementById('repayTime').value;
+
+  const mode=document.getElementById('repayMode').value;
+
+  const note=document.getElementById('repayNote').value.trim();
+
+  const isLend=lb.type==='lend';
+
+  // Auto-classify: if lend → repayment-in (income), if borrow → repayment-out (expense)
+
+  const txType=isLend?'repayment-in':'repayment-out';
+
+  const desc=isLend?`Repayment from ${lb.person}`:`Repayment to ${lb.person}`;
+
+  const txId=uid();
+
+  transactions.push({id:txId,type:txType,amount,desc,cat:'',date,time,mode,person:lb.person,note,lbId:repayLbId});
+
+  // Update LB record
+
+  if(!lb.repayments) lb.repayments=[];
+
+  lb.repayments.push({txId,amount,date});
+
+  lb.status=getLBStatus(lb);
+
+  saveTx(); saveLB(); renderAll(); closeModal('repayOverlay');
+
+}
+
+// ── DELETE ──
+
+let deleteTarget={type:null,id:null};
+
+function openDeleteTx(id){
+
+  const tx=transactions.find(t=>t.id===id);
+
+  if(!tx) return;
+
+  deleteTarget={type:'tx',id};
+
+  document.getElementById('deleteTitle').textContent='Delete Transaction?';
+
+  document.getElementById('deleteBody').textContent=`This will remove "${tx.desc||tx.person||'entry'}" (${fmt(tx.amount)}). The balance will be updated accordingly.`;
+
+  openModal('deleteOverlay');
+
+}
+
+function openDeleteLB(id){
+
+  const lb=lbRecords.find(r=>r.id===id);
+
+  if(!lb) return;
+
+  deleteTarget={type:'lb',id};
+
+  document.getElementById('deleteTitle').textContent='Delete Lend/Borrow Record?';
+
+  document.getElementById('deleteBody').textContent=`This removes the record for ${lb.person} (${fmt(lb.originalAmount)}) and all its linked transactions. This cannot be undone.`;
+
+  openModal('deleteOverlay');
+
+}
+
+function confirmDelete(){
+
+  if(deleteTarget.type==='tx'){
+
+    transactions=transactions.filter(t=>t.id!==deleteTarget.id);
+
+    saveTx();
+
+  } else if(deleteTarget.type==='lb'){
+
+    const lb=lbRecords.find(r=>r.id===deleteTarget.id);
+
+    if(lb){
+
+      // Remove the main tx and all repayment txs
+
+      const txIds=[lb.txId,...(lb.repayments||[]).map(r=>r.txId)].filter(Boolean);
+
+      transactions=transactions.filter(t=>!txIds.includes(t.id));
+
+      lbRecords=lbRecords.filter(r=>r.id!==deleteTarget.id);
+
+      saveTx(); saveLB();
+
+    }
+
+  }
+
+  renderAll(); closeModal('deleteOverlay');
+
+}
+
+function clearAllData(){
+
+  transactions=[]; lbRecords=[]; saveTx(); saveLB(); renderAll(); closeModal('clearOverlay');
+
+}
+
+// ── SETTINGS ──
+
+function openSettings(){ document.getElementById('settingsOverlay').classList.add('active'); syncSettings(); }
+
+function closeSettings(){ document.getElementById('settingsOverlay').classList.remove('active'); }
+
+function handleSettingsClick(e){ if(e.target.id==='settingsOverlay') closeSettings(); }
+
+function syncSettings(){
+
+  const tog=document.getElementById('lockToggle');
+
+  tog.checked=settings.lockEnabled;
+
+  document.getElementById('lockStatusText').textContent=settings.lockEnabled?'Enabled':'Disabled';
+
+  document.getElementById('pinItem').style.display=settings.lockEnabled?'':'none';
+
+  const slider=document.getElementById('lockSlider');
+
+  const knob=document.getElementById('lockKnob');
+
+  if(settings.lockEnabled){slider.style.background='rgba(245,166,35,.25)';knob.style.transform='translateX(18px)';knob.style.background='var(--gold)';}
+
+  else{slider.style.background='var(--border2)';knob.style.transform='';knob.style.background='var(--muted)';}
+
+}
+
+function toggleLock(){
+
+  settings.lockEnabled=document.getElementById('lockToggle').checked;
+
+  if(settings.lockEnabled&&!settings.pin){ setTimeout(openPinModal,100); }
+
+  saveCfg(); syncSettings();
+
+}
+
+// ── PIN ──
+
+function openPinModal(){ document.getElementById('pinInput1').value=''; document.getElementById('pinInput2').value=''; document.getElementById('pinError').textContent=''; openModal('pinOverlay'); }
+
+function savePin(){
+
+  const p1=document.getElementById('pinInput1').value.trim();
+
+  const p2=document.getElementById('pinInput2').value.trim();
+
+  if(!/^\d{4}$/.test(p1)){document.getElementById('pinError').textContent='PIN must be exactly 4 digits.';return;}
+
+  if(p1!==p2){document.getElementById('pinError').textContent='PINs do not match.';return;}
+
+  settings.pin=p1; settings.lockEnabled=true; saveCfg(); syncSettings(); closeModal('pinOverlay');
+
+}
+
+// ── LOCK SCREEN ──
+
+let lockBuf='';
+
+function initLock(){
+
+  if(settings.lockEnabled&&settings.pin){
+
+    document.getElementById('lockScreen').classList.add('active');
+
+    lockBuf=''; updateLockDots(); document.getElementById('lockError').textContent='';
+
+  }
+
+}
+
+function lockKey(d){
+
+  if(lockBuf.length>=4) return;
+
+  lockBuf+=d; updateLockDots();
+
+  if(lockBuf.length===4){
+
+    if(lockBuf===settings.pin){ document.getElementById('lockScreen').classList.remove('active'); }
+
+    else{
+
+      document.querySelectorAll('.pin-dot').forEach(el=>el.classList.add('error'));
+
+      document.getElementById('lockError').textContent='Incorrect PIN. Try again.';
+
+      setTimeout(()=>{ lockBuf=''; updateLockDots(); document.querySelectorAll('.pin-dot').forEach(el=>el.classList.remove('error')); document.getElementById('lockError').textContent=''; },700);
+
+    }
+
+  }
+
+}
+
+function lockDel(){ lockBuf=lockBuf.slice(0,-1); updateLockDots(); }
+
+function updateLockDots(){ for(let i=0;i<4;i++) document.getElementById('ld'+i).classList.toggle('filled',i<lockBuf.length); }
+
+// ── PDF ──
+
+function openPdfModal(){
+
+  document.getElementById('pdfFrom').value=today().slice(0,7)+'-01';
+
+  document.getElementById('pdfTo').value=today();
+
+  openModal('pdfOverlay');
+
+}
+
+async function generatePDF(){
+
+  const company=document.getElementById('pdfCompany').value||'MOVA';
+
+  const website=document.getElementById('pdfWebsite').value||'';
+
+  const fromD=document.getElementById('pdfFrom').value;
+
+  const toD=document.getElementById('pdfTo').value;
+
+  const typeF=document.getElementById('pdfFilter').value;
+
+  let filtered=transactions.filter(t=>{
+
+    if(t.date<fromD||t.date>toD) return false;
+
+    if(typeF!=='all'&&t.type!==typeF) return false;
+
+    return true;
+
+  });
+
+  closeModal('pdfOverlay');
+
+  document.getElementById('pdfLoading').classList.add('active');
+
+  await new Promise(r=>setTimeout(r,50));
+
+  try{
+
+    if(!window.jspdf){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'); await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js'); }
+
+    const{jsPDF}=window.jspdf;
+
+    const doc=new jsPDF({unit:'mm',format:'a4'});
+
+    const W=210,PH=297;
+
+    const C={dark:[22,22,30],gold:[200,130,30],mid:[90,90,110],green:[40,160,100],red:[210,65,65],border:[200,200,215],white:[255,255,255],light:[245,245,252],blue:[120,170,255]};
+
+    let y=0;
+
+    // Header
+
+    doc.setFillColor(...C.dark); doc.rect(0,0,W,38,'F');
+
+    if(LOGO_B64){ try{ doc.addImage(LOGO_B64,'JPEG',14,7,24,24,undefined,'FAST'); }catch(e){} }
+
+    doc.setTextColor(...C.gold);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text(company,42,18);
+
+    doc.setTextColor(180,180,200);doc.setFontSize(8.5);doc.setFont('helvetica','normal');doc.text('Smart Finance Tracker',42,26);
+
+    const now=new Date();const genStr=now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+', '+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase();
+
+    doc.setTextColor(160,160,185);doc.setFontSize(7.5);doc.text('Generated: '+genStr,W-14,15,{align:'right'});
+
+    y=48;
+
+    doc.setFontSize(22);doc.setFont('helvetica','bold');doc.setTextColor(...C.dark);doc.text('STATEMENT',14,y);y+=10;
+
+    // Summary
+
+    const totalExp=filtered.filter(t=>t.type==='expense'||t.type==='lend'||t.type==='repayment-out').reduce((s,t)=>s+t.amount,0);
+
+    const totalInc=filtered.filter(t=>t.type==='income'||t.type==='borrow'||t.type==='repayment-in').reduce((s,t)=>s+t.amount,0);
+
+    const net=totalInc-totalExp;
+
+    doc.setFillColor(...C.light);doc.roundedRect(14,y,W-28,30,4,4,'F');doc.setDrawColor(...C.border);doc.roundedRect(14,y,W-28,30,4,4,'S');
+
+    const cols=[{l:'Net Balance',v:(net>=0?'+':'-')+'Rs.'+Math.abs(net).toFixed(2),c:net>=0?C.green:C.red},{l:'Total Expense',v:'Rs.'+totalExp.toFixed(2),c:C.red},{l:'Total Income',v:'Rs.'+totalInc.toFixed(2),c:C.green},{l:'Transactions',v:String(filtered.length),c:C.dark}];
+
+    const cw=(W-28)/4;
+
+    cols.forEach((col,i)=>{const cx=14+cw*i+cw/2;doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(...col.c);doc.text(col.v,cx,y+12,{align:'center'});doc.setFontSize(7);doc.setFont('helvetica','normal');doc.setTextColor(...C.mid);doc.text(col.l,cx,y+22,{align:'center'});if(i<3){doc.setDrawColor(...C.border);doc.line(14+cw*(i+1),y+5,14+cw*(i+1),y+25);}});
+
+    y+=38;
+
+    // Table
+
+    const rows=filtered.map(t=>[
+
+      t.date+'\n'+(t.time||''),
+
+      t.type.replace('-',' ').toUpperCase(),
+
+      t.desc||(t.person||'—'),
+
+      t.person||'—',
+
+      t.mode,
+
+      ['income','borrow','repayment-in'].includes(t.type)?'':'Rs.'+t.amount.toFixed(2),
+
+      ['income','borrow','repayment-in'].includes(t.type)?'Rs.'+t.amount.toFixed(2):''
+
+    ]);
+
+    const footerFn=data=>{doc.setFillColor(...C.dark);doc.rect(0,PH-14,W,14,'F');doc.setFontSize(7);doc.setFont('helvetica','bold');doc.setTextColor(...C.gold);doc.text(company,14,PH-5);if(website){doc.setFont('helvetica','normal');doc.setTextColor(...C.blue);doc.text(website,14+doc.getTextWidth(company)+2,PH-5);}doc.setTextColor(160,160,185);doc.text('Page '+data.pageNumber,W-14,PH-5,{align:'right'});};
+
+    doc.autoTable({startY:y,head:[['Date','Type','Description','Person','Mode','Out','In']],body:rows,styles:{font:'helvetica',fontSize:7.5,cellPadding:2.5,textColor:C.dark,lineColor:C.border,lineWidth:0.18},headStyles:{fillColor:C.dark,textColor:C.white,fontStyle:'bold',fontSize:7.5},alternateRowStyles:{fillColor:[248,248,253]},columnStyles:{0:{cellWidth:26},1:{cellWidth:22},2:{cellWidth:48},3:{cellWidth:24},4:{cellWidth:18},5:{cellWidth:24,halign:'right',textColor:C.red},6:{cellWidth:24,halign:'right',textColor:C.green}},margin:{left:14,right:14},didDrawPage:footerFn});
+
+    y=doc.lastAutoTable.finalY+10;
+
+    doc.setFillColor(...C.light);doc.setDrawColor(...C.border);doc.roundedRect(14,y,W-28,28,4,4,'FD');
+
+    doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(...C.dark);doc.text('Total Out',20,y+10);doc.setTextColor(...C.red);doc.text('Rs.'+totalExp.toFixed(2),W-20,y+10,{align:'right'});
+
+    doc.setTextColor(...C.dark);doc.text('Total In',20,y+18);doc.setTextColor(...C.green);doc.text('Rs.'+totalInc.toFixed(2),W-20,y+18,{align:'right'});
+
+    doc.setDrawColor(...C.border);doc.line(20,y+21,W-20,y+21);
+
+    doc.setTextColor(...C.dark);doc.text('Net Balance',20,y+27);doc.setTextColor(...(net>=0?C.green:C.red));doc.text((net>=0?'+':'-')+'Rs.'+Math.abs(net).toFixed(2),W-20,y+27,{align:'right'});
+
+    doc.save(company.replace(/\s+/g,'_')+'_'+fromD+'_to_'+toD+'.pdf');
+
+  }catch(err){alert('PDF error: '+err.message);}finally{document.getElementById('pdfLoading').classList.remove('active');}
+
+}
+
+function loadScript(src){return new Promise((res,rej)=>{if(document.querySelector(`script[src="${src}"]`)){res();return;}const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('Failed: '+src));document.head.appendChild(s);});}
+
+// ── INIT ──
+
+updateLogo();
+
+renderAll();
+
+initLock();
+
+// Close overlays on backdrop click
+
+['addTxOverlay','addLBOverlay','repayOverlay','deleteOverlay','clearOverlay','pdfOverlay','pinOverlay'].forEach(id=>{
+
+  document.getElementById(id).addEventListener('click',e=>{ if(e.target.id===id) closeModal(id); });
+
+});
+
+document.getElementById('settingsOverlay').addEventListener('click',handleSettingsClick);
+
+</script>
+
+</body>
+
+</html>
